@@ -1,0 +1,35 @@
+{
+  "kernel": {
+    "repository": "https://github.com/mkopec/linux.git",
+    "branch": "ciri-full",
+    "revision": "b8f841230b1615aa58b5d4389e11bfe66abbd993",
+    "release": "7.3.0-rc4-ciri"
+  },
+  "cgpt": {
+    "repository": "https://chromium.googlesource.com/chromiumos/platform/vboot_reference",
+    "revision": "72043688a9842a31a92e4829fe71ee94c4939fc8",
+    "verified_binary_sha256": "9305e202a865f64c9476bd2936718cb58a1dc5ef38545625a37b8cc231906089"
+  },
+  "remote_build_image": {
+    "image": "debian@sha256:2dc419c6d7fe3dad0a2f9fd469c34cc90b0f9ba642d8fde837fe3d7d34a0e7f1"
+  },
+  "submarine_input": {
+    "repository": "https://github.com/FyraLabs/submarine.git",
+    "revision": "a2e60395030115263af276eabd6f8da0a21a84a9",
+    "u_root_repository": "https://github.com/loearthorbit/u-root.git",
+    "u_root_branch": "fix/grub-separate-boot-partition",
+    "u_root_revision": "943ea126e1cb657bde11eca30d5a12b890eb35fe",
+    "u_root_upstream_pr": "https://github.com/u-root/u-root/pull/3817",
+    "kernel_release": "7.2.11",
+    "verified_image_gz_sha256": "3f7e27a7bac683b12244bd4d8d52c7bf6834ec899ead18b18a549204221b770c",
+    "note": "Externally supplied patched Submarine ARM64 carrier; this project does not rebuild Submarine."
+  },
+  "firmware": {
+    "updater_repository": "https://github.com/mkopec/ciri-mainline",
+    "updater_path": "package/ciri-firmware-update",
+    "reviewed_updater_sha256": "15d7f83a0b8a86c50fc85e0e9c0d501bfd5c909c64ba6b0a8db931ec422a9ed8",
+    "verified_recovery_version": "16836.19.0",
+    "verified_recovery_url": "https://dl.google.com/dl/edgedl/chromeos/recovery/chromeos_16836.19.0_geralt_recovery_stable-channel_GeraltMPKeys-v8.bin.zip",
+    "note": "Default extraction selects the current stable recovery; firmware is not vendored or covered by the tooling license."
+  }
+}

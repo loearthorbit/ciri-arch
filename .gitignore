@@ -1,0 +1,17 @@
+/artifacts/
+/build/
+/images/
+/.venv/
+__pycache__/
+*.py[cod]
+*.img
+*.kpart
+*.cpio
+*.bin
+*.zip
+*.tar
+*.tar.gz
+*.tar.zst
+.env
+*.key
+*.pem
