@@ -21,6 +21,10 @@ parser.add_argument("--kernel-dir", required=True)
 parser.add_argument("--firmware-dir", required=True)
 parser.add_argument("--submarine-kernel", required=True)
 parser.add_argument("--cgpt-dir", help="Use actual cgpt build artifacts instead of the metadata-only fixture")
+parser.add_argument("--console-rotation", type=int, choices=range(4), help="Test rotation argument plumbing with a copied kernel-config fixture")
+login_mode = parser.add_mutually_exclusive_group()
+login_mode.add_argument("--password-login", action="store_true", help="Test console password login without an SSH key")
+login_mode.add_argument("--blank-root-password", action="store_true", help="Test blank local root login with root SSH disabled")
 args = parser.parse_args()
 repo = Path(__file__).resolve().parent.parent
 builder = repo / "scripts/bundle-ciri-arch.sh"
@@ -63,6 +67,25 @@ def fixture_elf(needed=(), interpreter=None):
 
 with tempfile.TemporaryDirectory(prefix="ciri-image-test.", dir=repo / "build") as temporary:
     work = Path(temporary)
+    kernel_dir = Path(args.kernel_dir).resolve()
+    rotation_args = []
+    if args.console_rotation is not None:
+        shutil.copytree(kernel_dir, work / "kernel-artifacts")
+        kernel_dir = work / "kernel-artifacts"
+        config = kernel_dir / "kernel.config"
+        lines = [line for line in config.read_text().splitlines() if not line.startswith("CONFIG_FRAMEBUFFER_CONSOLE_ROTATION=") and line != "# CONFIG_FRAMEBUFFER_CONSOLE_ROTATION is not set"]
+        config.write_text("\n".join(lines) + "\nCONFIG_FRAMEBUFFER_CONSOLE_ROTATION=y\n")
+        digest = hashlib.sha256(config.read_bytes()).hexdigest()
+        checksums = kernel_dir / "SHA256SUMS"
+        lines = []
+        for line in checksums.read_text().splitlines():
+            _, name = line.split(maxsplit=1)
+            if name.removeprefix("*").removeprefix("./") == "kernel.config":
+                line = f"{digest}  {name}"
+            lines.append(line)
+        checksums.write_text("\n".join(lines) + "\n")
+        rotation_args = ["--console-rotation", str(args.console_rotation)]
+        print("Testing rotation plumbing with a kernel-config fixture, not a rotation-enabled kernel", flush=True)
     elf = fixture_elf()
     cgpt = work / "cgpt-artifacts"
     cgpt.mkdir()
@@ -89,6 +112,7 @@ with tempfile.TemporaryDirectory(prefix="ciri-image-test.", dir=repo / "build") 
         "etc/passwd": b"root:x:0:0:root:/root:/bin/sh\nalarm:x:1000:1000:alarm:/home/alarm:/bin/sh\n",
         "etc/shadow": b"root:root:1::::::\nalarm:alarm:1::::::\n",
         "etc/ssh/sshd_config": b"# fixture\nPasswordAuthentication yes\n",
+        "etc/pam.d/system-auth": b"auth required pam_unix.so try_first_pass\naccount required pam_unix.so\npassword required pam_unix.so\n",
         "etc/machine-id": b"0123456789abcdef0123456789abcdef\n",
         "etc/ssh/ssh_host_test_key": b"fixture host key\n",
         "usr/lib/initcpio/busybox": fixture_elf(("libfixture.so.1",), "/lib/ld-linux-aarch64.so.1"),
@@ -116,6 +140,8 @@ with tempfile.TemporaryDirectory(prefix="ciri-image-test.", dir=repo / "build") 
         for name, data in files.items():
             member = tarfile.TarInfo(name)
             member.mode = 0o755 if name.endswith("busybox") or name.startswith("usr/bin/") else 0o644
+            if name == "etc/machine-id":
+                member.mode = 0o444
             member.size = len(data)
             tar.addfile(member, io.BytesIO(data))
         for name, target in (("lib", "usr/lib"), ("usr/lib/libfixture.so.1", "/usr/lib/guest-library.so")):
@@ -126,22 +152,41 @@ with tempfile.TemporaryDirectory(prefix="ciri-image-test.", dir=repo / "build") 
             tar.addfile(member)
     with archive.open("rb") as stream:
         archive_sha = hashlib.file_digest(stream, "sha256").hexdigest()
-    key = work / "key"
-    run(["ssh-keygen", "-q", "-t", "ed25519", "-N", "", "-f", str(key)])
+    expected_password = "!"
+    if args.blank_root_password:
+        expected_password = ""
+        login_args = ["--blank-root-password"]
+    elif args.password_login:
+        expected_password = run(["openssl", "passwd", "-6", "-stdin"], input="fixture-test-password\n").strip()
+        password_file = work / "password-hash"
+        password_file.write_text(expected_password + "\n")
+        password_file.chmod(0o600)
+        login_args = ["--password-hash-file", str(password_file)]
+    else:
+        key = work / "key"
+        run(["ssh-keygen", "-q", "-t", "ed25519", "-N", "", "-f", str(key)])
+        login_args = ["--ssh-key", str(key) + ".pub"]
     output = work / "fixture.img"
     command = [
-        "bash", str(builder), "--sku", "0", "--kernel-dir", str(Path(args.kernel_dir).resolve()),
+        "bash", str(builder), "--sku", "0", "--kernel-dir", str(kernel_dir),
         "--firmware-dir", str(Path(args.firmware_dir).resolve()), "--cgpt-dir", str(cgpt),
         "--submarine-kernel", str(Path(args.submarine_kernel).resolve()),
         "--rootfs", str(archive), "--rootfs-sha256", archive_sha,
-        "--ssh-key", str(key) + ".pub", "--size-gib", "2", "--output", str(output),
+        *login_args, *rotation_args, "--size-gib", "2", "--output", str(output),
     ]
+    if 'CONFIG_FRAMEBUFFER_CONSOLE_ROTATION=y' not in (kernel_dir / "kernel.config").read_text().splitlines():
+        result = subprocess.run(command + ["--console-rotation", "3"], text=True, capture_output=True)
+        assert result.returncode != 0 and "Console rotation requires a rebuilt distro kernel" in result.stderr, result.stderr
+        assert not output.exists()
     print("Testing complete image assembly using a nonbootable rootfs fixture", flush=True)
     log = run(command)
     assert output.stat().st_size == 2 * 1024**3
     manifest = json.loads(Path(str(output) + ".json").read_text())
     assert manifest["ciri_sku"] == 0 and manifest["chromeos_kernel_partition_mib"] == 32
+    assert manifest["boot_partition_mib"] == 1024
     assert manifest["hardware_boot_tested"] is False
+    assert manifest["blank_root_console_login"] is args.blank_root_password
+    assert manifest["console_rotation"] == args.console_rotation
     assert manifest["arch_rootfs_sha256"] == archive_sha
     assert manifest["cgpt_path"] == "/usr/local/bin/cgpt"
     assert manifest["cgpt_sha256"] == hashlib.sha256(cgpt_binary).hexdigest()
@@ -161,7 +206,7 @@ with tempfile.TemporaryDirectory(prefix="ciri-image-test.", dir=repo / "build") 
         assert zlib.crc32(entries) == entries_crc
         partitions = [struct.unpack_from("<QQ", entries, i * size + 32) for i in range(3)]
         assert (partitions[0][1] - partitions[0][0] + 1) * 512 == 32 * 1024**2
-        assert (partitions[1][1] - partitions[1][0] + 1) * 512 == 256 * 1024**2
+        assert (partitions[1][1] - partitions[1][0] + 1) * 512 == 1024**3
         stream.seek((output.stat().st_size // 512 - 1) * 512)
         assert stream.read(8) == b"EFI PART"
     assert Path(str(output) + ".sha256").read_text().split()[0] == checksum
@@ -171,6 +216,10 @@ with tempfile.TemporaryDirectory(prefix="ciri-image-test.", dir=repo / "build") 
     assert f"linux /Image-ciri root=UUID={manifest['root_uuid']}" in config
     assert "devicetree " not in config
     assert "initrd /initramfs-ciri.img" in config
+    if args.console_rotation is None:
+        assert "fbcon=rotate:" not in config
+    else:
+        assert f"console=tty0 fbcon=rotate:{args.console_rotation}" in config
     initrd = work / "initramfs.img"
     run(["mcopy", "-i", f"{output}@@{boot_offset}", "::/initramfs-ciri.img", str(initrd)])
     incoming = work / "initrd-inspection"
@@ -196,16 +245,33 @@ with tempfile.TemporaryDirectory(prefix="ciri-image-test.", dir=repo / "build") 
                 destination.seek(len(data), os.SEEK_CUR)
             left -= len(data)
         destination.truncate()
-    for name, expected in (
+    file_checks = [
         ("/etc/fstab", f"UUID={manifest['root_uuid']} / ext4"),
-        ("/etc/shadow", "root:!:"),
-        ("/etc/ssh/sshd_config", "Include /etc/ssh/sshd_config.d/*.conf"),
-        ("/etc/ssh/sshd_config.d/10-ciri-image.conf", "PasswordAuthentication no"),
-    ):
+        ("/etc/shadow", f"root:{expected_password}:"),
+        ("/etc/shadow", f"alarm:{'!' if args.blank_root_password else expected_password}:"),
+    ]
+    if args.blank_root_password:
+        file_checks.extend((
+            ("/etc/pam.d/system-auth", "auth required pam_unix.so try_first_pass nullok"),
+            ("/etc/ssh/sshd_config", "PermitEmptyPasswords no\nPermitRootLogin no\n"),
+        ))
+    elif not args.password_login:
+        file_checks.extend((
+            ("/etc/ssh/sshd_config", "Include /etc/ssh/sshd_config.d/*.conf"),
+            ("/etc/ssh/sshd_config.d/10-ciri-image.conf", "PasswordAuthentication no"),
+        ))
+    for name, expected in file_checks:
         dump = work / "dump"
         run(["debugfs", "-R", f"dump {name} {dump}", str(root_part)])
         assert expected in dump.read_text(), name
         dump.unlink()
+    machine_id = work / "machine-id"
+    run(["debugfs", "-R", f"dump /etc/machine-id {machine_id}", str(root_part)])
+    assert machine_id.read_bytes() == b""
+    stat = run(["debugfs", "-R", "stat /etc/machine-id", str(root_part)])
+    assert re.search(r"Type:\s+regular", stat), stat
+    assert re.search(r"User:\s+0\s+Group:\s+0", stat), stat
+    assert re.search(r"Mode:\s+0444", stat), stat
     installed_cgpt = work / "installed-cgpt"
     run(["debugfs", "-R", f"dump /usr/local/bin/cgpt {installed_cgpt}", str(root_part)])
     assert installed_cgpt.read_bytes() == cgpt_binary
@@ -215,10 +281,19 @@ with tempfile.TemporaryDirectory(prefix="ciri-image-test.", dir=repo / "build") 
     provenance = work / "cgpt-source"
     run(["debugfs", "-R", f"dump /usr/share/doc/ciri-cgpt/source-revision.txt {provenance}", str(root_part)])
     assert provenance.read_text().strip() == cgpt_revision
-    stat = run(["debugfs", "-R", "stat /root/.ssh/authorized_keys", str(root_part)])
-    assert re.search(r"User:\s+0\s+Group:\s+0", stat), stat
-    stat = run(["debugfs", "-R", "stat /home/alarm/.ssh/authorized_keys", str(root_part)])
-    assert re.search(r"User:\s+1000\s+Group:\s+1000", stat), stat
+    if args.password_login or args.blank_root_password:
+        for home in ("/root", "/home/alarm"):
+            listing = run(["debugfs", "-R", f"ls -p {home}", str(root_part)])
+            assert "/.ssh/" not in listing, listing
+        if args.blank_root_password:
+            print("Verified blank root console login settings, alarm locked and root SSH disabled", flush=True)
+        else:
+            print("Verified console password hashes for root and alarm, without SSH keys", flush=True)
+    else:
+        stat = run(["debugfs", "-R", "stat /root/.ssh/authorized_keys", str(root_part)])
+        assert re.search(r"User:\s+0\s+Group:\s+0", stat), stat
+        stat = run(["debugfs", "-R", "stat /home/alarm/.ssh/authorized_keys", str(root_part)])
+        assert re.search(r"User:\s+1000\s+Group:\s+1000", stat), stat
     result = subprocess.run(command, text=True, capture_output=True)
     assert result.returncode != 0 and "Refusing to replace" in result.stderr
     rejected_output = work / "rejected.img"

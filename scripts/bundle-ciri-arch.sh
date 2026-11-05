@@ -4,33 +4,40 @@ set -euo pipefail
 usage() {
     printf '%s\n' \
         "Usage: ${0##*/} --sku 0..7 --kernel-dir DIR --firmware-dir DIR --cgpt-dir DIR --output FILE.img" \
-        '       [--rootfs FILE.tar.gz --rootfs-sha256 SHA256]' \
-        '       [--ssh-key FILE.pub] [--password-hash-file FILE]' \
+        '       [--rootfs FILE.tar.gz --rootfs-sha256 SHA256] [--rootfs-cache DIR] [--refresh-rootfs]' \
+        '       [--ssh-key FILE.pub] [--password-hash-file FILE] [--blank-root-password]' \
         '       [--submarine-kernel FILE] [--size-gib N] [--busybox FILE]' \
-        '       [--build-image localhost/submarine-build:latest]' \
+        '       [--build-image localhost/submarine-build:latest] [--console-rotation 0..3]' \
         '' \
         'Build an Arch Linux ARM/Ciri GPT disk-image FILE. Never writes a physical drive.' \
-        'Partition 1: 32 MiB ChromeOS Submarine kernel; 2: 256 MiB FAT boot; 3: ext4 root.' \
+        'Partition 1: 32 MiB ChromeOS Submarine kernel; 2: 1 GiB FAT boot; 3: ext4 root.' \
         'Default image size: 8 GiB. The selected Ciri DTB is packed into Submarine.' \
         '' \
-        'Without --rootfs, download the generic AArch64 rootfs over HTTPS and verify its' \
-        'detached signature against the official, pinned Arch Linux ARM signing keys.' \
+        'Without --rootfs, reuse the verified rootfs in build/cache/arch-rootfs.' \
+        'Download it and its signing keys only on a cache miss or --refresh-rootfs.' \
+        'Cached checksums and the pinned-key signature are verified offline on every use.' \
         'A supplied local rootfs requires --rootfs-sha256.' \
         '--cgpt-dir must contain the static ARM64 cgpt build artifacts and SHA256SUMS.' \
         'The native cgpt is installed at /usr/local/bin/cgpt for on-device GPT changes.' \
         'Supply an SSH public key and/or a crypt password hash file for login.' \
+        '--blank-root-password explicitly allows local root login without a password;' \
+        'it keeps alarm locked and disables root SSH login. Do not use on shared devices.' \
         'The default root/root and alarm/alarm passwords are never retained.' \
         '' \
         'Runs without mounts or ARM emulation: uses fakeroot, mkfs.ext4 -d and mtools.' \
         'Requires the ARM64 BusyBox from mkinitcpio-busybox, plus mount, blkid and kmod.' \
-        'Image construction is tested separately from a real Duet boot.'
+        'Image construction is tested separately from a real Duet boot.' \
+        '--console-rotation sets only the distro fbcon rotation (3 = counter-clockwise).' \
+        'It requires CONFIG_FRAMEBUFFER_CONSOLE_ROTATION=y in the distro kernel.'
 }
 
 die() { printf '%s\n' "$*" >&2; exit 1; }
 need_value() { [[ $# -ge 2 && -n "$2" ]] || die "Missing value for $1"; }
 repo_root=$(CDPATH= cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
-sku= kernel_dir= firmware_dir= cgpt_dir= output= rootfs= rootfs_sha256= ssh_key= password_hash_file= busybox=
+sku= kernel_dir= firmware_dir= cgpt_dir= output= rootfs= rootfs_sha256= ssh_key= password_hash_file= busybox= blank_root_password= console_rotation=
 submarine_kernel="$repo_root/artifacts/submarine/Image.gz"
+rootfs_cache="$repo_root/build/cache/arch-rootfs"
+refresh_rootfs=
 size_gib=8
 build_image=localhost/submarine-build:latest
 while [[ $# -gt 0 ]]; do
@@ -43,21 +50,28 @@ while [[ $# -gt 0 ]]; do
         --output) need_value "$@"; output=$2; shift 2 ;;
         --rootfs) need_value "$@"; rootfs=$2; shift 2 ;;
         --rootfs-sha256) need_value "$@"; rootfs_sha256=$2; shift 2 ;;
+        --rootfs-cache) need_value "$@"; rootfs_cache=$2; shift 2 ;;
+        --refresh-rootfs) refresh_rootfs=1; shift ;;
         --ssh-key) need_value "$@"; ssh_key=$2; shift 2 ;;
         --password-hash-file) need_value "$@"; password_hash_file=$2; shift 2 ;;
+        --blank-root-password) blank_root_password=1; shift ;;
         --submarine-kernel) need_value "$@"; submarine_kernel=$2; shift 2 ;;
         --size-gib) need_value "$@"; size_gib=$2; shift 2 ;;
+        --console-rotation) need_value "$@"; console_rotation=$2; shift 2 ;;
         --busybox) need_value "$@"; busybox=$2; shift 2 ;;
         --build-image) need_value "$@"; build_image=$2; shift 2 ;;
         *) die "Unknown option: $1" ;;
     esac
 done
 [[ "$sku" =~ ^[0-7]$ ]] || die '--sku must identify the actual Ciri SKU, from 0 to 7.'
+[[ -z "$console_rotation" || "$console_rotation" =~ ^[0-3]$ ]] || die '--console-rotation must be 0, 1, 2 or 3.'
 [[ -n "$kernel_dir" && -n "$firmware_dir" && -n "$cgpt_dir" && -n "$output" ]] || die '--kernel-dir, --firmware-dir, --cgpt-dir and --output are required.'
 [[ "$size_gib" =~ ^[0-9]+$ && "$size_gib" -ge 2 && "$size_gib" -le 128 ]] || die '--size-gib must be between 2 and 128.'
-[[ -n "$ssh_key" || -n "$password_hash_file" ]] || die 'Provide --ssh-key and/or --password-hash-file; default passwords are not allowed.'
+[[ -n "$ssh_key" || -n "$password_hash_file" || -n "$blank_root_password" ]] || die 'Provide --ssh-key, --password-hash-file or explicitly --blank-root-password.'
+[[ -z "$blank_root_password" || ( -z "$ssh_key" && -z "$password_hash_file" ) ]] || die '--blank-root-password cannot be combined with an SSH key or password hash.'
 [[ -z "$rootfs" || "$rootfs_sha256" =~ ^[a-fA-F0-9]{64}$ ]] || die 'A local --rootfs requires a 64-digit --rootfs-sha256.'
 [[ -n "$rootfs" || -z "$rootfs_sha256" ]] || die '--rootfs-sha256 requires --rootfs.'
+[[ -z "$refresh_rootfs" || -z "$rootfs" ]] || die '--refresh-rootfs cannot be combined with a local --rootfs.'
 [[ ! -e "$output" && ! -L "$output" ]] || die "Refusing to replace $output"
 [[ ! -e "$output.sha256" && ! -L "$output.sha256" && ! -e "$output.json" && ! -L "$output.json" ]] || die 'Output sidecar files already exist.'
 [[ -d "$(dirname -- "$output")" ]] || die 'Create the output directory first.'
@@ -70,11 +84,14 @@ if [[ "$EUID" -ne 0 && -z "${FAKEROOTKEY:-}" ]]; then
     command -v fakeroot >/dev/null || die 'fakeroot is required when not running as root.'
     exec fakeroot -- "$BASH" "$0" --sku "$sku" --kernel-dir "$kernel_dir" \
         --firmware-dir "$firmware_dir" --cgpt-dir "$cgpt_dir" --output "$output" --size-gib "$size_gib" \
-        --submarine-kernel "$submarine_kernel" --build-image "$build_image" \
+        --submarine-kernel "$submarine_kernel" --build-image "$build_image" --rootfs-cache "$rootfs_cache" \
+        ${refresh_rootfs:+--refresh-rootfs} \
         ${rootfs:+--rootfs} ${rootfs:+"$rootfs"} \
         ${rootfs_sha256:+--rootfs-sha256} ${rootfs_sha256:+"$rootfs_sha256"} \
         ${ssh_key:+--ssh-key} ${ssh_key:+"$ssh_key"} \
         ${password_hash_file:+--password-hash-file} ${password_hash_file:+"$password_hash_file"} \
+        ${blank_root_password:+--blank-root-password} \
+        ${console_rotation:+--console-rotation} ${console_rotation:+"$console_rotation"} \
         ${busybox:+--busybox} ${busybox:+"$busybox"}
 fi
 kernel_dir=$(realpath -e -- "$kernel_dir")
@@ -119,7 +136,7 @@ trap 'exit 130' INT
 trap 'exit 143' TERM
 mkdir "$work/rootfs" "$work/boot" "$work/initrd" "$work/loader-dtbs" "$work/archive" "$work/metadata"
 
-python3 -I - "$kernel_dir" "$firmware_dir" "$sku" "$cgpt_dir" <<'PY'
+python3 -I - "$kernel_dir" "$firmware_dir" "$sku" "$cgpt_dir" "$console_rotation" <<'PY'
 import hashlib
 from pathlib import Path
 import re
@@ -145,6 +162,8 @@ for directory, required in (
             actual = hashlib.file_digest(stream, 'sha256').hexdigest()
         if expected.get(name) != actual:
             raise SystemExit(f'Checksum mismatch or missing entry: {directory / name}')
+if sys.argv[5] and 'CONFIG_FRAMEBUFFER_CONSOLE_ROTATION=y' not in (kernel / 'kernel.config').read_text().splitlines():
+    raise SystemExit('Console rotation requires a rebuilt distro kernel with CONFIG_FRAMEBUFFER_CONSOLE_ROTATION=y')
 release = (kernel / 'kernel-release.txt').read_text().strip()
 if not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9._+-]*', release):
     raise SystemExit('Invalid kernel release name')
@@ -166,31 +185,21 @@ PY
 release=$(<"$kernel_dir/kernel-release.txt")
 
 if [[ -z "$rootfs" ]]; then
-    for dependency in curl gpg; do command -v "$dependency" >/dev/null || die "$dependency is required for rootfs download."; done
-    base=https://de3.mirror.archlinuxarm.org/os/ArchLinuxARM-aarch64-latest.tar.gz
-    rootfs="$work/archive/ArchLinuxARM-aarch64-latest.tar.gz"
-    printf 'Downloading official Arch Linux ARM rootfs and signature...\n'
-    curl --fail --location --show-error --retry 3 --connect-timeout 30 --output "$work/metadata/rootfs.sig" "$base.sig"
-    curl --fail --location --show-error --retry 3 --connect-timeout 30 --output "$rootfs" "$base"
-    mkdir -m 700 "$work/gnupg"
-    # Official fingerprints: https://archlinuxarm.org/about/package-signing
-    keys=(02922214DE8981D14DC2ACABBC704E86B823CD25 9D22B7BB678DC056B1F7723CB55C5315DCD9EE1A 69DD6C8FD314223E14362848BF7EEF7A9C6B5765 68B3537F39A313B3E574D06777193F152BDBE6A6)
-    gpg --homedir "$work/gnupg" --batch --keyserver hkps://keyserver.ubuntu.com --recv-keys "${keys[@]}"
-    gpg --homedir "$work/gnupg" --batch --status-fd 1 --verify "$work/metadata/rootfs.sig" "$rootfs" > "$work/metadata/signature-status"
-    python3 -I - "$work/metadata/signature-status" "${keys[@]}" <<'PY'
+    command -v gpg >/dev/null || die 'gpg is required to verify the cached rootfs.'
+    python3 -I "$repo_root/scripts/arch-rootfs-cache.py" --cache-dir "$rootfs_cache" \
+        ${refresh_rootfs:+--refresh} > "$work/metadata/rootfs-cache.json"
+    mapfile -t cached_rootfs < <(python3 -I - "$work/metadata/rootfs-cache.json" <<'PY'
+import json
 from pathlib import Path
 import sys
-allowed = set(sys.argv[2:])
-valid = False
-for line in Path(sys.argv[1]).read_text().splitlines():
-    fields = line.split()
-    if len(fields) >= 3 and fields[:2] == ['[GNUPG:]', 'VALIDSIG']:
-        valid |= fields[2] in allowed or fields[-1] in allowed
-if not valid:
-    raise SystemExit('Rootfs signature is not from an allowed Arch Linux ARM key')
+record = json.loads(Path(sys.argv[1]).read_text())
+print(record['rootfs'])
+print(record['sha256'])
 PY
-    rootfs_sha256=$(sha256sum "$rootfs")
-    rootfs_sha256=${rootfs_sha256%% *}
+    )
+    [[ ${#cached_rootfs[@]} -eq 2 ]] || die 'Invalid rootfs cache result.'
+    rootfs=${cached_rootfs[0]}
+    rootfs_sha256=${cached_rootfs[1]}
 else
     actual=$(sha256sum "$rootfs")
     [[ "${actual%% *}" == "${rootfs_sha256,,}" ]] || die 'Local rootfs SHA-256 mismatch.'
@@ -290,7 +299,7 @@ ln -s busybox "$initrd/bin/cat"
 chmod 755 "$initrd/init"
 (cd "$initrd"; find . -print0 | cpio --null --create --format=newc --quiet) | gzip -n -9 > "$work/boot/initramfs-ciri.img"
 
-python3 -I - "$root" "$ssh_key" "$password_hash_file" <<'PY'
+python3 -I - "$root" "$ssh_key" "$password_hash_file" "$blank_root_password" <<'PY'
 import os
 from pathlib import Path
 import re
@@ -298,6 +307,7 @@ import sys
 root = Path(sys.argv[1])
 key = Path(sys.argv[2]).read_text().strip() if sys.argv[2] else None
 password = Path(sys.argv[3]).read_text().strip() if sys.argv[3] else None
+blank_root_password = bool(sys.argv[4])
 if password and not re.fullmatch(r'\$(?:6|y)\$[^:\s]+', password):
     raise SystemExit('Password file must contain one SHA-512 crypt or yescrypt hash, not a plaintext password')
 if key and (len(key.splitlines()) != 1 or not re.match(r'^(ssh-ed25519|ssh-rsa|ecdsa-sha2-\S+)\s+\S+(?:\s.*)?$', key)):
@@ -313,10 +323,27 @@ lines = []
 for line in (root / 'etc/shadow').read_text().splitlines():
     fields = line.split(':')
     if fields[0] in ('root', 'alarm'):
-        fields[1] = password or '!'
+        fields[1] = '' if blank_root_password and fields[0] == 'root' else password or '!'
     lines.append(':'.join(fields))
 (root / 'etc/shadow').write_text('\n'.join(lines) + '\n')
 os.chmod(root / 'etc/shadow', 0o600)
+if blank_root_password:
+    pam = root / 'etc/pam.d/system-auth'
+    if not pam.is_file() or pam.is_symlink():
+        raise SystemExit('Blank console login requires the regular Arch PAM system-auth file')
+    pam_lines = pam.read_text().splitlines()
+    found = False
+    for index, line in enumerate(pam_lines):
+        if re.match(r'^\s*-?auth\s.*\bpam_unix\.so(?:\s|$)', line):
+            found = True
+            if 'nullok' not in line.split():
+                pam_lines[index] = line + ' nullok'
+    if not found:
+        raise SystemExit('Could not identify pam_unix authentication for blank console login')
+    pam.write_text('\n'.join(pam_lines) + '\n')
+    config = root / 'etc/ssh/sshd_config'
+    original = config.read_text() if config.exists() else ''
+    config.write_text('PermitEmptyPasswords no\nPermitRootLogin no\n' + original)
 if key:
     for name in ('root', 'alarm'):
         fields = users[name]
@@ -346,7 +373,12 @@ if key:
         target.symlink_to('/usr/lib/systemd/system/sshd.service')
 (root / 'etc/hostname').write_text('arch-ciri\n')
 # Regenerate machine identity and SSH host keys on the target, not on this builder.
-(root / 'etc/machine-id').write_text('')
+# Replace the read-only archive file; fakeroot cannot bypass its write permissions.
+machine_id = root / 'etc/machine-id'
+if machine_id.exists() or machine_id.is_symlink():
+    machine_id.unlink()
+machine_id.write_text('')
+os.chmod(machine_id, 0o444)
 for path in (root / 'etc/ssh').glob('ssh_host_*'):
     if path.is_file() or path.is_symlink():
         path.unlink()
@@ -365,7 +397,9 @@ printf 'UUID=%s / ext4 defaults 0 1\nUUID=%s /boot vfat defaults,umask=0077 0 2\
 mkdir -p "$work/boot/grub" "$work/boot/dtbs" "$root/boot/grub"
 cp "$kernel_dir/Image" "$work/boot/Image-ciri"
 cp "$kernel_dir/dtbs/mt8188-geralt-ciri-sku$sku.dtb" "$work/boot/dtbs/"
-printf "set default=0\nset timeout=5\nmenuentry 'Arch Linux ARM - Ciri SKU%s' {\n  search --no-floppy --fs-uuid --set=root %s\n  linux /Image-ciri root=UUID=%s ro rootwait console=tty0\n  initrd /initramfs-ciri.img\n}\n" "$sku" "$boot_uuid" "$root_uuid" > "$work/boot/grub/grub.cfg"
+console_args='console=tty0'
+[[ -z "$console_rotation" ]] || console_args+=" fbcon=rotate:$console_rotation"
+printf "set default=0\nset timeout=5\nmenuentry 'Arch Linux ARM - Ciri SKU%s' {\n  search --no-floppy --fs-uuid --set=root %s\n  linux /Image-ciri root=UUID=%s ro rootwait %s\n  initrd /initramfs-ciri.img\n}\n" "$sku" "$boot_uuid" "$root_uuid" "$console_args" > "$work/boot/grub/grub.cfg"
 cp "$work/boot/grub/grub.cfg" "$root/boot/grub/grub.cfg"
 # kexec_file_load reuses the running DTB. Pack the NEW kernel's tree into the
 # Submarine carrier, rather than adding a devicetree directive it cannot honor.
@@ -389,7 +423,7 @@ fi
 truncate -s "${size_gib}G" "$image"
 sgdisk --clear \
     --new=1:2048:+32M --typecode=1:FE3A2A5D-4F32-41A7-B725-ACCC3285A309 --change-name=1:Submarine \
-    --new=2:0:+256M --typecode=2:0700 --change-name=2:ArchBoot \
+    --new=2:0:+1024M --typecode=2:0700 --change-name=2:ArchBoot \
     --new=3:0:0 --typecode=3:8300 --change-name=3:ArchRoot "$image"
 cgpt add -i 1 -P 15 -T 1 -S 1 "$image"
 boot_sectors=$(cgpt show -i 2 -s "$image")
@@ -411,7 +445,7 @@ rm -f -- "$image"
 image=
 checksum=$(sha256sum "$output")
 printf '%s  %s\n' "${checksum%% *}" "${output##*/}" > "$output.sha256"
-python3 -I - "$output.json" "$kernel_dir" "$sku" "$rootfs_sha256" "$root_uuid" "$boot_uuid" "$size_gib" "$cgpt_dir" <<'PY'
+python3 -I - "$output.json" "$kernel_dir" "$sku" "$rootfs_sha256" "$root_uuid" "$boot_uuid" "$size_gib" "$cgpt_dir" "$blank_root_password" "$console_rotation" <<'PY'
 import hashlib
 import json
 from pathlib import Path
@@ -424,11 +458,14 @@ manifest.write_text(json.dumps({
     'ciri_sku': int(sys.argv[3]), 'arch_rootfs_sha256': sys.argv[4],
     'root_uuid': sys.argv[5], 'boot_uuid': sys.argv[6], 'image_size_gib': int(sys.argv[7]),
     'chromeos_kernel_partition_mib': 32,
+    'boot_partition_mib': 1024,
     'cgpt_path': '/usr/local/bin/cgpt',
     'cgpt_sha256': hashlib.sha256((cgpt / 'cgpt').read_bytes()).hexdigest(),
     'cgpt_source_revision': (cgpt / 'source-revision.txt').read_text().strip(),
     'boot_method': 'Submarine kexec_file_load, matching Ciri DTB repacked into the carrier',
     'hardware_boot_tested': False,
+    'blank_root_console_login': bool(sys.argv[9]),
+    'console_rotation': int(sys.argv[10]) if sys.argv[10] else None,
 }, indent=2) + '\n')
 PY
 printf '\nImage ready: %s\nChecksums: %s.sha256\nManifest: %s.json\n' "$output" "$output" "$output"

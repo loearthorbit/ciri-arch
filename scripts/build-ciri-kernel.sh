@@ -12,23 +12,38 @@ export LOCALVERSION=-ciri
 jobs=${BUILD_JOBS:-4}
 
 mkdir -p /work/artifacts
-printf 'Installing build dependencies\n'
-apt-get update > /work/dependencies.log 2>&1
-apt-get install -y --no-install-recommends \
-    build-essential gcc-aarch64-linux-gnu binutils-aarch64-linux-gnu \
-    bc bison flex libssl-dev libelf-dev dwarves python3 rsync kmod \
-    zstd gzip git ca-certificates xz-utils device-tree-compiler \
-    >> /work/dependencies.log 2>&1
+reuse=${REUSE_KERNEL_SOURCE:-0}
+[[ $reuse == 0 || $reuse == 1 ]] || { printf 'Invalid REUSE_KERNEL_SOURCE.\n' >&2; exit 1; }
+if [[ $reuse == 0 ]]; then
+    printf 'Installing build dependencies\n'
+    apt-get update > /work/dependencies.log 2>&1
+    apt-get install -y --no-install-recommends \
+        build-essential gcc-aarch64-linux-gnu binutils-aarch64-linux-gnu \
+        bc bison flex libssl-dev libelf-dev dwarves python3 rsync kmod \
+        zstd gzip git ca-certificates xz-utils device-tree-compiler \
+        >> /work/dependencies.log 2>&1
+else
+    printf 'Reusing installed dependencies; no apt downloads\n'
+fi
 python3 -I -c 'import shutil; free = shutil.disk_usage("/work").free; print(f"Free build space: {free // 2**30} GiB"); assert free >= 12 * 2**30, "At least 12 GiB of free space is needed"'
 
 requested_revision=${SOURCE_REVISION:-b8f841230b1615aa58b5d4389e11bfe66abbd993}
 [[ "$requested_revision" =~ ^[a-fA-F0-9]{40}$ ]] || { printf 'SOURCE_REVISION must be a full commit hash.\n' >&2; exit 1; }
-printf 'Cloning mkopec/linux ciri-full\n'
-git clone --depth=1 --single-branch --branch=ciri-full \
-    https://github.com/mkopec/linux.git /work/linux
-if [[ $(git -C /work/linux rev-parse HEAD) != "$requested_revision" ]]; then
-    git -C /work/linux fetch --depth=1 origin "$requested_revision"
-    git -C /work/linux checkout --detach FETCH_HEAD
+if [[ $reuse == 1 ]]; then
+    [[ -d /source/linux/.git && -d /source/out ]] || { printf 'Retained source/output directories missing.\n' >&2; exit 1; }
+    [[ $(git -C /source/linux rev-parse HEAD) == "$requested_revision" ]] || { printf 'Retained source revision does not match; refusing to fetch.\n' >&2; exit 1; }
+    [[ -z $(git -C /source/linux status --porcelain --untracked-files=all) ]] || { printf 'Retained source tree is not clean.\n' >&2; exit 1; }
+    printf 'Copying retained source and build objects into fresh work volume\n'
+    cp -a --reflink=auto /source/linux /work/linux
+    cp -a --reflink=auto /source/out /work/out
+else
+    printf 'Cloning mkopec/linux ciri-full\n'
+    git clone --depth=1 --single-branch --branch=ciri-full \
+        https://github.com/mkopec/linux.git /work/linux
+    if [[ $(git -C /work/linux rev-parse HEAD) != "$requested_revision" ]]; then
+        git -C /work/linux fetch --depth=1 origin "$requested_revision"
+        git -C /work/linux checkout --detach FETCH_HEAD
+    fi
 fi
 cd /work/linux
 revision=$(git rev-parse HEAD)
@@ -50,6 +65,7 @@ config=(scripts/config --file /work/out/.config)
     --enable USB --enable USB_XHCI_HCD --enable USB_XHCI_MTK \
     --enable CROS_EC --enable CROS_EC_I2C --enable CROS_EC_SPI \
     --enable CROS_EC_CHARDEV --enable MFD_CROS_EC_DEV \
+    --enable GOOGLE_FIRMWARE --enable GOOGLE_COREBOOT_TABLE --enable GOOGLE_VPD \
     --enable THERMAL --enable THERMAL_GOV_POWER_ALLOCATOR \
     --disable THERMAL_DEFAULT_GOV_STEP_WISE --enable THERMAL_DEFAULT_GOV_POWER_ALLOCATOR \
     --enable CPU_FREQ --disable CPU_FREQ_DEFAULT_GOV_PERFORMANCE \
@@ -59,7 +75,13 @@ config=(scripts/config --file /work/out/.config)
     --enable DRM --enable DRM_MEDIATEK --enable DRM_MEDIATEK_DP \
     --enable DRM_MIPI_DSI --enable BACKLIGHT_CLASS_DEVICE \
     --enable DRM_PANEL_HIMAX_HX83102 --enable DRM_FBDEV_EMULATION \
-    --enable FRAMEBUFFER_CONSOLE --enable VT --enable VT_CONSOLE \
+    --enable FRAMEBUFFER_CONSOLE --enable FRAMEBUFFER_CONSOLE_ROTATION \
+    --enable VT --enable VT_CONSOLE \
+    --enable SECURITY --enable SECURITY_LANDLOCK \
+    --enable CRYPTO_USER_API --enable CRYPTO_USER_API_HASH --enable CRYPTO_USER_API_SKCIPHER \
+    --enable CRYPTO_AES --enable CRYPTO_CBC --enable CRYPTO_CMAC --enable CRYPTO_DES \
+    --enable CRYPTO_DH --enable CRYPTO_HMAC --enable CRYPTO_MD5 \
+    --enable CRYPTO_SHA1 --enable CRYPTO_SHA256 --enable CRYPTO_SHA512 \
     --enable SND --enable SND_SOC --enable SND_SOC_SOF_TOPLEVEL \
     --enable SND_SOC_SOF_OF --enable SND_SOC_SOF_MTK_TOPLEVEL \
     --enable MEDIA_SUPPORT --enable MEDIA_PLATFORM_SUPPORT \
@@ -75,14 +97,21 @@ config=(scripts/config --file /work/out/.config)
     --set-str INITRAMFS_SOURCE ''
 "${config[@]}" --module HID_HIMAX --module I2C_HID_OF \
     --module DRM_PANFROST --module SND_SOC_MT8188_MT6359 \
-    --module SND_SOC_SOF_MT8186 --module VIDEO_MEDIATEK_VCODEC \
+    --module SND_SOC_SOF_MT8186 --module SND_SOC_MAX98390 --module SND_SOC_RT5682S \
+    --module VIDEO_MEDIATEK_VCODEC \
     --module VIDEO_MEDIATEK_MDP3 --module MT7921E
+# Ciri's built-in MIPI cameras use the imported ISP7.1 camsys driver,
+# not the V4L2 video codecs above. DW9768 also matches the rear GT9769 lens.
+"${config[@]}" --module MTK_SCP --module RPMSG_MTK_SCP \
+    --module VIDEO_MTK_ISP_71_CAMSYS \
+    --module VIDEO_GC05A2 --module VIDEO_GC08A3 --module VIDEO_DW9768
 make O=/work/out olddefconfig
 
 python3 -I -c '
 import pathlib
 text = pathlib.Path("/work/out/.config").read_text()
-required = ["ARCH_MEDIATEK", "MMC_MTK", "EXT4_FS", "HID_HIMAX", "I2C_HID_OF", "DRM_PANEL_HIMAX_HX83102", "DRM_MEDIATEK", "DRM_PANFROST", "SND_SOC_MT8188_MT6359", "SND_SOC_SOF_MT8186", "VIDEO_MEDIATEK_VCODEC", "VIDEO_MEDIATEK_MDP3", "MT7921E"]
+required = ["ARCH_MEDIATEK", "FRAMEBUFFER_CONSOLE_ROTATION", "GOOGLE_FIRMWARE", "GOOGLE_COREBOOT_TABLE", "GOOGLE_VPD", "SECURITY_LANDLOCK", "CRYPTO_USER_API", "CRYPTO_USER_API_HASH", "CRYPTO_USER_API_SKCIPHER", "CRYPTO_AES", "CRYPTO_CBC", "CRYPTO_CMAC", "CRYPTO_DES", "CRYPTO_DH", "CRYPTO_HMAC", "CRYPTO_MD5", "CRYPTO_SHA1", "CRYPTO_SHA256", "CRYPTO_SHA512", "MMC_MTK", "EXT4_FS", "HID_HIMAX", "I2C_HID_OF", "DRM_PANEL_HIMAX_HX83102", "DRM_MEDIATEK", "DRM_PANFROST", "SND_SOC_MT8188_MT6359", "SND_SOC_SOF_MT8186", "SND_SOC_MAX98390", "SND_SOC_RT5682S", "VIDEO_MEDIATEK_VCODEC", "VIDEO_MEDIATEK_MDP3", "MT7921E"]
+required += ["MTK_SCP", "RPMSG_MTK_SCP", "VIDEO_MTK_ISP_71_CAMSYS", "VIDEO_GC05A2", "VIDEO_GC08A3", "VIDEO_DW9768"]
 missing = [name for name in required if not any(f"CONFIG_{name}={value}\n" in text for value in ("y", "m"))]
 for name in required:
     print(next((line for line in text.splitlines() if line.startswith(f"CONFIG_{name}=")), f"MISSING: CONFIG_{name}"))

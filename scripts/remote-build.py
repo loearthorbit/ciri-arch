@@ -59,6 +59,25 @@ def verify_checksums(directory):
         print(f"Verified: {name}", flush=True)
 
 
+def inspect_kernel_reuse(docker, previous, image, source_url):
+    """Inspect a successful retained kernel build without starting or modifying it."""
+    container = (previous / "container-id.txt").read_text().strip()
+    if not re.fullmatch(r"[a-f0-9]{64}", container):
+        raise ValueError("Invalid retained container ID")
+    info = docker.json("GET", f"/containers/{container}/json")
+    state = info["State"]
+    labels = info["Config"].get("Labels") or {}
+    if state["Status"] != "exited" or state["ExitCode"] != 0:
+        raise ValueError("Reuse requires a successfully exited kernel build")
+    if (labels.get("purpose") != "ciri-kernel" or labels.get("source") != source_url
+            or info["Config"]["Image"] != image):
+        raise ValueError("Retained build source or base image differs")
+    mounts = [mount for mount in info["Mounts"] if mount["Destination"] == "/work"]
+    if len(mounts) != 1 or mounts[0]["Type"] != "volume" or not mounts[0].get("Name"):
+        raise ValueError("Retained build must have one named /work volume")
+    return {"container": container, "volume": mounts[0]["Name"], "previous_build": str(previous)}
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--script", required=True, help="Reviewed shell script to run inside a fresh Debian container")
@@ -70,6 +89,7 @@ def main():
     parser.add_argument("--jobs", type=int, default=4)
     parser.add_argument("--memory-gib", type=int, default=3)
     parser.add_argument("--revision", help="Optional pinned upstream commit passed as SOURCE_REVISION")
+    parser.add_argument("--reuse-kernel-build", help="Previous local kernel build record; reuse its remote source, objects and installed dependencies without downloads")
     args = parser.parse_args()
     if not re.fullmatch(r"[a-z0-9][a-z0-9_.-]{0,63}", args.name):
         parser.error("--name must be a short lowercase Docker name, not a path")
@@ -77,6 +97,13 @@ def main():
         parser.error("--jobs and --memory-gib must be positive")
     if args.revision and not re.fullmatch(r"[a-fA-F0-9]{40}", args.revision):
         parser.error("--revision must be a full 40-digit upstream commit")
+    previous = None
+    if args.reuse_kernel_build:
+        if args.name != "ciri-kernel" or Path(args.script).name != "build-ciri-kernel.sh":
+            parser.error("--reuse-kernel-build is only supported by the Ciri kernel recipe")
+        previous = Path(args.reuse_kernel_build).resolve(strict=True)
+        if not previous.is_dir():
+            parser.error("--reuse-kernel-build must name a previous build directory")
     script = Path(args.script).resolve(strict=True)
     docker = Docker(args.docker_url)
     version = docker.json("GET", "/version")
@@ -93,10 +120,20 @@ def main():
         output = Path(tempfile.mkdtemp(prefix=args.name + "-", dir=build))
     tag = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S") + "-" + uuid.uuid4().hex[:8]
     name = args.name + "-" + tag
+    image = args.image
+    reuse = None
+    if previous:
+        reuse = inspect_kernel_reuse(docker, previous, args.image, args.source_url)
+        # Snapshot only the exited container's dependency layer, not its volumes.
+        # The old source/output volume is mounted read-only in the new container.
+        image = docker.json("POST", "/commit?container=" + reuse["container"] + "&pause=false")["Id"]
+        reuse["dependency_image"] = image
+        (output / "reuse-build.json").write_text(json.dumps(reuse, indent=2) + "\n")
+        print(f"Reusing retained source/objects read-only: {reuse['volume']}; no source or dependency downloads", flush=True)
     config = {
-        "Image": args.image,
+        "Image": image,
         "Cmd": ["/bin/bash", "/opt/build.sh"],
-        "Env": [f"BUILD_JOBS={args.jobs}"] + ([f"SOURCE_REVISION={args.revision}"] if args.revision else []),
+        "Env": [f"BUILD_JOBS={args.jobs}"] + ([f"SOURCE_REVISION={args.revision}"] if args.revision else []) + (["REUSE_KERNEL_SOURCE=1"] if reuse else []),
         "Tty": True,
         "Labels": {"purpose": args.name, "source": args.source_url},
         "HostConfig": {
@@ -106,13 +143,19 @@ def main():
             "RestartPolicy": {"Name": "no"},
         },
     }
+    if reuse:
+        config["HostConfig"]["Mounts"].append({
+            "Type": "volume", "Source": reuse["volume"], "Target": "/source", "ReadOnly": True,
+        })
     (output / "container.json").write_text(json.dumps(config, indent=2) + "\n")
+    script_data = script.read_bytes()
+    (output / "build-recipe.sh").write_bytes(script_data)
     container = docker.json("POST", "/containers/create?name=" + quote(name), config)["Id"]
     (output / "container-id.txt").write_text(container + "\n")
     print(f"Remote container/volume: {name}\nLocal build records: {output}", flush=True)
     payload = io.BytesIO()
     with tarfile.open(fileobj=payload, mode="w") as archive:
-        data = script.read_bytes()
+        data = script_data
         member = tarfile.TarInfo("build.sh")
         member.mode = 0o755
         member.size = len(data)

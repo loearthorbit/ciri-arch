@@ -1,3 +1,4 @@
+import copy
 import hashlib
 import importlib.util
 from pathlib import Path

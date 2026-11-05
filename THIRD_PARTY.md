@@ -8,7 +8,8 @@ The tooling retains the GNU GPL version 3 license supplied with the Submarine wo
 | u-root | https://github.com/loearthorbit/u-root/tree/fix/grub-separate-boot-partition (fork of https://github.com/u-root/u-root) | External BSD-3-Clause project embedded in the supplied carrier; fixed commit `943ea126e1cb657bde11eca30d5a12b890eb35fe`, upstream PR 3817. |
 | Ciri Linux kernel | https://github.com/mkopec/linux/tree/ciri-full | Linux kernel licensing, generally GPL-2.0-only with file-specific exceptions. Source is cloned only inside the build container. |
 | cgpt / vboot_reference | https://chromium.googlesource.com/chromiumos/platform/vboot_reference | Upstream BSD-style license is preserved with the cgpt artifacts. Static libc/library dependencies have their own terms. |
-| Ciri firmware updater | https://github.com/mkopec/ciri-mainline | The reviewed updater has an MIT SPDX header. It is not vendored; callers must separately review and supply it. |
+| Ciri firmware updater | https://github.com/mkopec/ciri-mainline | The reviewed updater has an MIT SPDX header; callers must review the revision they supply. |
+| Ciri audio configuration | https://github.com/mkopec/ciri-mainline | MIT UCM, calibration and WirePlumber configuration adapted from revision `542342f9d1bd30201b42913796840e8fa471049a` in `scripts/install-ciri-audio.sh`. The installer includes the upstream copyright/license and installs it under `/usr/share/doc/ciri-audio/`. Experimental DisplayPort audio is omitted. |
 | ChromeOS recovery firmware | Google's recovery service | Firmware licensing/redistribution rights are not established by the updater's MIT license. Extract locally and do not commit blobs. |
 | Arch Linux ARM | https://archlinuxarm.org | Distribution packages retain their respective licenses. Rootfs archives are downloaded or supplied separately, not vendored. |
 
