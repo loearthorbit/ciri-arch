@@ -58,6 +58,16 @@ python3 -I -c 'import pathlib, re; p = pathlib.Path("arch/arm64/Kconfig.platform
 while IFS= read -r platform; do
     [ -z "$platform" ] || scripts/config --file /work/out/.config --disable "$platform"
 done < /work/other-platforms.txt
+# Keep the companion device-tree enablement reproducible in every Ciri SKU.
+camera_nodes=(/soc/imgsys-fw@15000000 /soc/aie@15310000 /soc/imgsys-l10
+    /soc/imgsys-l11a /soc/imgsys-l11b /soc/imgsys-l11c /soc/imgsys-l15)
+camera_dtsi=arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri.dtsi
+if ! grep -Fq '// Ciri camera userspace companion nodes' "$camera_dtsi"; then
+    printf '\n// Ciri camera userspace companion nodes\n' >> "$camera_dtsi"
+    for node in "${camera_nodes[@]}"; do
+        printf '&{%s} { status = "okay"; };\n' "$node" >> "$camera_dtsi"
+    done
+fi
 config=(scripts/config --file /work/out/.config)
 "${config[@]}" --enable ARCH_MEDIATEK --enable MODULES --enable BLK_DEV_INITRD \
     --enable DEVTMPFS --enable DEVTMPFS_MOUNT --enable EXT4_FS \
@@ -100,10 +110,12 @@ config=(scripts/config --file /work/out/.config)
     --module SND_SOC_SOF_MT8186 --module SND_SOC_MAX98390 --module SND_SOC_RT5682S \
     --module VIDEO_MEDIATEK_VCODEC \
     --module VIDEO_MEDIATEK_MDP3 --module MT7921E
-# Ciri's built-in MIPI cameras use the imported ISP7.1 camsys driver,
-# not the V4L2 video codecs above. DW9768 also matches the rear GT9769 lens.
+# Ciri's MIPI cameras use ISP7.1, not the V4L2 video codecs above.
+# The recovered ChromeOS pipeline also requires IMGSYS and AIE media devices.
+# DW9768 also matches the rear GT9769 lens.
 "${config[@]}" --module MTK_SCP --module RPMSG_MTK_SCP \
     --module VIDEO_MTK_ISP_71_CAMSYS \
+    --module VIDEO_MTK_ISP_71_IMGSYS --module VIDEO_MTK_AIE \
     --module VIDEO_GC05A2 --module VIDEO_GC08A3 --module VIDEO_DW9768
 make O=/work/out olddefconfig
 
@@ -111,7 +123,7 @@ python3 -I -c '
 import pathlib
 text = pathlib.Path("/work/out/.config").read_text()
 required = ["ARCH_MEDIATEK", "FRAMEBUFFER_CONSOLE_ROTATION", "GOOGLE_FIRMWARE", "GOOGLE_COREBOOT_TABLE", "GOOGLE_VPD", "SECURITY_LANDLOCK", "CRYPTO_USER_API", "CRYPTO_USER_API_HASH", "CRYPTO_USER_API_SKCIPHER", "CRYPTO_AES", "CRYPTO_CBC", "CRYPTO_CMAC", "CRYPTO_DES", "CRYPTO_DH", "CRYPTO_HMAC", "CRYPTO_MD5", "CRYPTO_SHA1", "CRYPTO_SHA256", "CRYPTO_SHA512", "MMC_MTK", "EXT4_FS", "HID_HIMAX", "I2C_HID_OF", "DRM_PANEL_HIMAX_HX83102", "DRM_MEDIATEK", "DRM_PANFROST", "SND_SOC_MT8188_MT6359", "SND_SOC_SOF_MT8186", "SND_SOC_MAX98390", "SND_SOC_RT5682S", "VIDEO_MEDIATEK_VCODEC", "VIDEO_MEDIATEK_MDP3", "MT7921E"]
-required += ["MTK_SCP", "RPMSG_MTK_SCP", "VIDEO_MTK_ISP_71_CAMSYS", "VIDEO_GC05A2", "VIDEO_GC08A3", "VIDEO_DW9768"]
+required += ["MTK_SCP", "RPMSG_MTK_SCP", "VIDEO_MTK_ISP_71_CAMSYS", "VIDEO_MTK_ISP_71_IMGSYS", "VIDEO_MTK_AIE", "VIDEO_GC05A2", "VIDEO_GC08A3", "VIDEO_DW9768"]
 missing = [name for name in required if not any(f"CONFIG_{name}={value}\n" in text for value in ("y", "m"))]
 for name in required:
     print(next((line for line in text.splitlines() if line.startswith(f"CONFIG_{name}=")), f"MISSING: CONFIG_{name}"))
@@ -120,6 +132,11 @@ assert not missing, f"Required Ciri options disabled after olddefconfig: {missin
 cp /work/out/.config /work/artifacts/kernel.config
 printf 'Compiling ARM64 Image, Image.gz, modules, and device trees\n'
 make O=/work/out -j"$jobs" Image Image.gz modules dtbs
+for dtb in /work/out/arch/arm64/boot/dts/mediatek/mt8188-geralt-ciri-sku*.dtb; do
+    for node in "${camera_nodes[@]}"; do
+        [[ $(fdtget -t s "$dtb" "$node" status) == okay ]]
+    done
+done
 release=$(make --no-print-directory -s O=/work/out kernelrelease)
 printf '%s\n' "$release" > /work/artifacts/kernel-release.txt
 printf 'Installing matching kernel modules\n'

@@ -1,0 +1,835 @@
+Capture output: /opt/ciri-camera/captures/run.Wn7vsrRF
+/dev/media0: driver=mtk-aie-5.3
+/dev/media1: driver=mtk-cam
+/dev/media2: driver=mtk-imgsys
+/dev/media3: driver=mtk-vcodec-dec
+[1:09:13.425664544] [10814] [1;36mDEBUG [1;37mIPAModule [1;34mipa_module.cpp:334 [0;32mipa_mtkisp7.so: [0mIPA module /usr/lib64/libcamera/ipa_mtkisp7.so is signed
+[1:09:13.425834529] [10814] [1;36mDEBUG [1;37mIPAManager [1;34mipa_manager.cpp:245 [0mLoaded IPA module '/usr/lib64/libcamera/ipa_mtkisp7.so'
+[1:09:13.425965748] [10814] [1;36mDEBUG [1;37mIPAModule [1;34mipa_module.cpp:334 [0;32mipa_mtkisp7.so: [0mIPA module /usr/lib64/libcamera/ipa_mtkisp7.so is signed
+[1:09:13.426030588] [10814] [1;36mDEBUG [1;37mIPAManager [1;34mipa_manager.cpp:245 [0mLoaded IPA module '/usr/lib64/libcamera/ipa_mtkisp7.so'
+[1:09:13.426070816] [10814] [1;32m INFO [1;37mCamera [1;34mcamera_manager.cpp:284 [0mlibcamera v0.0.0+5046-a5a75eea
+[1:09:13.426438476] [10830] [1;36mDEBUG [1;37mCamera [1;34mcamera_manager.cpp:69 [0mStarting camera manager
+[1:09:13.452039537] [10830] [1;36mDEBUG [1;37mDeviceEnumerator [1;34mdevice_enumerator.cpp:224 [0mNew media device "mtk-imgsys" created from /dev/media2
+[1:09:13.452097224] [10830] [1;36mDEBUG [1;37mDeviceEnumerator [1;34mdevice_enumerator_udev.cpp:96 [0mDefer media device /dev/media2 due to 72 missing dependencies
+[1:09:13.459446733] [10830] [1;36mDEBUG [1;37mDeviceEnumerator [1;34mdevice_enumerator_udev.cpp:322 [0mAll dependencies for media device /dev/media2 found
+[1:09:13.459500805] [10830] [1;36mDEBUG [1;37mDeviceEnumerator [1;34mdevice_enumerator.cpp:252 [0mAdded device /dev/media2: mtk-imgsys
+[1:09:13.459618256] [10830] [1;36mDEBUG [1;37mDeviceEnumerator [1;34mdevice_enumerator.cpp:224 [0mNew media device "mtk-aie-5.3" created from /dev/media0
+[1:09:13.459650484] [10830] [1;36mDEBUG [1;37mDeviceEnumerator [1;34mdevice_enumerator_udev.cpp:96 [0mDefer media device /dev/media0 due to 1 missing dependencies
+[1:09:13.459797779] [10830] [1;36mDEBUG [1;37mDeviceEnumerator [1;34mdevice_enumerator_udev.cpp:322 [0mAll dependencies for media device /dev/media0 found
+[1:09:13.459829622] [10830] [1;36mDEBUG [1;37mDeviceEnumerator [1;34mdevice_enumerator.cpp:252 [0mAdded device /dev/media0: mtk-aie-5.3
+[1:09:13.460114674] [10830] [1;36mDEBUG [1;37mDeviceEnumerator [1;34mdevice_enumerator.cpp:224 [0mNew media device "mtk-cam" created from /dev/media1
+[1:09:13.460447261] [10830] [1;36mDEBUG [1;37mDeviceEnumerator [1;34mdevice_enumerator_udev.cpp:96 [0mDefer media device /dev/media1 due to 42 missing dependencies
+[1:09:13.464481214] [10830] [1;36mDEBUG [1;37mDeviceEnumerator [1;34mdevice_enumerator_udev.cpp:322 [0mAll dependencies for media device /dev/media1 found
+[1:09:13.464505520] [10830] [1;36mDEBUG [1;37mDeviceEnumerator [1;34mdevice_enumerator.cpp:252 [0mAdded device /dev/media1: mtk-cam
+[1:09:13.464569437] [10830] [1;36mDEBUG [1;37mDeviceEnumerator [1;34mdevice_enumerator.cpp:224 [0mNew media device "mtk-vcodec-dec" created from /dev/media3
+[1:09:13.464586743] [10830] [1;36mDEBUG [1;37mDeviceEnumerator [1;34mdevice_enumerator_udev.cpp:96 [0mDefer media device /dev/media3 due to 1 missing dependencies
+[1:09:13.464671121] [10830] [1;36mDEBUG [1;37mDeviceEnumerator [1;34mdevice_enumerator_udev.cpp:322 [0mAll dependencies for media device /dev/media3 found
+[1:09:13.464685889] [10830] [1;36mDEBUG [1;37mDeviceEnumerator [1;34mdevice_enumerator.cpp:252 [0mAdded device /dev/media3: mtk-vcodec-dec
+[1:09:13.465343600] [10830] [1;36mDEBUG [1;37mCamera [1;34mcamera_manager.cpp:113 [0mFound registered pipeline handler 'PipelineHandlerMtkISP7'
+[1:09:13.465507970] [10830] [1;32m INFO [1;37mMtkISP7 [1;34mmtkisp7.cpp:623 [0mCurrent file descriptor limit:1024
+[1:09:13.465528122] [10830] [1;32m INFO [1;37mMtkISP7 [1;34mmtkisp7.cpp:628 [0mMaximum file descriptor limit: 524288
+[1:09:13.465853325] [10830] [1;36mDEBUG [1;37mDeviceEnumerator [1;34mdevice_enumerator.cpp:312 [0mSuccessful match for media device "mtk-cam"
+[1:09:13.465995928] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media1[mtk-cam]: [0mseninf-1[1] -> mtk-cam raw-0[0]: 0
+[1:09:13.466062383] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media1[mtk-cam]: [0mseninf-1[1] -> mtk-cam raw-1[0]: 0
+[1:09:13.466121224] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media1[mtk-cam]: [0mseninf-0[1] -> mtk-cam raw-0[0]: 0
+[1:09:13.466180911] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media1[mtk-cam]: [0mseninf-0[1] -> mtk-cam raw-1[0]: 0
+[1:09:13.466240829] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media1[mtk-cam]: [0mgc08a3 6-0031[0] -> seninf-0[0]: 0
+[1:09:13.466298670] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media1[mtk-cam]: [0mgc05a2 5-0037[0] -> seninf-1[0]: 0
+[1:09:13.466362049] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media1[mtk-cam]: [0mmtk-cam raw-0 rawi-3[0] -> mtk-cam raw-0[3]: 0
+[1:09:13.466422967] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media1[mtk-cam]: [0mmtk-cam raw-0 rawi-4[0] -> mtk-cam raw-0[4]: 0
+[1:09:13.466493961] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media1[mtk-cam]: [0mmtk-cam raw-1 rawi-3[0] -> mtk-cam raw-1[3]: 0
+[1:09:13.466557417] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media1[mtk-cam]: [0mmtk-cam raw-1 rawi-4[0] -> mtk-cam raw-1[4]: 0
+Standalone client: ChromeOS gyroscope disabled (no Mojo token)
+[1:09:13.466631795] [10830] [1;33m WARN [1;37mMtkISP7 [1;34mmtkisp7.cpp:692 [0mNo gyroscope available
+[1:09:13.466687867] [10830] [1;36mDEBUG [1;37mDeviceEnumerator [1;34mdevice_enumerator.cpp:312 [0mSuccessful match for media device "mtk-imgsys"
+[1:09:13.466766937] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[3] -> MTK-ISP-DIP-V4L2 TYUVO Output[0]: 4
+[1:09:13.466834008] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[4] -> MTK-ISP-DIP-V4L2 TYUV2O Output[0]: 4
+[1:09:13.466900310] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[5] -> MTK-ISP-DIP-V4L2 TYUV3O Output[0]: 4
+[1:09:13.466963227] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[6] -> MTK-ISP-DIP-V4L2 TYUV4O Output[0]: 4
+[1:09:13.467028222] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[7] -> MTK-ISP-DIP-V4L2 TYUV5O Output[0]: 4
+[1:09:13.467091678] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[8] -> MTK-ISP-DIP-V4L2 FEO Output[0]: 4
+[1:09:13.467158287] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[9] -> MTK-ISP-DIP-V4L2 TIMGO Output[0]: 4
+[1:09:13.467224281] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[10] -> MTK-ISP-DIP-V4L2 IMGSTATO Outpu[0]: 4
+[1:09:13.467288506] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[11] -> MTK-ISP-DIP-V4L2 XTMEO Output[0]: 4
+[1:09:13.467351501] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[12] -> MTK-ISP-DIP-V4L2 XTFDO Output[0]: 4
+[1:09:13.467416726] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[13] -> MTK-ISP-DIP-V4L2 XTDBGO Output[0]: 4
+[1:09:13.467489720] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[27] -> MTK-ISP-DIP-V4L2 Img2o Output[0]: 4
+[1:09:13.467556175] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[28] -> MTK-ISP-DIP-V4L2 Img3o Output[0]: 4
+[1:09:13.467621323] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[29] -> MTK-ISP-DIP-V4L2 Img4o Output[0]: 4
+[1:09:13.467689471] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[30] -> MTK-ISP-DIP-V4L2 FM Output[0]: 4
+[1:09:13.467756542] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[31] -> MTK-ISP-DIP-V4L2 Tnrso Output[0]: 4
+[1:09:13.467821460] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[32] -> MTK-ISP-DIP-V4L2 Tnrwo Output[0]: 4
+[1:09:13.467890146] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[33] -> MTK-ISP-DIP-V4L2 Tnrmo Output[0]: 4
+[1:09:13.467942141] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[35] -> MTK-ISP-DIP-V4L2 WROTO A Output[0]: 4
+[1:09:13.467994752] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[36] -> MTK-ISP-DIP-V4L2 WROTO B Output[0]: 4
+[1:09:13.468078976] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[37] -> MTK-ISP-DIP-V4L2 TCCSO A Output[0]: 4
+[1:09:13.468133663] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[38] -> MTK-ISP-DIP-V4L2 TCCSO B Output[0]: 4
+[1:09:13.468191427] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[49] -> MTK-ISP-DIP-V4L2 MILO Output[0]: 4
+[1:09:13.468241961] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[50] -> MTK-ISP-DIP-V4L2 L0WMVO Output[0]: 4
+[1:09:13.468291572] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[51] -> MTK-ISP-DIP-V4L2 L1WMVO Output[0]: 4
+[1:09:13.468340645] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[52] -> MTK-ISP-DIP-V4L2 CONFO Output[0]: 4
+[1:09:13.468391563] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[53] -> MTK-ISP-DIP-V4L2 WMAPO Output[0]: 4
+[1:09:13.468442174] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[54] -> MTK-ISP-DIP-V4L2 FMVO Output[0]: 4
+[1:09:13.468491785] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[55] -> MTK-ISP-DIP-V4L2 FSTO Output[0]: 4
+[1:09:13.468540550] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[56] -> MTK-ISP-DIP-V4L2 LMIO Output[0]: 4
+[1:09:13.468591700] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[57] -> MTK-ISP-DIP-V4L2 L0FMBO Output[0]: 4
+[1:09:13.468642311] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[58] -> MTK-ISP-DIP-V4L2 L1FMBO Output[0]: 4
+[1:09:13.468693768] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[62] -> MTK-ISP-DIP-V4L2 WPEO_E Output[0]: 4
+[1:09:13.468743379] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[63] -> MTK-ISP-DIP-V4L2 MSKO_E Output[0]: 4
+[1:09:13.468797220] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[67] -> MTK-ISP-DIP-V4L2 WPEO_T Output[0]: 4
+[1:09:13.468848446] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[68] -> MTK-ISP-DIP-V4L2 MSKO_T Output[0]: 4
+[1:09:13.468897750] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 TIMGI Input[0] -> MTK-ISP-DIP-V4L2[0]: 4
+[1:09:13.468944130] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 METAI Input[0] -> MTK-ISP-DIP-V4L2[1]: 4
+[1:09:13.468992972] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 PDC Input[0] -> MTK-ISP-DIP-V4L2[2]: 4
+[1:09:13.469043276] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 Imgi Input[0] -> MTK-ISP-DIP-V4L2[14]: 4
+[1:09:13.469090733] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 Vipi Input[0] -> MTK-ISP-DIP-V4L2[15]: 4
+[1:09:13.469137421] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 Rec_Dsi Input[0] -> MTK-ISP-DIP-V4L2[16]: 4
+[1:09:13.469186032] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 Rec_Dpi Input[0] -> MTK-ISP-DIP-V4L2[17]: 4
+[1:09:13.469234797] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 Bokeh Input[0] -> MTK-ISP-DIP-V4L2[18]: 4
+[1:09:13.469281408] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 Dmgi_FM Input[0] -> MTK-ISP-DIP-V4L2[19]: 4
+[1:09:13.469327943] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 Depi_FM Input[0] -> MTK-ISP-DIP-V4L2[20]: 4
+[1:09:13.469376708] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 Tnrsi Input[0] -> MTK-ISP-DIP-V4L2[21]: 4
+[1:09:13.469425780] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 Tnrwi Input[0] -> MTK-ISP-DIP-V4L2[22]: 4
+[1:09:13.469472776] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 Tnrmi Input[0] -> MTK-ISP-DIP-V4L2[23]: 4
+[1:09:13.469519926] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 Tnrci Input[0] -> MTK-ISP-DIP-V4L2[24]: 4
+[1:09:13.469568153] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 Tnrli Input[0] -> MTK-ISP-DIP-V4L2[25]: 4
+[1:09:13.469616148] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 Tnrvbi Input[0] -> MTK-ISP-DIP-V4L2[26]: 4
+[1:09:13.469664221] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 PIMGI Input[0] -> MTK-ISP-DIP-V4L2[34]: 4
+[1:09:13.469712832] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 L0I0I Input[0] -> MTK-ISP-DIP-V4L2[39]: 4
+[1:09:13.469761289] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 L0I1I Input[0] -> MTK-ISP-DIP-V4L2[40]: 4
+[1:09:13.469809670] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 L1I0I Input[0] -> MTK-ISP-DIP-V4L2[41]: 4
+[1:09:13.469855973] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 L1I1I Input[0] -> MTK-ISP-DIP-V4L2[42]: 4
+[1:09:13.469905969] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 STATI Input[0] -> MTK-ISP-DIP-V4L2[43]: 4
+[1:09:13.469955888] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 L0RMVI Input[0] -> MTK-ISP-DIP-V4L2[44]: 4
+[1:09:13.470004730] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 L1RMVI Input[0] -> MTK-ISP-DIP-V4L2[45]: 4
+[1:09:13.470053495] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 L0FMBI Input[0] -> MTK-ISP-DIP-V4L2[46]: 4
+[1:09:13.470102644] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 L1FMBI Input[0] -> MTK-ISP-DIP-V4L2[47]: 4
+[1:09:13.470153024] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 MEMILI Input[0] -> MTK-ISP-DIP-V4L2[48]: 4
+[1:09:13.470205558] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 WPEI_E Input[0] -> MTK-ISP-DIP-V4L2[59]: 4
+[1:09:13.470254169] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 VECI_E Input[0] -> MTK-ISP-DIP-V4L2[60]: 4
+[1:09:13.470303550] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 PSPI_E Input[0] -> MTK-ISP-DIP-V4L2[61]: 4
+[1:09:13.470355930] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 WPEI_T Input[0] -> MTK-ISP-DIP-V4L2[64]: 4
+[1:09:13.470406156] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 VECI_T Input[0] -> MTK-ISP-DIP-V4L2[65]: 4
+[1:09:13.470454229] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 PSPI_T Input[0] -> MTK-ISP-DIP-V4L2[66]: 4
+[1:09:13.470504147] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 Tuning[0] -> MTK-ISP-DIP-V4L2[69]: 0
+[1:09:13.470554835] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 CtrlMeta[0] -> MTK-ISP-DIP-V4L2[70]: 0
+[1:09:13.470601523] [10830] [1;36mDEBUG [1;37mDeviceEnumerator [1;34mdevice_enumerator.cpp:312 [0mSuccessful match for media device "mtk-aie-5.3"
+[1:09:13.471053253] [10831] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video3[15:cap]: [0mControl: FD detection init (0x009828d1)
+[1:09:13.471141784] [10831] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video3[15:cap]: [0mControl: FD detection param (0x009828d2)
+[1:09:13.471211547] [10831] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:761 [0;32m/dev/video3[15:out]: [0mOpened device platform:15310000.aie: mtk-aie-5.3: mtk-aie-5.3
+[1:09:13.471294539] [10831] [1;36mDEBUG [1;37mMtkISP7 [1;34maie.cpp:149 [0mFound inference param control ID: 9971922
+[1:09:13.471341305] [10831] [1;36mDEBUG [1;37mMtkISP7 [1;34maie.cpp:143 [0mFound init control ID: 9971921
+[1:09:13.471390377] [10831] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video3[16:cap]: [0mControl: FD detection init (0x009828d1)
+[1:09:13.471450987] [10831] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video3[16:cap]: [0mControl: FD detection param (0x009828d2)
+[1:09:13.471513443] [10831] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:761 [0;32m/dev/video3[16:cap]: [0mOpened device platform:15310000.aie: mtk-aie-5.3: mtk-aie-5.3
+[1:09:13.471573977] [10831] [1;36mDEBUG [1;37mMtkISP7 [1;34maie.cpp:171 [0mAIE Device init success!
+[1:09:13.471696273] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'gc08a3 6-0031': [0mControl: Exposure (0x00980911)
+[1:09:13.471780343] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'gc08a3 6-0031': [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.471836723] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'gc08a3 6-0031': [0mControl: Vertical Flip (0x00980915)
+[1:09:13.471893564] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'gc08a3 6-0031': [0mControl: Camera Orientation (0x009a0922)
+[1:09:13.471959097] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'gc08a3 6-0031': [0mControl: Camera Sensor Rotation (0x009a0923)
+[1:09:13.472032167] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'gc08a3 6-0031': [0mControl: Vertical Blanking (0x009e0901)
+[1:09:13.472088239] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'gc08a3 6-0031': [0mControl: Horizontal Blanking (0x009e0902)
+[1:09:13.472140696] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'gc08a3 6-0031': [0mControl: Analogue Gain (0x009e0903)
+[1:09:13.472198229] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'gc08a3 6-0031': [0mControl: Link Frequency (0x009f0901)
+[1:09:13.472258839] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'gc08a3 6-0031': [0mControl: Pixel Rate (0x009f0902)
+[1:09:13.472313450] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'gc08a3 6-0031': [0mControl: Test Pattern (0x009f0903)
+[1:09:13.472739336] [10830] [1;36mDEBUG [1;37mCameraSensor [1;34mcamera_sensor.cpp:412 [0;32m'gc08a3 6-0031': [0mTest pattern mode 1 ignored
+[1:09:13.472796562] [10830] [1;36mDEBUG [1;37mCameraSensor [1;34mcamera_sensor.cpp:412 [0;32m'gc08a3 6-0031': [0mTest pattern mode 3 ignored
+[1:09:13.472842250] [10830] [1;36mDEBUG [1;37mCameraSensor [1;34mcamera_sensor.cpp:412 [0;32m'gc08a3 6-0031': [0mTest pattern mode 4 ignored
+[1:09:13.472885323] [10830] [1;36mDEBUG [1;37mCameraSensor [1;34mcamera_sensor.cpp:412 [0;32m'gc08a3 6-0031': [0mTest pattern mode 5 ignored
+[1:09:13.472927704] [10830] [1;36mDEBUG [1;37mCameraSensor [1;34mcamera_sensor.cpp:412 [0;32m'gc08a3 6-0031': [0mTest pattern mode 6 ignored
+[1:09:13.472971700] [10830] [1;36mDEBUG [1;37mCameraSensor [1;34mcamera_sensor.cpp:412 [0;32m'gc08a3 6-0031': [0mTest pattern mode 7 ignored
+[1:09:13.484118491] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'dw9768 6-000c': [0mControl: Focus, Absolute (0x009a090a)
+[1:09:13.484213637] [10830] [1;36mDEBUG [1;37mCameraSensor [1;34mcamera_sensor.cpp:666 [0;32m'gc08a3 6-0031': [0mApply test pattern mode 0
+[1:09:13.484314166] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'mtk-cam raw-0': [0mControl: Engine resource limitation (0x009819d1)
+[1:09:13.484375622] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'mtk-cam raw-0': [0mControl: Binning limitation (0x009819d2)
+[1:09:13.484426464] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'mtk-cam raw-0': [0mControl: Resizer limitation (0x009819d3)
+[1:09:13.484477229] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'mtk-cam raw-0': [0mControl: Resource planning policy (0x009819d4)
+[1:09:13.484528686] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'mtk-cam raw-0': [0mControl: Engine resource (0x009819d5)
+[1:09:13.484581374] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'mtk-cam raw-0': [0mControl: Binning (0x009819d6)
+[1:09:13.484635215] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'mtk-cam raw-0': [0mControl: Resizer (0x009819d7)
+[1:09:13.484683365] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'mtk-cam raw-0': [0mControl: Engine resource (0x009819d8)
+[1:09:13.484733360] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'mtk-cam raw-0': [0mControl: Binning (0x009819d9)
+[1:09:13.484782510] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'mtk-cam raw-0': [0mControl: Resizer (0x009819da)
+[1:09:13.484832813] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'mtk-cam raw-0': [0mControl: Resource pixel rate (0x009819db)
+[1:09:13.484883732] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'mtk-cam raw-0': [0mControl: Mediatek camsys feature (0x009819dc)
+[1:09:13.484937188] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'mtk-cam raw-0': [0mControl: Frame sync id (0x009819dd)
+[1:09:13.484988646] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'mtk-cam raw-0': [0mControl: Raw Path (0x009819de)
+[1:09:13.485037641] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'mtk-cam raw-0': [0mControl: pde information (0x009819e0)
+[1:09:13.485085714] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'mtk-cam raw-0': [0mControl: resource ctrl (0x009819e2)
+[1:09:13.485134094] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'mtk-cam raw-0': [0mControl: resource update (0x009819e4)
+[1:09:13.485184167] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'mtk-cam raw-0': [0mControl: Mediatek camsys hardware mode (0x009819e5)
+[1:09:13.485237547] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'mtk-cam raw-0': [0mControl: Vertical Blanking (0x009e0901)
+[1:09:13.485289696] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'mtk-cam raw-0': [0mControl: Horizontal Blanking (0x009e0902)
+[1:09:13.485414147] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'seninf-0': [0mControl: Test Pattern (0x009f0903)
+[1:09:13.485536982] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video5[19:out]: [0mOpened device platform:16000000.camisp: mtk-cam: mtk-cam
+[1:09:13.485638896] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video7[20:out]: [0mOpened device platform:16000000.camisp: mtk-cam: mtk-cam
+[1:09:13.485790652] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video11[21:cap]: [0mOpened device platform:16000000.camisp: mtk-cam: mtk-cam
+[1:09:13.485923410] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video13[22:cap]: [0mOpened device platform:16000000.camisp: mtk-cam: mtk-cam
+[1:09:13.488222362] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video15[23:cap]: [0mOpened device platform:16000000.camisp: mtk-cam: mtk-cam
+[1:09:13.490401094] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video17[24:cap]: [0mOpened device platform:16000000.camisp: mtk-cam: mtk-cam
+[1:09:13.492658511] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video19[25:cap]: [0mOpened device platform:16000000.camisp: mtk-cam: mtk-cam
+[1:09:13.494848626] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video23[26:cap]: [0mOpened device platform:16000000.camisp: mtk-cam: mtk-cam
+[1:09:13.497053971] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video27[27:cap]: [0mOpened device platform:16000000.camisp: mtk-cam: mtk-cam
+[1:09:13.499242625] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video29[28:cap]: [0mOpened device platform:16000000.camisp: mtk-cam: mtk-cam
+[1:09:13.499326310] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video31[29:cap]: [0mOpened device platform:16000000.camisp: mtk-cam: mtk-cam
+[1:09:13.499404150] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video32[30:cap]: [0mOpened device platform:16000000.camisp: mtk-cam: mtk-cam
+[1:09:13.499486912] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video34[31:cap]: [0mOpened device platform:16000000.camisp: mtk-cam: mtk-cam
+[1:09:13.499566520] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video36[32:cap]: [0mOpened device platform:16000000.camisp: mtk-cam: mtk-cam
+[1:09:13.499650667] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video38[33:cap]: [0mOpened device platform:16000000.camisp: mtk-cam: mtk-cam
+[1:09:13.499730890] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video41[34:cap]: [0mOpened device platform:16000000.camisp: mtk-cam: mtk-cam
+[1:09:13.499806191] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video43[35:cap]: [0mOpened device platform:16000000.camisp: mtk-cam: mtk-cam
+[1:09:13.500597814] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'gc05a2 5-0037': [0mControl: Exposure (0x00980911)
+[1:09:13.500721342] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'gc05a2 5-0037': [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.500775337] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'gc05a2 5-0037': [0mControl: Vertical Flip (0x00980915)
+[1:09:13.500831717] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'gc05a2 5-0037': [0mControl: Camera Orientation (0x009a0922)
+[1:09:13.500896250] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'gc05a2 5-0037': [0mControl: Camera Sensor Rotation (0x009a0923)
+[1:09:13.500947553] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'gc05a2 5-0037': [0mControl: Vertical Blanking (0x009e0901)
+[1:09:13.501002779] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'gc05a2 5-0037': [0mControl: Horizontal Blanking (0x009e0902)
+[1:09:13.501056620] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'gc05a2 5-0037': [0mControl: Analogue Gain (0x009e0903)
+[1:09:13.501110769] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'gc05a2 5-0037': [0mControl: Link Frequency (0x009f0901)
+[1:09:13.501168149] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'gc05a2 5-0037': [0mControl: Pixel Rate (0x009f0902)
+[1:09:13.501220298] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'gc05a2 5-0037': [0mControl: Test Pattern (0x009f0903)
+[1:09:13.501568806] [10830] [1;36mDEBUG [1;37mCameraSensor [1;34mcamera_sensor.cpp:412 [0;32m'gc05a2 5-0037': [0mTest pattern mode 2 ignored
+[1:09:13.501623186] [10830] [1;36mDEBUG [1;37mCameraSensor [1;34mcamera_sensor.cpp:412 [0;32m'gc05a2 5-0037': [0mTest pattern mode 3 ignored
+[1:09:13.501666182] [10830] [1;36mDEBUG [1;37mCameraSensor [1;34mcamera_sensor.cpp:412 [0;32m'gc05a2 5-0037': [0mTest pattern mode 4 ignored
+[1:09:13.501708332] [10830] [1;36mDEBUG [1;37mCameraSensor [1;34mcamera_sensor.cpp:412 [0;32m'gc05a2 5-0037': [0mTest pattern mode 5 ignored
+[1:09:13.501750252] [10830] [1;36mDEBUG [1;37mCameraSensor [1;34mcamera_sensor.cpp:412 [0;32m'gc05a2 5-0037': [0mTest pattern mode 6 ignored
+[1:09:13.501791786] [10830] [1;36mDEBUG [1;37mCameraSensor [1;34mcamera_sensor.cpp:412 [0;32m'gc05a2 5-0037': [0mTest pattern mode 7 ignored
+[1:09:13.501831706] [10830] [1;36mDEBUG [1;37mCameraSensor [1;34mcamera_sensor.cpp:412 [0;32m'gc05a2 5-0037': [0mTest pattern mode 8 ignored
+[1:09:13.501875087] [10830] [1;36mDEBUG [1;37mCameraSensor [1;34mcamera_sensor.cpp:412 [0;32m'gc05a2 5-0037': [0mTest pattern mode 9 ignored
+[1:09:13.501926082] [10830] [1;36mDEBUG [1;37mCameraSensor [1;34mcamera_sensor.cpp:666 [0;32m'gc05a2 5-0037': [0mApply test pattern mode 0
+[1:09:13.502010767] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'mtk-cam raw-1': [0mControl: Engine resource limitation (0x009819d1)
+[1:09:13.502068685] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'mtk-cam raw-1': [0mControl: Binning limitation (0x009819d2)
+[1:09:13.502123296] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'mtk-cam raw-1': [0mControl: Resizer limitation (0x009819d3)
+[1:09:13.502177829] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'mtk-cam raw-1': [0mControl: Resource planning policy (0x009819d4)
+[1:09:13.502230209] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'mtk-cam raw-1': [0mControl: Engine resource (0x009819d5)
+[1:09:13.502280359] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'mtk-cam raw-1': [0mControl: Binning (0x009819d6)
+[1:09:13.502335046] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'mtk-cam raw-1': [0mControl: Resizer (0x009819d7)
+[1:09:13.502386965] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'mtk-cam raw-1': [0mControl: Engine resource (0x009819d8)
+[1:09:13.502439806] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'mtk-cam raw-1': [0mControl: Binning (0x009819d9)
+[1:09:13.502492879] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'mtk-cam raw-1': [0mControl: Resizer (0x009819da)
+[1:09:13.502547566] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'mtk-cam raw-1': [0mControl: Resource pixel rate (0x009819db)
+[1:09:13.502600023] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'mtk-cam raw-1': [0mControl: Mediatek camsys feature (0x009819dc)
+[1:09:13.502655095] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'mtk-cam raw-1': [0mControl: Frame sync id (0x009819dd)
+[1:09:13.502707937] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'mtk-cam raw-1': [0mControl: Raw Path (0x009819de)
+[1:09:13.502761547] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'mtk-cam raw-1': [0mControl: pde information (0x009819e0)
+[1:09:13.502814389] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'mtk-cam raw-1': [0mControl: resource ctrl (0x009819e2)
+[1:09:13.502866538] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'mtk-cam raw-1': [0mControl: resource update (0x009819e4)
+[1:09:13.502919226] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'mtk-cam raw-1': [0mControl: Mediatek camsys hardware mode (0x009819e5)
+[1:09:13.502975375] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'mtk-cam raw-1': [0mControl: Vertical Blanking (0x009e0901)
+[1:09:13.503027524] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'mtk-cam raw-1': [0mControl: Horizontal Blanking (0x009e0902)
+[1:09:13.503148744] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m'seninf-1': [0mControl: Test Pattern (0x009f0903)
+[1:09:13.503280963] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video46[63:out]: [0mOpened device platform:16000000.camisp: mtk-cam: mtk-cam
+[1:09:13.503368956] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video49[64:out]: [0mOpened device platform:16000000.camisp: mtk-cam: mtk-cam
+[1:09:13.503519019] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video53[65:cap]: [0mOpened device platform:16000000.camisp: mtk-cam: mtk-cam
+[1:09:13.503652315] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video55[66:cap]: [0mOpened device platform:16000000.camisp: mtk-cam: mtk-cam
+[1:09:13.506006801] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video56[67:cap]: [0mOpened device platform:16000000.camisp: mtk-cam: mtk-cam
+[1:09:13.508221991] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video58[68:cap]: [0mOpened device platform:16000000.camisp: mtk-cam: mtk-cam
+[1:09:13.510423721] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video61[69:cap]: [0mOpened device platform:16000000.camisp: mtk-cam: mtk-cam
+[1:09:13.512644911] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video63[70:cap]: [0mOpened device platform:16000000.camisp: mtk-cam: mtk-cam
+[1:09:13.514829181] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video64[71:cap]: [0mOpened device platform:16000000.camisp: mtk-cam: mtk-cam
+[1:09:13.517058908] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video66[72:cap]: [0mOpened device platform:16000000.camisp: mtk-cam: mtk-cam
+[1:09:13.517142439] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video68[73:cap]: [0mOpened device platform:16000000.camisp: mtk-cam: mtk-cam
+[1:09:13.517215202] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video71[74:cap]: [0mOpened device platform:16000000.camisp: mtk-cam: mtk-cam
+[1:09:13.517294195] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video72[75:cap]: [0mOpened device platform:16000000.camisp: mtk-cam: mtk-cam
+[1:09:13.517372419] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video74[76:cap]: [0mOpened device platform:16000000.camisp: mtk-cam: mtk-cam
+[1:09:13.517450643] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video76[77:cap]: [0mOpened device platform:16000000.camisp: mtk-cam: mtk-cam
+[1:09:13.517523867] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video78[78:cap]: [0mOpened device platform:16000000.camisp: mtk-cam: mtk-cam
+[1:09:13.517593861] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video80[79:cap]: [0mOpened device platform:16000000.camisp: mtk-cam: mtk-cam
+[1:09:13.518545547] [10830] [1;32m INFO [1;37mMtkISP7 [1;34mmtkisp7.cpp:896 [0mRegistered Camera[/base/soc/i2c@11ec1000/camera-main-sensor@31]
+[1:09:13.518804524] [10830] [1;32m INFO [1;37mMtkISP7 [1;34mmtkisp7.cpp:896 [0mRegistered Camera[/base/soc/i2c@11ec0000/camera-sub-sensor@37]
+[1:09:13.518921745] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[3] -> MTK-ISP-DIP-V4L2 TYUVO Output[0]: 4
+[1:09:13.518979432] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[4] -> MTK-ISP-DIP-V4L2 TYUV2O Output[0]: 4
+[1:09:13.519026351] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[5] -> MTK-ISP-DIP-V4L2 TYUV3O Output[0]: 4
+[1:09:13.519075270] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[6] -> MTK-ISP-DIP-V4L2 TYUV4O Output[0]: 4
+[1:09:13.519125035] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[7] -> MTK-ISP-DIP-V4L2 TYUV5O Output[0]: 4
+[1:09:13.519175030] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[8] -> MTK-ISP-DIP-V4L2 FEO Output[0]: 4
+[1:09:13.519220872] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[9] -> MTK-ISP-DIP-V4L2 TIMGO Output[0]: 4
+[1:09:13.519267791] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[10] -> MTK-ISP-DIP-V4L2 IMGSTATO Outpu[0]: 4
+[1:09:13.519317325] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[11] -> MTK-ISP-DIP-V4L2 XTMEO Output[0]: 4
+[1:09:13.519363706] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[12] -> MTK-ISP-DIP-V4L2 XTFDO Output[0]: 4
+[1:09:13.519413702] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[13] -> MTK-ISP-DIP-V4L2 XTDBGO Output[0]: 4
+[1:09:13.519469389] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[27] -> MTK-ISP-DIP-V4L2 Img2o Output[0]: 4
+[1:09:13.519518000] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[28] -> MTK-ISP-DIP-V4L2 Img3o Output[0]: 4
+[1:09:13.519567380] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[29] -> MTK-ISP-DIP-V4L2 Img4o Output[0]: 4
+[1:09:13.519616453] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[30] -> MTK-ISP-DIP-V4L2 FM Output[0]: 4
+[1:09:13.519665218] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[31] -> MTK-ISP-DIP-V4L2 Tnrso Output[0]: 4
+[1:09:13.519715675] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[32] -> MTK-ISP-DIP-V4L2 Tnrwo Output[0]: 4
+[1:09:13.519765286] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[33] -> MTK-ISP-DIP-V4L2 Tnrmo Output[0]: 4
+[1:09:13.519814666] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[35] -> MTK-ISP-DIP-V4L2 WROTO A Output[0]: 4
+[1:09:13.519865431] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[36] -> MTK-ISP-DIP-V4L2 WROTO B Output[0]: 4
+[1:09:13.519916273] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[37] -> MTK-ISP-DIP-V4L2 TCCSO A Output[0]: 4
+[1:09:13.519966422] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[38] -> MTK-ISP-DIP-V4L2 TCCSO B Output[0]: 4
+[1:09:13.520183865] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[49] -> MTK-ISP-DIP-V4L2 MILO Output[0]: 4
+[1:09:13.520238860] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[50] -> MTK-ISP-DIP-V4L2 L0WMVO Output[0]: 4
+[1:09:13.520289855] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[51] -> MTK-ISP-DIP-V4L2 L1WMVO Output[0]: 4
+[1:09:13.520339697] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[52] -> MTK-ISP-DIP-V4L2 CONFO Output[0]: 4
+[1:09:13.520388078] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[53] -> MTK-ISP-DIP-V4L2 WMAPO Output[0]: 4
+[1:09:13.520438381] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[54] -> MTK-ISP-DIP-V4L2 FMVO Output[0]: 4
+[1:09:13.520489069] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[55] -> MTK-ISP-DIP-V4L2 FSTO Output[0]: 4
+[1:09:13.520538680] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[56] -> MTK-ISP-DIP-V4L2 LMIO Output[0]: 4
+[1:09:13.520587983] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[57] -> MTK-ISP-DIP-V4L2 L0FMBO Output[0]: 4
+[1:09:13.520637825] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[58] -> MTK-ISP-DIP-V4L2 L1FMBO Output[0]: 4
+[1:09:13.520690974] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[62] -> MTK-ISP-DIP-V4L2 WPEO_E Output[0]: 4
+[1:09:13.520741431] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[63] -> MTK-ISP-DIP-V4L2 MSKO_E Output[0]: 4
+[1:09:13.520793273] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[67] -> MTK-ISP-DIP-V4L2 WPEO_T Output[0]: 4
+[1:09:13.520847730] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[68] -> MTK-ISP-DIP-V4L2 MSKO_T Output[0]: 4
+[1:09:13.520897264] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 TIMGI Input[0] -> MTK-ISP-DIP-V4L2[0]: 4
+[1:09:13.520944337] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 METAI Input[0] -> MTK-ISP-DIP-V4L2[1]: 4
+[1:09:13.520991717] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 PDC Input[0] -> MTK-ISP-DIP-V4L2[2]: 4
+[1:09:13.521040251] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 Imgi Input[0] -> MTK-ISP-DIP-V4L2[14]: 4
+[1:09:13.521087709] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 Vipi Input[0] -> MTK-ISP-DIP-V4L2[15]: 4
+[1:09:13.521133935] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 Rec_Dsi Input[0] -> MTK-ISP-DIP-V4L2[16]: 4
+[1:09:13.521181008] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 Rec_Dpi Input[0] -> MTK-ISP-DIP-V4L2[17]: 4
+[1:09:13.521229004] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 Bokeh Input[0] -> MTK-ISP-DIP-V4L2[18]: 4
+[1:09:13.521276384] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 Dmgi_FM Input[0] -> MTK-ISP-DIP-V4L2[19]: 4
+[1:09:13.521322842] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 Depi_FM Input[0] -> MTK-ISP-DIP-V4L2[20]: 4
+[1:09:13.521369607] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 Tnrsi Input[0] -> MTK-ISP-DIP-V4L2[21]: 4
+[1:09:13.521417372] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 Tnrwi Input[0] -> MTK-ISP-DIP-V4L2[22]: 4
+[1:09:13.521464214] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 Tnrmi Input[0] -> MTK-ISP-DIP-V4L2[23]: 4
+[1:09:13.521510595] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 Tnrci Input[0] -> MTK-ISP-DIP-V4L2[24]: 4
+[1:09:13.521558667] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 Tnrli Input[0] -> MTK-ISP-DIP-V4L2[25]: 4
+[1:09:13.521606817] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 Tnrvbi Input[0] -> MTK-ISP-DIP-V4L2[26]: 4
+[1:09:13.521654966] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 PIMGI Input[0] -> MTK-ISP-DIP-V4L2[34]: 4
+[1:09:13.521702808] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 L0I0I Input[0] -> MTK-ISP-DIP-V4L2[39]: 4
+[1:09:13.521750804] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 L0I1I Input[0] -> MTK-ISP-DIP-V4L2[40]: 4
+[1:09:13.521799415] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 L1I0I Input[0] -> MTK-ISP-DIP-V4L2[41]: 4
+[1:09:13.521847719] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 L1I1I Input[0] -> MTK-ISP-DIP-V4L2[42]: 4
+[1:09:13.521894484] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 STATI Input[0] -> MTK-ISP-DIP-V4L2[43]: 4
+[1:09:13.521941864] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 L0RMVI Input[0] -> MTK-ISP-DIP-V4L2[44]: 4
+[1:09:13.521989552] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 L1RMVI Input[0] -> MTK-ISP-DIP-V4L2[45]: 4
+[1:09:13.522037548] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 L0FMBI Input[0] -> MTK-ISP-DIP-V4L2[46]: 4
+[1:09:13.522084160] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 L1FMBI Input[0] -> MTK-ISP-DIP-V4L2[47]: 4
+[1:09:13.522131463] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 MEMILI Input[0] -> MTK-ISP-DIP-V4L2[48]: 4
+[1:09:13.522180766] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 WPEI_E Input[0] -> MTK-ISP-DIP-V4L2[59]: 4
+[1:09:13.522229147] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 VECI_E Input[0] -> MTK-ISP-DIP-V4L2[60]: 4
+[1:09:13.522276912] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 PSPI_E Input[0] -> MTK-ISP-DIP-V4L2[61]: 4
+[1:09:13.522324600] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 WPEI_T Input[0] -> MTK-ISP-DIP-V4L2[64]: 4
+[1:09:13.522373980] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 VECI_T Input[0] -> MTK-ISP-DIP-V4L2[65]: 4
+[1:09:13.522422130] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 PSPI_T Input[0] -> MTK-ISP-DIP-V4L2[66]: 4
+[1:09:13.522469741] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 Tuning[0] -> MTK-ISP-DIP-V4L2[69]: 0
+[1:09:13.522519352] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 CtrlMeta[0] -> MTK-ISP-DIP-V4L2[70]: 0
+[1:09:13.522570348] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 TIMGI Input[0] -> MTK-ISP-DIP-V4L2[0]: 5
+[1:09:13.522646341] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video4[105:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.522707336] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video4[105:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.522760946] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video4[105:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.522816018] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video4[105:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.522891781] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video4[105:out]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.522980927] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 PDC Input[0] -> MTK-ISP-DIP-V4L2[2]: 5
+[1:09:13.523052767] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video9[106:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.523106993] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video9[106:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.523157527] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video9[106:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.523209292] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video9[106:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.523281439] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video9[106:out]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.523343357] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[3] -> MTK-ISP-DIP-V4L2 TYUVO Output[0]: 5
+[1:09:13.523411043] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video12[107:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.523464654] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video12[107:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.523517880] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video12[107:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.523571029] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video12[107:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.523640408] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video12[107:cap]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.523709555] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[4] -> MTK-ISP-DIP-V4L2 TYUV2O Output[0]: 5
+[1:09:13.523777396] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video14[108:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.523831929] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video14[108:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.523883232] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video14[108:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.523936459] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video14[108:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.524019990] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video14[108:cap]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.524089984] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[5] -> MTK-ISP-DIP-V4L2 TYUV3O Output[0]: 5
+[1:09:13.524157208] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video16[109:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.524212819] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video16[109:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.524266199] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video16[109:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.524320040] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video16[109:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.524388111] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video16[109:cap]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.524457028] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[6] -> MTK-ISP-DIP-V4L2 TYUV4O Output[0]: 5
+[1:09:13.524525022] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video18[110:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.524579094] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video18[110:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.524630321] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video18[110:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.524683855] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video18[110:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.524752156] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video18[110:cap]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.524820842] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[7] -> MTK-ISP-DIP-V4L2 TYUV5O Output[0]: 5
+[1:09:13.524891759] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video20[111:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.524949524] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video20[111:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.525004057] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video20[111:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.525057668] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video20[111:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.525130892] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video20[111:cap]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.525203963] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[9] -> MTK-ISP-DIP-V4L2 TIMGO Output[0]: 5
+[1:09:13.525276341] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video22[112:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.525333259] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video22[112:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.525387716] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video22[112:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.525443480] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video22[112:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.525514705] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video22[112:cap]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.525589698] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[10] -> MTK-ISP-DIP-V4L2 IMGSTATO Outpu[0]: 5
+[1:09:13.525661769] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video24[113:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.525718071] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video24[113:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.525771759] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video24[113:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.525825831] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video24[113:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.525898440] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video24[113:cap]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.525964665] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 Imgi Input[0] -> MTK-ISP-DIP-V4L2[14]: 5
+[1:09:13.526034659] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video30[114:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.526091423] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video30[114:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.526145957] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video30[114:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.526200952] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video30[114:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.526271331] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video30[114:out]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.526341863] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 Vipi Input[0] -> MTK-ISP-DIP-V4L2[15]: 5
+[1:09:13.526413241] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video33[115:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.526469852] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video33[115:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.526522309] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video33[115:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.526577227] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video33[115:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.526649682] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video33[115:out]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.526718830] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 Rec_Dsi Input[0] -> MTK-ISP-DIP-V4L2[16]: 5
+[1:09:13.526787670] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video35[116:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.526843896] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video35[116:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.526897660] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video35[116:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.526950886] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video35[116:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.527020726] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video35[116:out]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.527090566] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 Rec_Dpi Input[0] -> MTK-ISP-DIP-V4L2[17]: 5
+[1:09:13.527160176] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video37[117:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.527215325] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video37[117:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.527267705] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video37[117:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.527322931] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video37[117:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.527394463] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video37[117:out]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.527464226] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 Bokeh Input[0] -> MTK-ISP-DIP-V4L2[18]: 5
+[1:09:13.527535143] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video39[118:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.527591599] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video39[118:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.527645441] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video39[118:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.527699359] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video39[118:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.527770661] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video39[118:out]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.527840116] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 Dmgi_FM Input[0] -> MTK-ISP-DIP-V4L2[19]: 5
+[1:09:13.527911417] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video42[119:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.527969412] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video42[119:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.528044098] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video42[119:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.528099939] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video42[119:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.528170241] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video42[119:out]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.528235235] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 Depi_FM Input[0] -> MTK-ISP-DIP-V4L2[20]: 5
+[1:09:13.528302845] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video44[120:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.528360070] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video44[120:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.528411220] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video44[120:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.528463292] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video44[120:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.528533517] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video44[120:out]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.528598742] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 Tnrsi Input[0] -> MTK-ISP-DIP-V4L2[21]: 5
+[1:09:13.528666582] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video45[121:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.528720039] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video45[121:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.528772957] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video45[121:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.528826799] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video45[121:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.528898639] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video45[121:out]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.528964710] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 Tnrwi Input[0] -> MTK-ISP-DIP-V4L2[22]: 5
+[1:09:13.529033934] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video47[122:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.529090622] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video47[122:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.529143925] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video47[122:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.529198381] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video47[122:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.529270452] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video47[122:out]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.529334754] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 Tnrmi Input[0] -> MTK-ISP-DIP-V4L2[23]: 5
+[1:09:13.529402594] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video48[123:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.529459359] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video48[123:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.529513661] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video48[123:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.529567734] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video48[123:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.529638112] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video48[123:out]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.529709183] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 Tnrci Input[0] -> MTK-ISP-DIP-V4L2[24]: 5
+[1:09:13.529779715] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video50[124:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.529834787] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video50[124:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.529887244] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video50[124:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.529942085] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video50[124:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.530014771] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video50[124:out]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.530079150] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 Tnrli Input[0] -> MTK-ISP-DIP-V4L2[25]: 5
+[1:09:13.530147298] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video54[125:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.530204447] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video54[125:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.530258442] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video54[125:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.530312207] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video54[125:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.530384739] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video54[125:out]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.530451195] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 Tnrvbi Input[0] -> MTK-ISP-DIP-V4L2[26]: 5
+[1:09:13.530520496] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video57[126:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.530575645] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video57[126:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.530630256] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video57[126:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.530685020] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video57[126:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.530756937] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video57[126:out]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.530826546] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[27] -> MTK-ISP-DIP-V4L2 Img2o Output[0]: 5
+[1:09:13.530897771] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video59[127:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.530954381] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video59[127:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.531011299] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video59[127:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.531064525] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video59[127:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.531135442] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video59[127:cap]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.531205898] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[28] -> MTK-ISP-DIP-V4L2 Img3o Output[0]: 5
+[1:09:13.531287198] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video60[128:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.531341809] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video60[128:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.531394804] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video60[128:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.531447646] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video60[128:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.531517255] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video60[128:cap]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.531588326] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[29] -> MTK-ISP-DIP-V4L2 Img4o Output[0]: 5
+[1:09:13.531658473] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video62[129:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.531713776] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video62[129:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.531766002] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video62[129:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.531819921] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video62[129:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.531893376] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video62[129:cap]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.531963985] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[30] -> MTK-ISP-DIP-V4L2 FM Output[0]: 5
+[1:09:13.532073668] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video65[130:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.532132816] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video65[130:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.532186965] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video65[130:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.532241653] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video65[130:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.532312108] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video65[130:cap]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.532382179] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[31] -> MTK-ISP-DIP-V4L2 Tnrso Output[0]: 5
+[1:09:13.532452788] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video67[131:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.532509091] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video67[131:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.532561779] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video67[131:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.532617466] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video67[131:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.532690306] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video67[131:cap]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.532755454] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[32] -> MTK-ISP-DIP-V4L2 Tnrwo Output[0]: 5
+[1:09:13.532822756] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video69[132:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.532878982] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video69[132:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.532933284] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video69[132:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.532987434] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video69[132:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.533060427] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video69[132:cap]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.533128729] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[33] -> MTK-ISP-DIP-V4L2 Tnrmo Output[0]: 5
+[1:09:13.533199338] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video70[133:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.533254256] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video70[133:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.533309251] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video70[133:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.533363785] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video70[133:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.533435548] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video70[133:cap]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.533503234] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 PIMGI Input[0] -> MTK-ISP-DIP-V4L2[34]: 5
+[1:09:13.533573613] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video73[134:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.533629993] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video73[134:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.533682373] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video73[134:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.533736445] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video73[134:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.533809900] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video73[134:out]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.533874971] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[35] -> MTK-ISP-DIP-V4L2 WROTO A Output[0]: 5
+[1:09:13.533944811] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video75[135:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.534004729] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video75[135:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.534057186] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video75[135:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.534110258] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video75[135:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.534179406] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video75[135:cap]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.534241400] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[36] -> MTK-ISP-DIP-V4L2 WROTO B Output[0]: 5
+[1:09:13.534310241] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video77[136:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.534364620] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video77[136:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.534415693] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video77[136:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.534468457] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video77[136:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.534538451] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video77[136:cap]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.534600523] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 L0I0I Input[0] -> MTK-ISP-DIP-V4L2[39]: 5
+[1:09:13.534668055] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video82[137:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.534723743] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video82[137:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.534775969] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video82[137:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.534827734] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video82[137:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.534896112] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video82[137:out]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.534964183] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 L0I1I Input[0] -> MTK-ISP-DIP-V4L2[40]: 5
+[1:09:13.535032331] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video83[138:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.535086634] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video83[138:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.535137553] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video83[138:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.535191086] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video83[138:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.535260926] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video83[138:out]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.535328459] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 L1I0I Input[0] -> MTK-ISP-DIP-V4L2[41]: 5
+[1:09:13.535395376] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video84[139:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.535450448] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video84[139:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.535502213] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video84[139:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.535554516] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video84[139:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.535624202] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video84[139:out]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.535688043] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 L1I1I Input[0] -> MTK-ISP-DIP-V4L2[42]: 5
+[1:09:13.535755652] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video85[140:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.535808724] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video85[140:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.535871027] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video85[140:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.535926022] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video85[140:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.535998939] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video85[140:out]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.536084085] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 STATI Input[0] -> MTK-ISP-DIP-V4L2[43]: 5
+[1:09:13.536155309] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video86[141:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.536211997] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video86[141:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.536264684] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video86[141:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.536318449] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video86[141:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.536389981] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video86[141:out]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.536464052] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[49] -> MTK-ISP-DIP-V4L2 MILO Output[0]: 5
+[1:09:13.536535661] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video92[142:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.536591579] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video92[142:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.536645882] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video92[142:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.536700031] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video92[142:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.536771255] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video92[142:cap]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.536841018] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 L0RMVI Input[0] -> MTK-ISP-DIP-V4L2[44]: 5
+[1:09:13.536911705] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video87[143:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.536967392] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video87[143:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.537021157] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video87[143:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.537075921] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video87[143:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.537148376] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video87[143:out]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.537217832] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 L1RMVI Input[0] -> MTK-ISP-DIP-V4L2[45]: 5
+[1:09:13.537287210] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video88[144:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.537345743] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video88[144:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.537398739] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video88[144:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.537452888] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video88[144:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.537524343] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video88[144:out]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.537594491] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 L0FMBI Input[0] -> MTK-ISP-DIP-V4L2[46]: 5
+[1:09:13.537669561] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video89[145:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.537724633] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video89[145:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.537777552] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video89[145:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.537832316] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video89[145:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.537903771] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video89[145:out]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.537972535] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 L1FMBI Input[0] -> MTK-ISP-DIP-V4L2[47]: 5
+[1:09:13.538040990] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video90[146:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.538097601] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video90[146:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.538151288] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video90[146:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.538204360] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video90[146:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.538276200] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video90[146:out]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.538346117] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 MEMILI Input[0] -> MTK-ISP-DIP-V4L2[48]: 5
+[1:09:13.538416188] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video91[147:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.538471952] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video91[147:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.538526409] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video91[147:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.538581481] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video91[147:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.538652398] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video91[147:out]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.538725622] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[50] -> MTK-ISP-DIP-V4L2 L0WMVO Output[0]: 5
+[1:09:13.538797693] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video93[148:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.538854380] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video93[148:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.538906760] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video93[148:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.538959294] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video93[148:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.539034903] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video93[148:cap]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.539106281] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[51] -> MTK-ISP-DIP-V4L2 L1WMVO Output[0]: 5
+[1:09:13.539172660] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video94[149:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.539226040] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video94[149:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.539278728] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video94[149:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.539331185] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video94[149:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.539406255] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video94[149:cap]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.539476787] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[52] -> MTK-ISP-DIP-V4L2 CONFO Output[0]: 5
+[1:09:13.539546396] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video95[150:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.539601469] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video95[150:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.539653002] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video95[150:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.539706844] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video95[150:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.539776761] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video95[150:cap]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.539848293] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[53] -> MTK-ISP-DIP-V4L2 WMAPO Output[0]: 5
+[1:09:13.539916825] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video96[151:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.539972205] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video96[151:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.540040584] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video96[151:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.540096733] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video96[151:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.540166111] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video96[151:cap]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.540233875] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[54] -> MTK-ISP-DIP-V4L2 FMVO Output[0]: 5
+[1:09:13.540303099] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video97[152:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.540357095] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video97[152:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.540407936] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video97[152:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.540461162] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video97[152:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.540531848] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video97[152:cap]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.540611765] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[55] -> MTK-ISP-DIP-V4L2 FSTO Output[0]: 5
+[1:09:13.540680297] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video98[153:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.540735061] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video98[153:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.540787518] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video98[153:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.540839668] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video98[153:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.540912738] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video98[153:cap]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.540986424] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[56] -> MTK-ISP-DIP-V4L2 LMIO Output[0]: 5
+[1:09:13.541057879] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video99[154:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.541113336] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video99[154:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.541173100] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video99[154:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.541229172] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video99[154:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.541302550] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video99[154:cap]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.541371698] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[57] -> MTK-ISP-DIP-V4L2 L0FMBO Output[0]: 5
+[1:09:13.541443230] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video100[155:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.541498225] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video100[155:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.541551605] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video100[155:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.541604908] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video100[155:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.541677209] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video100[155:cap]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.541750665] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[58] -> MTK-ISP-DIP-V4L2 L1FMBO Output[0]: 5
+[1:09:13.541820812] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video101[156:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.541875884] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video101[156:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.541930649] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video101[156:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.541985644] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video101[156:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.542057791] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video101[156:cap]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.542127016] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 WPEI_E Input[0] -> MTK-ISP-DIP-V4L2[59]: 5
+[1:09:13.542195010] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video102[157:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.542249621] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video102[157:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.542301539] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video102[157:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.542354688] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video102[157:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.542424144] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video102[157:out]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.542497291] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 VECI_E Input[0] -> MTK-ISP-DIP-V4L2[60]: 5
+[1:09:13.542564978] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video103[158:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.542620127] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video103[158:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.542672045] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video103[158:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.542724964] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video103[158:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.542793419] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video103[158:out]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.542858875] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 PSPI_E Input[0] -> MTK-ISP-DIP-V4L2[61]: 5
+[1:09:13.542933715] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video104[159:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.542987325] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video104[159:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.543039398] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video104[159:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.543092854] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video104[159:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.543163233] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video104[159:out]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.543230919] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[62] -> MTK-ISP-DIP-V4L2 WPEO_E Output[0]: 5
+[1:09:13.543299606] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video105[160:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.543354139] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video105[160:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.543405904] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video105[160:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.543457361] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video105[160:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.543527739] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video105[160:cap]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.543603271] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[63] -> MTK-ISP-DIP-V4L2 MSKO_E Output[0]: 5
+[1:09:13.543673650] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video106[161:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.543727568] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video106[161:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.543779948] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video106[161:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.543833097] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video106[161:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.543907245] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video106[161:cap]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.543972777] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 WPEI_T Input[0] -> MTK-ISP-DIP-V4L2[64]: 5
+[1:09:13.544058154] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video107[162:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.544115149] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video107[162:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.544167837] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video107[162:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.544222063] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video107[162:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.544294749] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video107[162:out]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.544373127] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 VECI_T Input[0] -> MTK-ISP-DIP-V4L2[65]: 5
+[1:09:13.544441813] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video108[163:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.544496962] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video108[163:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.544551342] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video108[163:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.544605876] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video108[163:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.544684253] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video108[163:out]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.544752709] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 PSPI_T Input[0] -> MTK-ISP-DIP-V4L2[66]: 5
+[1:09:13.544823395] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video109[164:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.544879698] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video109[164:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.544932308] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video109[164:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.545019993] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video109[164:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.545094910] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video109[164:out]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.545166442] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[67] -> MTK-ISP-DIP-V4L2 WPEO_T Output[0]: 5
+[1:09:13.545236051] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video110[165:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.545295430] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video110[165:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.545349118] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video110[165:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.545402113] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video110[165:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.545472261] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video110[165:cap]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.545549485] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2[68] -> MTK-ISP-DIP-V4L2 MSKO_T Output[0]: 5
+[1:09:13.545620556] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video111[166:cap]: [0mControl: Horizontal Flip (0x00980914)
+[1:09:13.545675936] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video111[166:cap]: [0mControl: Vertical Flip (0x00980915)
+[1:09:13.545728623] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video111[166:cap]: [0mControl: Rotate (0x00980922)
+[1:09:13.545783234] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_device.cpp:692 [0;32m/dev/video111[166:cap]: [0mControl: Image resize ratio (0x00981a22)
+[1:09:13.545854997] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video111[166:cap]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.545919376] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 Tuning[0] -> MTK-ISP-DIP-V4L2[69]: 1
+[1:09:13.545990523] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video112[167:out]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.546065594] [10830] [1;36mDEBUG [1;37mMediaDevice [1;34mmedia_device.cpp:832 [0;32m/dev/media2[mtk-imgsys]: [0mMTK-ISP-DIP-V4L2 CtrlMeta[0] -> MTK-ISP-DIP-V4L2[70]: 1
+[1:09:13.546133818] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:664 [0;32m/dev/video113[168:out]: [0mOpened device platform:15000000.imgsys-fw: MTK-ISP-DIP-V4L: MTK-ISP-DIP-V4L2
+[1:09:13.546197813] [10830] [1;33m WARN [1;37mMtkISP7 [1;34mimgsys.cpp:484 [0mEntity MTK-ISP-DIP-V4L2 Single Device not found
+[1:09:13.546244809] [10830] [1;33m WARN [1;37mMtkISP7 [1;34mimgsys.cpp:484 [0mEntity MTK-ISP-DIP-V4L2 SIGDEVN not found
+[1:09:13.549025949] [10830] [1;36mDEBUG [1;37mCamera [1;34mcamera_manager.cpp:125 [0mPipeline handler "PipelineHandlerMtkISP7" matched
+[1:09:13.549153477] [10830] [1;32m INFO [1;37mMtkISP7 [1;34mmtkisp7.cpp:623 [0mCurrent file descriptor limit:2048
+[1:09:13.549203241] [10830] [1;32m INFO [1;37mMtkISP7 [1;34mmtkisp7.cpp:628 [0mMaximum file descriptor limit: 524288
+Detected cameras: 2
+0: /base/soc/i2c@11ec1000/camera-main-sensor@31
+1: /base/soc/i2c@11ec0000/camera-sub-sensor@37
+[1:09:13.776406381] [10830] [1;32m INFO [1;37mMtkISP7 [1;34mmtkisp7.cpp:964 [0mEeprom read size: 8192
+[1:09:13.776673204] [10830] [1;36mDEBUG [1;37mIPAProxy [1;34mmtkisp7_ipa_proxy.cpp:45 [0minitializing mtkisp7 proxy: loading IPA from /usr/lib64/libcamera/ipa_mtkisp7.so
+[1:09:13.776875109] [10830] [1;31mERROR [1;37mIPCUnixSocket [1;34mipc_unixsocket.cpp:167 [0mconnect socket failed
+[1:09:13.777039633] [10830] [1;31mERROR [1;37mIPCPipe [1;34mipc_pipe_unixsocket.cpp:67 [0mFailed to create socket
+[1:09:13.777161392] [10830] [1;31mERROR [1;37mIPAProxy [1;34mmtkisp7_ipa_proxy.cpp:64 [0mFailed to create IPCPipe
+[1:09:13.777274612] [10830] [1;31mERROR [1;37mIPAManager [1;34mipa_manager.h:54 [0mFailed to load proxy
+[1:09:13.777414292] [10830] [1;31mERROR [1;37mIPCPipe [1;34mipc_pipe_unixsocket.cpp:100 [0mFailed to call async
+[1:09:13.777556434] [10830] [1;31mERROR [1;37mMtkISP7 [1;34mmtkisp7.cpp:976 [0mFailed to load IPA
+[1:09:13.777889251] [10814] [1;32m INFO [1;37mCamera [1;34mcamera.cpp:1031 [0mPipeline handler in use by another process
+Camera acquire: Device or resource busy (-16)
+[1:09:13.779373351] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video112[167:out]: [0mReleasing buffers
+[1:09:13.779477650] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video112[167:out]: [0m0 buffers requested.
+[1:09:13.779616022] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video111[166:cap]: [0mReleasing buffers
+[1:09:13.779694400] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video111[166:cap]: [0m0 buffers requested.
+[1:09:13.779816620] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video110[165:cap]: [0mReleasing buffers
+[1:09:13.779893844] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video110[165:cap]: [0m0 buffers requested.
+[1:09:13.780050677] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video109[164:out]: [0mReleasing buffers
+[1:09:13.780132592] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video109[164:out]: [0m0 buffers requested.
+[1:09:13.780265735] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video108[163:out]: [0mReleasing buffers
+[1:09:13.780343882] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video108[163:out]: [0m0 buffers requested.
+[1:09:13.780470024] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video107[162:out]: [0mReleasing buffers
+[1:09:13.780575169] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video107[162:out]: [0m0 buffers requested.
+[1:09:13.780693005] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video106[161:cap]: [0mReleasing buffers
+[1:09:13.780795380] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video106[161:cap]: [0m0 buffers requested.
+[1:09:13.781022822] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video105[160:cap]: [0mReleasing buffers
+[1:09:13.781249571] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video105[160:cap]: [0m0 buffers requested.
+[1:09:13.781516856] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video104[159:out]: [0mReleasing buffers
+[1:09:13.781742605] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video104[159:out]: [0m0 buffers requested.
+[1:09:13.781934896] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video103[158:out]: [0mReleasing buffers
+[1:09:13.782078422] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video103[158:out]: [0m0 buffers requested.
+[1:09:13.782294403] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video102[157:out]: [0mReleasing buffers
+[1:09:13.782442236] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video102[157:out]: [0m0 buffers requested.
+[1:09:13.782672062] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video101[156:cap]: [0mReleasing buffers
+[1:09:13.782818203] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video101[156:cap]: [0m0 buffers requested.
+[1:09:13.783061335] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video100[155:cap]: [0mReleasing buffers
+[1:09:13.783207015] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video100[155:cap]: [0m0 buffers requested.
+[1:09:13.783435303] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video99[154:cap]: [0mReleasing buffers
+[1:09:13.783615979] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video99[154:cap]: [0m0 buffers requested.
+[1:09:13.783833806] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video98[153:cap]: [0mReleasing buffers
+[1:09:13.784080784] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video98[153:cap]: [0m0 buffers requested.
+[1:09:13.784277152] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video97[152:cap]: [0mReleasing buffers
+[1:09:13.784519054] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video97[152:cap]: [0m0 buffers requested.
+[1:09:13.784762494] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video90[146:out]: [0mReleasing buffers
+[1:09:13.784981705] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video90[146:out]: [0m0 buffers requested.
+[1:09:13.785210531] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video42[119:out]: [0mReleasing buffers
+[1:09:13.785400976] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video42[119:out]: [0m0 buffers requested.
+[1:09:13.785613111] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video82[137:out]: [0mReleasing buffers
+[1:09:13.785809479] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video82[137:out]: [0m0 buffers requested.
+[1:09:13.786028921] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video77[136:cap]: [0mReleasing buffers
+[1:09:13.786221366] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video77[136:cap]: [0m0 buffers requested.
+[1:09:13.786433270] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video75[135:cap]: [0mReleasing buffers
+[1:09:13.786627253] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video75[135:cap]: [0m0 buffers requested.
+[1:09:13.786848695] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video113[168:out]: [0mReleasing buffers
+[1:09:13.787017219] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video113[168:out]: [0m0 buffers requested.
+[1:09:13.787194896] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video73[134:out]: [0mReleasing buffers
+[1:09:13.787360035] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video73[134:out]: [0m0 buffers requested.
+[1:09:13.787550480] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video95[150:cap]: [0mReleasing buffers
+[1:09:13.787711620] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video95[150:cap]: [0m0 buffers requested.
+[1:09:13.787900449] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video70[133:cap]: [0mReleasing buffers
+[1:09:13.788127199] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video70[133:cap]: [0m0 buffers requested.
+[1:09:13.788326873] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video94[149:cap]: [0mReleasing buffers
+[1:09:13.788492243] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video94[149:cap]: [0m0 buffers requested.
+[1:09:13.788683919] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video69[132:cap]: [0mReleasing buffers
+[1:09:13.788844982] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video69[132:cap]: [0m0 buffers requested.
+[1:09:13.789035119] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video93[148:cap]: [0mReleasing buffers
+[1:09:13.789180106] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video93[148:cap]: [0m0 buffers requested.
+[1:09:13.789346861] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video67[131:cap]: [0mReleasing buffers
+[1:09:13.789487618] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video67[131:cap]: [0m0 buffers requested.
+[1:09:13.789656295] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video84[139:out]: [0mReleasing buffers
+[1:09:13.789799898] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video84[139:out]: [0m0 buffers requested.
+[1:09:13.789968806] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video65[130:cap]: [0mReleasing buffers
+[1:09:13.790110178] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video65[130:cap]: [0m0 buffers requested.
+[1:09:13.790279471] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video89[145:out]: [0mReleasing buffers
+[1:09:13.790424843] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video89[145:out]: [0m0 buffers requested.
+[1:09:13.790593674] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video62[129:cap]: [0mReleasing buffers
+[1:09:13.790733354] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video62[129:cap]: [0m0 buffers requested.
+[1:09:13.790899032] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video60[128:cap]: [0mReleasing buffers
+[1:09:13.791043020] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video60[128:cap]: [0m0 buffers requested.
+[1:09:13.791211389] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video96[151:cap]: [0mReleasing buffers
+[1:09:13.791351608] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video96[151:cap]: [0m0 buffers requested.
+[1:09:13.791516055] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video59[127:cap]: [0mReleasing buffers
+[1:09:13.791661888] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video59[127:cap]: [0m0 buffers requested.
+[1:09:13.791833258] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video20[111:cap]: [0mReleasing buffers
+[1:09:13.791975399] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video20[111:cap]: [0m0 buffers requested.
+[1:09:13.792300063] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video88[144:out]: [0mReleasing buffers
+[1:09:13.792448281] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video88[144:out]: [0m0 buffers requested.
+[1:09:13.792619112] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video57[126:out]: [0mReleasing buffers
+[1:09:13.792762946] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video57[126:out]: [0m0 buffers requested.
+[1:09:13.792947776] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video18[110:cap]: [0mReleasing buffers
+[1:09:13.793106300] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video18[110:cap]: [0m0 buffers requested.
+[1:09:13.793301821] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video87[143:out]: [0mReleasing buffers
+[1:09:13.793465499] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video87[143:out]: [0m0 buffers requested.
+[1:09:13.793654406] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video54[125:out]: [0mReleasing buffers
+[1:09:13.793817161] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video54[125:out]: [0m0 buffers requested.
+[1:09:13.794009990] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video16[109:cap]: [0mReleasing buffers
+[1:09:13.794175591] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video16[109:cap]: [0m0 buffers requested.
+[1:09:13.794366651] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video92[142:cap]: [0mReleasing buffers
+[1:09:13.794527791] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video92[142:cap]: [0m0 buffers requested.
+[1:09:13.794719543] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video50[124:out]: [0mReleasing buffers
+[1:09:13.794885221] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video50[124:out]: [0m0 buffers requested.
+[1:09:13.795072205] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video14[108:cap]: [0mReleasing buffers
+[1:09:13.795211808] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video14[108:cap]: [0m0 buffers requested.
+[1:09:13.795380639] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video91[147:out]: [0mReleasing buffers
+[1:09:13.795523934] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video91[147:out]: [0m0 buffers requested.
+[1:09:13.795692304] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video48[123:out]: [0mReleasing buffers
+[1:09:13.795833753] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video48[123:out]: [0m0 buffers requested.
+[1:09:13.796123420] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video12[107:cap]: [0mReleasing buffers
+[1:09:13.796279022] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video12[107:cap]: [0m0 buffers requested.
+[1:09:13.796454468] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video86[141:out]: [0mReleasing buffers
+[1:09:13.796599840] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video86[141:out]: [0m0 buffers requested.
+[1:09:13.796769286] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video47[122:out]: [0mReleasing buffers
+[1:09:13.796931964] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video47[122:out]: [0m0 buffers requested.
+[1:09:13.797124486] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video83[138:out]: [0mReleasing buffers
+[1:09:13.797288548] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video83[138:out]: [0m0 buffers requested.
+[1:09:13.797480070] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video44[120:out]: [0mReleasing buffers
+[1:09:13.797642594] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video44[120:out]: [0m0 buffers requested.
+[1:09:13.797835270] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video33[115:out]: [0mReleasing buffers
+[1:09:13.798001640] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video33[115:out]: [0m0 buffers requested.
+[1:09:13.798195700] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video30[114:out]: [0mReleasing buffers
+[1:09:13.798360147] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video30[114:out]: [0m0 buffers requested.
+[1:09:13.798553899] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video85[140:out]: [0mReleasing buffers
+[1:09:13.798721346] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video85[140:out]: [0m0 buffers requested.
+[1:09:13.798913714] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video4[105:out]: [0mReleasing buffers
+[1:09:13.799072853] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video4[105:out]: [0m0 buffers requested.
+[1:09:13.799245761] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video24[113:cap]: [0mReleasing buffers
+[1:09:13.799392210] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video24[113:cap]: [0m0 buffers requested.
+[1:09:13.799562349] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video22[112:cap]: [0mReleasing buffers
+[1:09:13.799704260] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video22[112:cap]: [0m0 buffers requested.
+[1:09:13.799883552] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video45[121:out]: [0mReleasing buffers
+[1:09:13.800089995] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video45[121:out]: [0m0 buffers requested.
+[1:09:13.800290747] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video37[117:out]: [0mReleasing buffers
+[1:09:13.800455194] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video37[117:out]: [0m0 buffers requested.
+[1:09:13.800643485] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video35[116:out]: [0mReleasing buffers
+[1:09:13.800809624] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video35[116:out]: [0m0 buffers requested.
+[1:09:13.801003761] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video39[118:out]: [0mReleasing buffers
+[1:09:13.801168362] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video39[118:out]: [0m0 buffers requested.
+[1:09:13.801355653] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1608 [0;32m/dev/video9[106:out]: [0mReleasing buffers
+[1:09:13.801517716] [10830] [1;36mDEBUG [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1323 [0;32m/dev/video9[106:out]: [0m0 buffers requested.

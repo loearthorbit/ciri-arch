@@ -18,7 +18,16 @@ done
 [[ -f $rootfs/usr/bin/ciri-camera-probe && ! -L $rootfs/usr/bin/ciri-camera-probe ]] || {
     printf 'The compiled camera client is not installed.\n' >&2; exit 1;
 }
-for command in unshare mount chroot env; do command -v "$command" >/dev/null; done
+for command in unshare mount chroot env modprobe; do command -v "$command" >/dev/null; done
+[[ -d /run/udev/data && ! -L /run/udev && ! -L /run/udev/data ]] || {
+    printf 'Host udev database missing: /run/udev/data\n' >&2; exit 1;
+}
+# Heap drivers are modules in the camera kernel and do not autoload on open().
+if [[ ! -e /dev/dma_heap/system ]]; then modprobe system_heap; fi
+if [[ ! -e /dev/dma_heap/scp-isp-cma-region ]]; then modprobe cma_heap; fi
+for heap in /dev/dma_heap/system /dev/dma_heap/scp-isp-cma-region; do
+    [[ -c $heap ]] || { printf 'Required vendor DMA heap missing: %s\n' "$heap" >&2; exit 1; }
+done
 export LIBCAMERA_LOG_LEVELS="${LIBCAMERA_LOG_LEVELS:-*:DEBUG}"
 exec unshare --mount --propagation private /bin/bash -c '
     set -euo pipefail
@@ -27,7 +36,16 @@ exec unshare --mount --propagation private /bin/bash -c '
         mount --rbind "/$name" "$rootfs/$name"
     done
     mount -t tmpfs -o mode=0755,nosuid,nodev tmpfs "$rootfs/run"
-    mkdir "$rootfs/run/camera"
+    mkdir -p "$rootfs/run/camera" "$rootfs/run/chromeos-config/v1"
+    # The vendor pipeline reads this before discovering cameras. The recovered
+    # ChromeOS configuration identifies this model as ciri. Keep it private.
+    printf "ciri\n" > "$rootfs/run/chromeos-config/v1/name"
+    # The libcamera udev enumerator requires initialized-device records. A fresh
+    # /run hides them even though /dev and /sys are visible. Expose only the
+    # database read-only; do not expose the host udev control socket.
+    mkdir -p "$rootfs/run/udev/data"
+    mount --bind /run/udev/data "$rootfs/run/udev/data"
+    mount -o remount,bind,ro,nosuid,nodev,noexec "$rootfs/run/udev/data"
     mount -t tmpfs -o mode=1777,nosuid,nodev tmpfs "$rootfs/tmp"
     if [[ $1 == --capture ]]; then
         [[ ! -L /opt/ciri-camera/captures ]]
@@ -44,5 +62,6 @@ exec unshare --mount --propagation private /bin/bash -c '
         LIBCAMERA_IPA_PROXY_PATH=/usr/lib64 \
         LIBCAMERA_IPA_CONFIG_PATH=/etc/camera/libcamera/ipa:/usr/share/libcamera/ipa \
         /usr/bin/chroot "$rootfs" /lib64/ld-linux-aarch64.so.1 \
-        --library-path /usr/lib64:/lib64 /usr/bin/ciri-camera-probe "$@"
+        --library-path /usr/lib64:/lib64:/usr/share/cros-camera/libfs \
+        /usr/bin/ciri-camera-probe "$@"
 ' ciri-camera-probe "$rootfs" "$@"

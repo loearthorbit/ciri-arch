@@ -6,7 +6,7 @@ This is not for the original MT8183 Duet or the Snapdragon Duet 3. It creates a 
 
 ## Status
 
-Documentation updated **2026-11-05**. The image inspection and boot/login reports below are from **2026-11-03**; the latest audio report is dated separately.
+Documentation updated **2026-11-07**. The image inspection and boot/login reports below are from **2026-11-03**; the latest audio report is dated separately.
 
 - Ciri `7.3.0-rc4-ciri` kernel, modules and SKU0–SKU7 DTBs built and checksummed. A second remote build has `CONFIG_FRAMEBUFFER_CONSOLE_ROTATION=y`; the original artifacts do not.
 - Ciri-only firmware extracted from Google recovery `16836.19.0` and checksummed.
@@ -14,7 +14,9 @@ Documentation updated **2026-11-05**. The image inspection and boot/login report
 - Password-only and explicit blank-root-console modes, persistent signed-rootfs caching, and distro console-rotation options implemented. Construction tests use real boot artifacts but a **deliberately nonbootable rootfs fixture**.
 - Real Arch-rootfs images have been built. The device owner reports reaching the Ciri Linux console, but also reports root remaining locked and the console remaining clockwise by 90 degrees after writing another image. Earlier login required a manual shadow-file edit.
 - **Direct inspection of `images/arch-ciri-upright.img` found an empty root password field, the new kernel binary, PAM `nullok`, and `fbcon=rotate:3` in both GRUB copies.** Its written USB and runtime state have not been compared successfully. The discrepancy and hardware rotation result remain unresolved; another rebuild alone is not an established fix.
-- **2026-11-05:** the device owner reports sound working. A camera-enabled kernel was incrementally rebuilt from the retained remote source and objects, downloaded and checksum-verified. Only four config values changed: `VIDEO_MTK_ISP_71_CAMSYS`, `VIDEO_GC05A2`, `VIDEO_GC08A3` and `VIDEO_DW9768`, from disabled to modules. The full build config is saved in [config/ciri.config](config/ciri.config). No installation or camera capture test has yet been completed.
+- **2026-11-05:** the device owner reports sound working. A camera-enabled kernel was incrementally rebuilt from the retained remote source and objects, downloaded and checksum-verified. Only four config values changed in that build: `VIDEO_MTK_ISP_71_CAMSYS`, `VIDEO_GC05A2`, `VIDEO_GC08A3` and `VIDEO_DW9768`, from disabled to modules. The full build config is saved in [config/ciri.config](config/ciri.config).
+- **2026-11-06:** the device owner confirms working capture through the isolated source-built libcamera stack at approximately 18 fps, with a strong green tint.
+- **2026-11-07:** the standard GStreamer bridge now delivers loopback images to `ffplay` and FFmpeg using unbuffered `filesink`, after MMAP failed and `v4l2sink` RW proved unimplemented. The saved image remains strongly green with a dark upper half; the same appearance exists in an older raw-capture preview. The owner reports auto exposure responding, but correct colour, sustained streaming and browser integration are not established. No kernel, camera runtime or loopback module was installed automatically.
 
 The local checkout has inputs under `artifacts/` and newer kernel output under `build/`. These generated files are ignored by Git and will not appear in a fresh clone. Both kernel builds report the same release, so `uname -r` cannot distinguish them.
 
@@ -26,6 +28,8 @@ The local checkout has inputs under `artifacts/` and newer kernel output under `
 - [Bring-up status](docs/BRINGUP-STATUS.md): dated evidence, local artifact locations, image identifiers and outstanding hardware checks.
 - [Contributing](CONTRIBUTING.md): development checks and test limitations.
 - [Third-party components](THIRD_PARTY.md): source and redistribution boundaries.
+- [Ciri libcamera build](docs/ciri-libcamera-build.md): pinned MediaTek fork, source worktree, dedicated SDK/venv, incremental cross-build and isolated packaging/install recipes. The device owner confirms capture at approximately 18 fps after the IPA loader-scope update, but the image remains strongly green.
+- [Standard camera streaming](docs/ciri-camera-streaming.md): matching GStreamer `libcamerasrc` → `videoconvert` → unbuffered `filesink` → `v4l2loopback`, preserving the isolated runtime. The plugin/helper and matching module are cross-built; the composed 123-ELF static audit and 82 local tests pass. The module used the retained Docker toolchain with its kernel volume mounted read-only. User-run `ffplay`/FFmpeg now receive images, but severe green tint and a dark upper half remain.
 
 Snapdragon Duet 3 camera research belongs in the separate [Wormdingler folder](../wormdingler/README.md), not this MT8188 project. That sibling link is for the local workspace and is not part of a standalone Ciri checkout. The x86_64 ThinkPad C13 ChromeOS-EC fingerprint, SSH sudo and GDM work is not Ciri or Wormdingler hardware guidance.
 
@@ -278,7 +282,7 @@ make -C "$KERNEL_SOURCE" O="$OUT" -j4 Image Image.gz modules dtbs
 
 The kernel source is not vendored in this repository. The existing local Submarine `7.2.11` source is not the pinned Ciri distro kernel. This local command sequence has not been run on the build host; the successful build was on remote Docker.
 
-Userspace remains a separate blocker. The [upstream support status](https://github.com/mkopec/ciri-mainline#status) labels camera support partial, and its [inspected userspace notes](https://github.com/mkopec/ciri-mainline/blob/542342f9d1bd30201b42913796840e8fa471049a/userspace.md) describe an `mtk-isp7` libcamera pipeline handler and IPA as local work, without a repository link or installation recipe. A public, reproducible setup for that handler has not been established here. Do not assume stock Arch libcamera supports this imported driver, or claim GNOME/browser webcam functionality from a passing configuration check. First establish sensor probing and the media topology, then verify actual frame capture with compatible userspace.
+The [upstream support status](https://github.com/mkopec/ciri-mainline#status) labels camera support partial. This repository provides a [pinned ChromiumOS MediaTek libcamera build and isolated runtime recipe](docs/ciri-libcamera-build.md), reusing recovered proprietary IPA/algorithm/tuning components. The device owner confirms standard `cam` capture at approximately 18 fps after the helper loader-scope correction; the image remains strongly green. The [standard streaming bridge](docs/ciri-camera-streaming.md) uses the matching `libcamerasrc` plugin and a V4L2 loopback output rather than another capture application. Its cross-build/static checks are complete, including the matching loopback module. User-run module loading is confirmed. MMAP failed in the output buffer pool and shutdown asserted; the subsequent `v4l2sink` RW branch proved unimplemented in GStreamer 1.22. The authored launcher now uses host `v4l2-ctl` format setup and unbuffered `filesink`. The device owner confirms `ffplay` receives images, and FFmpeg's saved PNG shows the same severe green/dark-upper-half appearance as an older raw-capture preview. Trace writes are complete 614400-byte frames, not evidence of valid pixel contents. Stock Arch libcamera is not a substitute for this fork, and neither correct colour nor GNOME/browser integration has been demonstrated.
 
 ## Tests
 

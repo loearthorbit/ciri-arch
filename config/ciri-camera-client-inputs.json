@@ -1,0 +1,30 @@
+{
+  "libcamera": {
+    "url": "https://chromium.googlesource.com/chromiumos/third_party/libcamera",
+    "branch": "release-R156-16836.B-mtkisp7",
+    "revision": "a5a75eeabdce349d8f794caacb3177c0e71287d5"
+  },
+  "recovery_version": "16836.19.0",
+  "sdk_packages": [
+    {
+      "directory": "libc6-dev-arm64-cross",
+      "url": "https://deb.debian.org/debian/pool/main/c/cross-toolchain-base/libc6-dev-arm64-cross_2.36-8cross1_all.deb",
+      "sha256": "5e4cf6abf0e89e89c4b3006bb8b7dc47aa831df25d94df9134929b8b968cacb4"
+    },
+    {
+      "directory": "linux-libc-dev-arm64-cross",
+      "url": "https://deb.debian.org/debian/pool/main/c/cross-toolchain-base/linux-libc-dev-arm64-cross_6.1.4-1cross1_all.deb",
+      "sha256": "66457f015d16b7d372db6591cff38db0da928362ff2ea1fa75491e28f6904d81"
+    },
+    {
+      "directory": "libcxx",
+      "url": "https://apt.llvm.org/noble/pool/main/l/llvm-toolchain-22/libc++-22-dev_22.1.8~++20260714014902+ca7933e47d3a-1~exp1~20260714135019.80_arm64.deb",
+      "sha256": "a0d6276432eb8282f5ed9ac537fb334a37e6b6038b4980a3338238bbe03b16a9"
+    },
+    {
+      "directory": "libgcc-dev",
+      "url": "https://deb.debian.org/debian/pool/main/g/gcc-12-cross/libgcc-12-dev-arm64-cross_12.2.0-14cross1_all.deb",
+      "sha256": "ff1324e262bae2c3aad685c2ed52bd531ab0a2a337a0fe35c3b720947d55b2ba"
+    }
+  ]
+}

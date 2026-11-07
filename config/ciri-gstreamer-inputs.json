@@ -1,0 +1,27 @@
+{
+  "architecture": "arm64",
+  "suite": "bookworm",
+  "metadata_url": "https://deb.debian.org/debian/dists/bookworm/main/binary-arm64/Packages.xz",
+  "sdk_directory": "camera/sdk/gstreamer",
+  "packages": [
+    {"name":"libglib2.0-dev","version":"2.74.6-2+deb12u9","path":"pool/main/g/glib2.0/libglib2.0-dev_2.74.6-2+deb12u9_arm64.deb","sha256":"ebe19a7908a412653e3cbd5bc9a9b78732d8b75408ced87799ff39ab9c76ce11"},
+    {"name":"libgstreamer1.0-dev","version":"1.22.0-2+deb12u1","path":"pool/main/g/gstreamer1.0/libgstreamer1.0-dev_1.22.0-2+deb12u1_arm64.deb","sha256":"061a13889e960921bbddc79dc7fb00952e70352bb0439dbc37c231a6f8f98e08"},
+    {"name":"libgstreamer-plugins-base1.0-dev","version":"1.22.0-3+deb12u6","path":"pool/main/g/gst-plugins-base1.0/libgstreamer-plugins-base1.0-dev_1.22.0-3+deb12u6_arm64.deb","sha256":"b301e8431c448ed441a4d426dbf7f5661a7588d2623620a2d8acc531986b060e"},
+    {"name":"libgstreamer1.0-0","version":"1.22.0-2+deb12u1","path":"pool/main/g/gstreamer1.0/libgstreamer1.0-0_1.22.0-2+deb12u1_arm64.deb","sha256":"4844db7e485a8d850895707add3d941d818403176d06fb566dd8ce48e8cbd065"},
+    {"name":"libgstreamer-plugins-base1.0-0","version":"1.22.0-3+deb12u6","path":"pool/main/g/gst-plugins-base1.0/libgstreamer-plugins-base1.0-0_1.22.0-3+deb12u6_arm64.deb","sha256":"f13ebb0f684bb788cdc232d8297e999bc1e316e600e02646c5036376d8734d36"},
+    {"name":"gstreamer1.0-tools","version":"1.22.0-2+deb12u1","path":"pool/main/g/gstreamer1.0/gstreamer1.0-tools_1.22.0-2+deb12u1_arm64.deb","sha256":"dbc06394852ab83d6a8c07e74bb9901e04f515b7dc36cb5a7dd84938e595b0ad"},
+    {"name":"gstreamer1.0-plugins-base","version":"1.22.0-3+deb12u6","path":"pool/main/g/gst-plugins-base1.0/gstreamer1.0-plugins-base_1.22.0-3+deb12u6_arm64.deb","sha256":"642884dad697d2442718a0138bb5f7bce088299d6f050831fdc8b7598af17871"},
+    {"name":"gstreamer1.0-plugins-good","version":"1.22.0-5+deb12u3","path":"pool/main/g/gst-plugins-good1.0/gstreamer1.0-plugins-good_1.22.0-5+deb12u3_arm64.deb","sha256":"7ef9c151110849c15e77b9582934658dd8504d4131023c37c7b3950c89776ca4"},
+    {"name":"liborc-0.4-0","version":"0.4.33-2","path":"pool/main/o/orc/liborc-0.4-0_0.4.33-2_arm64.deb","sha256":"d62af7b9a49f5858c6c3d8da9115059e52af4770d34abdee3cf132a52bd2407e"},
+    {"name":"libv4l-0","version":"1.22.1-5+b2","path":"pool/main/v/v4l-utils/libv4l-0_1.22.1-5+b2_arm64.deb","sha256":"d13506f18e38cf9f2b142d1d0ee6bee915f196e853c3112c39c129e14b7325f7"},
+    {"name":"libv4lconvert0","version":"1.22.1-5+b2","path":"pool/main/v/v4l-utils/libv4lconvert0_1.22.1-5+b2_arm64.deb","sha256":"f2fb928ac0bad111191ac8460edca2217c33bd1e3c23e7315e1f52dfe52f1469"},
+    {"name":"libjpeg62-turbo","version":"2.1.5-2","path":"pool/main/libj/libjpeg-turbo/libjpeg62-turbo_2.1.5-2_arm64.deb","sha256":"de66f186f3ff3c1d10c2e75ae056b019b3f7f091f51096a06cade48b2dea875b"},
+    {"name":"libunwind8","version":"1.6.2-3","path":"pool/main/libu/libunwind/libunwind8_1.6.2-3_arm64.deb","sha256":"f83ce7c58caaf15cfb0b6ced538751ea11ded920443aecfe617049ae184b715e"},
+    {"name":"libdw1","version":"0.188-2.1","path":"pool/main/e/elfutils/libdw1_0.188-2.1_arm64.deb","sha256":"3b403c886653e2ea496b74cf3b5c89aa0f50a7c2af9eda343be185970d3f440d"},
+    {"name":"libelf1","version":"0.188-2.1","path":"pool/main/e/elfutils/libelf1_0.188-2.1_arm64.deb","sha256":"32971952d8f5d563447bf275f24e26057500924da2d855c1edb53b0f0400bd11"},
+    {"name":"libcap2","version":"2.66-4+deb12u3+b1","path":"pool/main/libc/libcap2/libcap2_2.66-4+deb12u3+b1_arm64.deb","sha256":"b3a21ae1cef9c2f3fa340007100fb0aa934ab6a4d8aed131660de9713db2bb6e"},
+    {"name":"libgudev-1.0-0","version":"237-2","path":"pool/main/libg/libgudev/libgudev-1.0-0_237-2_arm64.deb","sha256":"c6e93243b8b3e9bdd6c7562adf81c97bf7aba1434c57c4286f147d001348c7e6"},
+    {"name":"libbz2-1.0","version":"1.0.8-5+b1","path":"pool/main/b/bzip2/libbz2-1.0_1.0.8-5+b1_arm64.deb","sha256":"d3a96ece03326498b39ff093a76800dfcbcb1d4049d6ae6e9f6fa1aa7a590ad6"},
+    {"name":"liblzma5","version":"5.4.1-1+deb12u1","path":"pool/main/x/xz-utils/liblzma5_5.4.1-1+deb12u1_arm64.deb","sha256":"647ce9d81e41c30071ce6ac0d3324579216a33aaa1d28971d6952315f6a95a75"}
+  ]
+}

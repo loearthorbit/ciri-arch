@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parent.parent
 RECIPE = ROOT / "scripts/build-ciri-kernel.sh"
 CAMERA_OPTIONS = (
     "MTK_SCP", "RPMSG_MTK_SCP", "VIDEO_MTK_ISP_71_CAMSYS",
+    "VIDEO_MTK_ISP_71_IMGSYS", "VIDEO_MTK_AIE",
     "VIDEO_GC05A2", "VIDEO_GC08A3", "VIDEO_DW9768",
 )
 
@@ -67,6 +68,21 @@ class KernelCameraConfigTests(unittest.TestCase):
             self.recipe.index("Required Ciri options disabled after olddefconfig"),
             self.recipe.index('make O=/work/out -j"$jobs" Image'),
         )
+
+    def test_companion_device_tree_nodes_enabled_in_both_recipes(self):
+        builder = ast.parse((ROOT / "scripts/build-ciri-camera-carrier.py").read_text())
+        nodes = next(ast.literal_eval(node.value) for node in builder.body
+                     if isinstance(node, ast.Assign)
+                     and any(isinstance(target, ast.Name) and target.id == "CAMERA_NODES"
+                             for target in node.targets))
+        self.assertEqual(len(nodes), 7)
+        cached = (ROOT / "scripts/rebuild-cached-ciri-camera.sh").read_text()
+        for recipe in (self.recipe, cached):
+            declared = re.search(r"camera_nodes=\((.*?)\)", recipe, re.DOTALL)
+            self.assertIsNotNone(declared)
+            self.assertEqual(tuple(declared.group(1).split()), nodes)
+            self.assertIn('printf \'&{%s} { status = "okay"; };\\n\'', recipe)
+            self.assertIn('fdtget -t s "$dtb" "$node" status', recipe)
 
     def test_enabled_camera_modules_accepted(self):
         settings = dict.fromkeys(self.required, "y")

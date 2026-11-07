@@ -1,0 +1,17 @@
+{
+  "source_revision": "a5a75eeabdce349d8f794caacb3177c0e71287d5",
+  "sdk_directory": "camera/sdk/libcamera",
+  "c_api_headers": {
+    "yaml.h": "de39c9fc2b2c8584775e6d0dc0f13c8e778ceba47d419cff9d85465ca35d6954",
+    "libudev.h": "49dd83f491fffc3553f9d9fd9127d324f56682858a19e7c1b9604f5fe0d225ea"
+  },
+  "libevent_version": "2.1.12-stable-8",
+  "libevent_packages": [
+    {"name": "libevent-dev", "sha256": "f2a7d6919016a361174f7dce7e98fad87649d7dddab9b0fb1f9d18101fa58693"},
+    {"name": "libevent-2.1-7", "sha256": "f8abaf5b501fbe8ab4bf0cd1d1be60b6980265f055d65e32fd90f54b4297d387"},
+    {"name": "libevent-core-2.1-7", "sha256": "b2ffdb6e02105a89fb1f306a6736be3cd302cdb225dc6d48f2e623baaf123efe"},
+    {"name": "libevent-pthreads-2.1-7", "sha256": "f2c7078ef6174892055894ff5b7f7b7dd8f7ac83d226c1a5ab20fbea5068b2ec"}
+  ],
+  "libevent_url_base": "https://deb.debian.org/debian/pool/main/libe/libevent/",
+  "ply": {"version": "3.11", "filename": "ply-3.11-py2.py3-none-any.whl", "sha256": "096f9b8350b65ebd2fd1346b12452efe5b9607f7482813ffca50c22722a807ce", "metadata_url": "https://pypi.org/pypi/ply/3.11/json"}
+}

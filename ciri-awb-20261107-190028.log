@@ -1,0 +1,1011 @@
+[sudo] password for jono: 
+]3008;start=55d568a6f0b44e7aad98f6ee6c932206;user=jono;hostname=arch-ciri;machineid=be6d8b85eeb44eb096746f7ef39e1c84;bootid=1d5241daa290433ea7bb5181504d038a;pid=4168;pidfdid=4725;comm=sudo;targetuser=root;type=session\Output directory: /opt/ciri-libcamera/captures/run.2d6JILlB
+Standalone IPA worker: listening at /run/camera/camera-algo-libcamera.sock (pid 4195)
+[0:06:57.735418967] [4197] [1;33m WARN [1;37mIPAManager [1;34mipa_manager.cpp:114 [0mPublic key not valid
+[0:06:57.776660701] [4197] [1;32m INFO [1;37mCamera [1;34mcamera_manager.cpp:284 [0mlibcamera v0.0.0+1-a5a75eea-dirty (2026-11-06T20:34:24+00:00)
+[0:06:57.798666287] [4199] [1;32m INFO [1;37mMtkISP7 [1;34mmtkisp7.cpp:645 [0mCurrent file descriptor limit:1024
+[0:06:57.798697133] [4199] [1;32m INFO [1;37mMtkISP7 [1;34mmtkisp7.cpp:650 [0mMaximum file descriptor limit: 524288
+[0:06:57.799252129] [4199] [1;33m WARN [1;37mMtkISP7 [1;34mmtkisp7.cpp:714 [0mNo gyroscope available
+[0:06:57.859659549] [4199] [1;32m INFO [1;37mMtkISP7 [1;34mmtkisp7.cpp:918 [0mRegistered Camera[/base/soc/i2c@11ec1000/camera-main-sensor@31]
+[0:06:57.859840009] [4199] [1;32m INFO [1;37mMtkISP7 [1;34mmtkisp7.cpp:918 [0mRegistered Camera[/base/soc/i2c@11ec0000/camera-sub-sensor@37]
+[0:06:57.896796856] [4199] [1;33m WARN [1;37mMtkISP7 [1;34mimgsys.cpp:484 [0mEntity MTK-ISP-DIP-V4L2 Single Device not found
+[0:06:57.896831471] [4199] [1;33m WARN [1;37mMtkISP7 [1;34mimgsys.cpp:484 [0mEntity MTK-ISP-DIP-V4L2 SIGDEVN not found
+[0:06:57.899611755] [4199] [1;32m INFO [1;37mMtkISP7 [1;34mmtkisp7.cpp:645 [0mCurrent file descriptor limit:2048
+[0:06:57.899643524] [4199] [1;32m INFO [1;37mMtkISP7 [1;34mmtkisp7.cpp:650 [0mMaximum file descriptor limit: 524288
+[0:06:58.125858457] [4199] [1;32m INFO [1;37mMtkISP7 [1;34mmtkisp7.cpp:986 [0mEeprom read size: 8192
+[0:06:58.126162531] [4199] [1;32m INFO [1;37mIPCUnixSocket [1;34mipc_unixsocket.cpp:174 [0mConnect Successfully!!!!
+Standalone IPA worker: client connected
+[0:06:58.126497606] [4195] [1;32m INFO [1;37mIPAProxyMtkISP7Worker [1;34mmtkisp7_ipa_proxy_worker.cpp:961 [0mipaRun with IPC fd = 4
+[0:06:58.672417917] [4195] [1;32m INFO [1;37mIPAProxyMtkISP7Worker [1;34mmtkisp7_ipa_proxy_worker.cpp:993 [0mProxy worker successfully initialized
+[0:06:58.673113834] [4195] [1;32m INFO [1;37mIPAMtkISP7 [1;34mmtkisp7.cpp:235 [0mCurrent file descriptor limit:1024
+[0:06:58.673142834] [4195] [1;32m INFO [1;37mIPAMtkISP7 [1;34mmtkisp7.cpp:240 [0mMaximum file descriptor limit: 524288
+[0:06:58.673157065] [4195] [1;32m INFO [1;37mIPAMtkISP7 [1;34mmtkisp7.cpp:244 [0mrlim_cur:2048
+2026-11-07T19:00:46.796609Z WARNING ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:70] W [MtkCam/MappingMgr] [parseSnesorDBMapTbl] [parseSnesorDBMapTbl] SnesorDBMap query not found sensorName(gc08a3_mipi_raw) moduleId(0)
+Using camera /base/soc/i2c@11ec1000/camera-main-sensor@31 as cam0
+[0:06:58.788386217] [4197] [1;32m INFO [1;37mCamera [1;34mcamera.cpp:1224 [0mconfiguring streams: (0) 640x480-NV12
+DoCamCal2AGainCus is enter..BlockSize=14 SensorID=8a3
+
+[0:06:58.789834051] [4195] [1;32m INFO [1;37mMtkISP7 [1;34mhal_3a.cpp:161 [0mAF Caliberation data checker  inf position 376 macro position 567
+2026-11-07T19:00:46.907974Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [FlickerMgr] flicker cycle is too small, sensor scenario:3 bin_ratio:0 50Hz:1.371500 60Hz:1.645800 (getFlickerParametersAll){#525:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/common/flicker/flicker_mgr.cpp}
+2026-11-07T19:00:46.908062Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [FlickerMgr] flicker cycle is too small, sensor scenario:3 bin_ratio:1 50Hz:1.339000 60Hz:1.606800 (getFlickerParametersAll){#525:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/common/flicker/flicker_mgr.cpp}
+[main thread] create algo thread[ltm_init_v2] camid 0 algo_data_addr 0xffff9dc96010
+[0:06:58.885612283] [4195] [1;31mERROR [1;37mMtkISP7 [1;34mhal_3a.cpp:223 [0msensor_id: 2211
+[do_algo_ext] Error, unsupport platform:0
+[do_algo_ext][Platform][0] platform:1
+[do_pipe_ctrl][Platform][0] platform:0
+2026-11-07T19:00:46.942039Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [MgrOutputCtrl] [ReadLast][Flicker] Data queue is empty ! (PrintLogE){#49:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/common/mgr_3a_adapter/MgrOutputCtrl.cpp}
+2026-11-07T19:00:46.942122Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [MgrOutputCtrl] [ReadLast][LSC] Data queue is empty ! (PrintLogE){#49:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/common/mgr_3a_adapter/MgrOutputCtrl.cpp}
+2026-11-07T19:00:46.942251Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [MgrOutputCtrl] [ReadLast][CAC] Data queue is empty ! (PrintLogE){#49:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/common/mgr_3a_adapter/MgrOutputCtrl.cpp}
+2026-11-07T19:00:46.942373Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [MgrOutputCtrl] [ReadLast][Flicker] Data queue is empty ! (PrintLogE){#49:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/common/mgr_3a_adapter/MgrOutputCtrl.cpp}
+2026-11-07T19:00:46.942435Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [MgrOutputCtrl] [ReadLast][Sensor] Data queue is empty ! (PrintLogE){#49:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/common/mgr_3a_adapter/MgrOutputCtrl.cpp}
+2026-11-07T19:00:46.942455Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [MgrOutputCtrl] [ReadLast][STT] Data queue is empty ! (PrintLogE){#49:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/common/mgr_3a_adapter/MgrOutputCtrl.cpp}
+2026-11-07T19:00:46.958834Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [ae_mgr_v4l2] [0][getAlgoDbgData] Failed to allocate memory for AlgoDebugData size(515936) is_enable_ndd(0) (getAlgoDbgData){#1691:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/common/ae_mgr/ae_mgr_flow.cpp}
+2026-11-07T19:00:46.981714Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [ShadingTrans_core] [shading_align_golden] orientation is 0!
+
+2026-11-07T19:00:46.981796Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [ShadingTrans_core] [shading_align_golden] input max grid > max grid num, reset input max grid to 17
+
+2026-11-07T19:00:46.982564Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [ShadingTrans_core] Less than 1x gain detected in channel 0
+
+2026-11-07T19:00:46.982612Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [ShadingTrans_core] Less than 1x gain detected in channel 1
+
+2026-11-07T19:00:46.983242Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [ShadingTrans_core] [shading_align_golden] orientation is 0!
+
+2026-11-07T19:00:46.983285Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [ShadingTrans_core] [shading_align_golden] input max grid > max grid num, reset input max grid to 17
+
+2026-11-07T19:00:46.983905Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [ShadingTrans_core] Less than 1x gain detected in channel 0
+
+2026-11-07T19:00:46.983939Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [ShadingTrans_core] Less than 1x gain detected in channel 1
+
+2026-11-07T19:00:46.983960Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [ShadingTrans_core] Less than 1x gain detected in channel 2
+
+2026-11-07T19:00:46.983979Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [ShadingTrans_core] Less than 1x gain detected in channel 3
+
+2026-11-07T19:00:46.984611Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [ShadingTrans_core] [shading_align_golden] orientation is 0!
+
+2026-11-07T19:00:46.984646Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [ShadingTrans_core] [shading_align_golden] input max grid > max grid num, reset input max grid to 17
+
+2026-11-07T19:00:46.985265Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [ShadingTrans_core] Less than 1x gain detected in channel 0
+
+2026-11-07T19:00:46.985298Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [ShadingTrans_core] Less than 1x gain detected in channel 1
+
+2026-11-07T19:00:46.985327Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [ShadingTrans_core] Less than 1x gain detected in channel 2
+
+2026-11-07T19:00:46.985355Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [ShadingTrans_core] Less than 1x gain detected in channel 3
+
+2026-11-07T19:00:46.994438Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [TsfImp] [getTsfsGain] Invalid TSFSO Gain, use default value (getTsfsGain){#517:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/lsc_mgr/lsc_mtk/TsfImp.cpp}
+[aaa_stat_ctrl][SetEXT][0] log:9fd3bb40, get_prop:0, set_prop:0
+[ltm_ctrl] map_path:/etc/camera/bin/crossbuild/DataSet/SQLiteModule/db/ParameterDB.db param_path:/etc/camera/bin/crossbuild/DataSet/SQLiteModule/db/tone/ParameterDB_tone.db[ltm_start_7] map_path:/etc/camera/bin/crossbuild/DataSet/SQLiteModule/db/ParameterDB.db param_path:/etc/camera/bin/crossbuild/DataSet/SQLiteModule/db/tone/ParameterDB_tone.db[0][0][nouser][module:1][toneutil_init] g_db_refcnt:0 g_handlePtr:(nil) getprop done
+[0][0][0][module:1][toneutil_init] g_db_refcnt:0 g_handlePtr:(nil) algo_data_select_toneutil done
+[0][0][0][module:1][toneutil_init] tone_db_allocateDBHandleFromConfig init_info.map_path:/etc/camera/bin/crossbuild/DataSet/SQLiteModule/db/ParameterDB.db init_info.param_path:/etc/camera/bin/crossbuild/DataSet/SQLiteModule/db/tone/ParameterDB_tone.db
+[0][0][0][module:1][toneutil_init] g_db_refcnt:0 g_handlePtr:(nil) db config done
+[0][0][0][module:1][toneutil_init] g_db_refcnt:0 g_handlePtr:0xaaaadd357ee0 tone_db_allocateDBHandleFromConfig done
+[init_cam_debug] toneutil OS: non Android: (nil) (nil)
+[0][0][0][module:1][toneutil_init] g_db_refcnt:0 g_handlePtr:0xaaaadd357ee0 init_cam_debug done
+[0][0][0][module:1][toneutil_init] g_db_refcnt:0 g_handlePtr:0xaaaadd357ee0 run_cam_debug done
+[0][0][0][module:1][toneutil_init] g_db_refcnt:1(prev:0) data->refcnt:1 init_info_size/handlePtr/toneutilVer:56/0xaaaadd357ee0/22083000 $Rev: 5842 $ is_allocate:1 init_info_size:56 sizeof(toneutil_init_info):56 2024-08-22 17:00:15 BasicModule:13513
+[ltm_start] data_addr: 0xffff9dc96010
+[0][1][gma_init] init_info_size:40 version:2022100600 $Rev: 6029 $ init_info_size:40 sizeof(struct gma_init_info):40
+[gma_instance_id][000] cam_id:0 user_id:1
+[cam:0][user:1][instance:0][gma_init] version:2022100600 0xaaaadddf9520 refcnt:1
+[0][1][0][0][check_db_ptr] algo_data->p_allParamPtr null, use default
+[0][1][0][0][gma_init] db_ptr_check:11
+[tnc_instance_id][000] cam_id:0 user_id:1
+[cam:0][user:0][instance:0][algo_data_init] 0xffff9c31e010 refcnt:1
+[check_db_ptr][0][1][0] algo_data->p_allParamPtr null, use default
+[0][1][0][tnc_init] db_ptr_check:11
+[0:06:59.044614258] [4195] [1;32m INFO [1;37mMtkISP7 [1;34mswme.cpp:41 [0mProc1_imgW: 608, Proc1_imgH: 816, core_num: 8, Proc1_DSUS_mode: 0
+Memc_CalcuBuffSize, map(width,height)=(409,305)
+[0:06:59.045515251] [4195] [1;32m INFO [1;37mMtkISP7 [1;34mswme.cpp:121 [0mExt_mem_size: 1086656, CofMap_width: 102, CofMap_height: 76, MV_width: 204, MV_height: 152, WpeMap_width: 409, WpeMap_height: 305, ErrCode = 0
+[0:06:59.045553867] [4195] [1;32m INFO [1;37mMtkISP7 [1;34mswme.cpp:56 [0mworking buffer size = 1086656, conf map size = 102x76, motion vec size = 204x152, warp map size = 409x305
+[0:06:59.045600712] [4195] [1;32m INFO [1;37mMtkISP7 [1;34mswme.cpp:41 [0mProc1_imgW: 608, Proc1_imgH: 816, core_num: 8, Proc1_DSUS_mode: 0
+Memc_CalcuBuffSize, map(width,height)=(409,305)
+[0:06:59.046319553] [4195] [1;32m INFO [1;37mMtkISP7 [1;34mswme.cpp:121 [0mExt_mem_size: 1086656, CofMap_width: 102, CofMap_height: 76, MV_width: 204, MV_height: 152, WpeMap_width: 409, WpeMap_height: 305, ErrCode = 0
+[0:06:59.046345245] [4195] [1;32m INFO [1;37mMtkISP7 [1;34mswme.cpp:56 [0mworking buffer size = 1086656, conf map size = 102x76, motion vec size = 204x152, warp map size = 409x305
+[0:06:59.046375706] [4195] [1;32m INFO [1;37mMtkISP7 [1;34mswme.cpp:41 [0mProc1_imgW: 608, Proc1_imgH: 816, core_num: 8, Proc1_DSUS_mode: 0
+Memc_CalcuBuffSize, map(width,height)=(409,305)
+[0:06:59.046953933] [4195] [1;32m INFO [1;37mMtkISP7 [1;34mswme.cpp:121 [0mExt_mem_size: 1086656, CofMap_width: 102, CofMap_height: 76, MV_width: 204, MV_height: 152, WpeMap_width: 409, WpeMap_height: 305, ErrCode = 0
+[0:06:59.046980317] [4195] [1;32m INFO [1;37mMtkISP7 [1;34mswme.cpp:56 [0mworking buffer size = 1086656, conf map size = 102x76, motion vec size = 204x152, warp map size = 409x305
+[0:06:59.047890387] [4199] [1;32m INFO [1;37mMtkISP7 [1;34mmfnr.cpp:132 [0mmfnrSizes_[0] = 3264x2448
+[0:06:59.047934387] [4199] [1;32m INFO [1;37mMtkISP7 [1;34mmfnr.cpp:132 [0mmfnrSizes_[1] = 1632x1224
+[0:06:59.047949617] [4199] [1;32m INFO [1;37mMtkISP7 [1;34mmfnr.cpp:132 [0mmfnrSizes_[2] = 816x612
+[0:06:59.047964156] [4199] [1;32m INFO [1;37mMtkISP7 [1;34mmfnr.cpp:132 [0mmfnrSizes_[3] = 408x306
+[0:06:59.047978463] [4199] [1;32m INFO [1;37mMtkISP7 [1;34mmfnr.cpp:132 [0mmfnrSizes_[4] = 204x154
+[0:06:59.047992617] [4199] [1;32m INFO [1;37mMtkISP7 [1;34mmfnr.cpp:132 [0mmfnrSizes_[5] = 102x78
+[0:06:59.048033693] [4199] [1;32m INFO [1;37mMtkISP7 [1;34mmfnr.cpp:132 [0mmfnrSizes_[6] = 52x40
+cam0: Capture 64 frames
+[0:06:59.390854426] [4199] [1;32m INFO [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1911 [0;32m/dev/video93[38:cap]: [0mZero sequence expected for first frame (got 1)
+[0:06:59.403102716] [4199] [1;32m INFO [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1911 [0;32m/dev/video89[34:cap]: [0mZero sequence expected for first frame (got 1)
+[0:06:59.403138639] [4199] [1;32m INFO [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1911 [0;32m/dev/video92[37:cap]: [0mZero sequence expected for first frame (got 1)
+2026-11-07T19:00:47.435257Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [ae_mgr_v4l2] [0][setAEMeteringTable] AAO is null, skip. (setAEMeteringTable){#2798:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/common/ae_mgr/ae_mgr_ctrl.cpp}
+2026-11-07T19:00:47.442499Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [MgrOutputCtrl] [Read][AE] Cannot find specified id(#0xfff12345) ! (PrintLogE){#49:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/common/mgr_3a_adapter/MgrOutputCtrl.cpp}
+2026-11-07T19:00:47.442549Z WARNING ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:70] W [Hal3AImp_v1_0] [UpdateBufInfo] [idx(0)] UpdateBufInfo with ReadLast id(0)
+2026-11-07T19:00:47.445522Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [MgrOutputCtrl] [Read][AE] Cannot find specified id(#0xfff12345) ! (PrintLogE){#49:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/common/mgr_3a_adapter/MgrOutputCtrl.cpp}
+2026-11-07T19:00:47.445566Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [SensorMgrAdapt] [Calculate] [Calculate:142] Fail to get AE last data! (Calculate){#142:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/common/mgr_3a_adapter/SensorMgrAdapt.cpp}
+2026-11-07T19:00:47.445639Z WARNING ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:70] W [ISP3ADataPool] [getData] id(#fff12345) not matched, get latest data_isp !
+2026-11-07T19:00:47.445660Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [LscMgrAdapt] [Calculate:243] tsfo is not enabled !
+2026-11-07T19:00:47.445710Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [TsfImp] [getTsfsGain] Invalid TSFSO Gain, use default value (getTsfsGain){#517:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/lsc_mgr/lsc_mtk/TsfImp.cpp}
+2026-11-07T19:00:47.445763Z WARNING ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:70] W [ISP3ADataPool] [getData] id(#fff12345) not matched, get latest data_isp !
+2026-11-07T19:00:47.446181Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [MgrOutputCtrl] [Read][AE] Cannot find specified id(#0xfff12345) ! (PrintLogE){#49:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/common/mgr_3a_adapter/MgrOutputCtrl.cpp}
+2026-11-07T19:00:47.446209Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [FlickerMgrAdapt] [Calculate] [Calculate:227] Fail to get id = 4293993285 AE data! (Calculate){#227:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/common/mgr_3a_adapter/FlickerMgrAdapt.cpp}
+2026-11-07T19:00:47.446233Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [MgrOutputCtrl] [Read][Flicker] Cannot find specified id(#0xfff12345) ! (PrintLogE){#49:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/common/mgr_3a_adapter/MgrOutputCtrl.cpp}
+2026-11-07T19:00:47.446252Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [FlickerMgrAdapt] [Calculate] [Calculate:244] Fail to get id = 4293993285 Flicker data! (Calculate){#244:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/common/mgr_3a_adapter/FlickerMgrAdapt.cpp}
+2026-11-07T19:00:47.446271Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [FlickerMgrAdapt] [Calculate] [Calculate:262] flko is not enabled ! (Calculate){#262:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/common/mgr_3a_adapter/FlickerMgrAdapt.cpp}
+[0:06:59.436399689] [4199] [1;32m INFO [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1911 [0;32m/dev/video80[25:cap]: [0mZero sequence expected for first frame (got 2)
+[0:06:59.482048720] [4199] [1;33m WARN [1;37mMtkISP7 [1;34mcapture.cpp:199 [0mSof Task triggered before run(). Some previous tasks may delay the Sof task
+2026-11-07T19:00:47.514358Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [MgrOutputCtrl] [Read][AE] Cannot find specified id(#0xfff12345) ! (PrintLogE){#49:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/common/mgr_3a_adapter/MgrOutputCtrl.cpp}
+2026-11-07T19:00:47.514443Z WARNING ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:70] W [Hal3AImp_v1_0] [UpdateBufInfo] [idx(0)] UpdateBufInfo with ReadLast id(0)
+2026-11-07T19:00:47.516969Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [MgrOutputCtrl] [Read][AE] Cannot find specified id(#0xfff12345) ! (PrintLogE){#49:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/common/mgr_3a_adapter/MgrOutputCtrl.cpp}
+2026-11-07T19:00:47.517012Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [SensorMgrAdapt] [Calculate] [Calculate:142] Fail to get AE last data! (Calculate){#142:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/common/mgr_3a_adapter/SensorMgrAdapt.cpp}
+2026-11-07T19:00:47.517082Z WARNING ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:70] W [ISP3ADataPool] [getData] id(#fff12345) not matched, get latest data_isp !
+2026-11-07T19:00:47.517101Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [LscMgrAdapt] [Calculate:243] tsfo is not enabled !
+2026-11-07T19:00:47.517151Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [TsfImp] [getTsfsGain] Invalid TSFSO Gain, use default value (getTsfsGain){#517:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/lsc_mgr/lsc_mtk/TsfImp.cpp}
+2026-11-07T19:00:47.517200Z WARNING ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:70] W [ISP3ADataPool] [getData] id(#fff12345) not matched, get latest data_isp !
+2026-11-07T19:00:47.517556Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [MgrOutputCtrl] [Read][AE] Cannot find specified id(#0xfff12345) ! (PrintLogE){#49:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/common/mgr_3a_adapter/MgrOutputCtrl.cpp}
+2026-11-07T19:00:47.517585Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [FlickerMgrAdapt] [Calculate] [Calculate:227] Fail to get id = 4293993285 AE data! (Calculate){#227:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/common/mgr_3a_adapter/FlickerMgrAdapt.cpp}
+2026-11-07T19:00:47.517613Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [MgrOutputCtrl] [Read][Flicker] Cannot find specified id(#0xfff12345) ! (PrintLogE){#49:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/common/mgr_3a_adapter/MgrOutputCtrl.cpp}
+2026-11-07T19:00:47.517632Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [FlickerMgrAdapt] [Calculate] [Calculate:244] Fail to get id = 4293993285 Flicker data! (Calculate){#244:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/common/mgr_3a_adapter/FlickerMgrAdapt.cpp}
+2026-11-07T19:00:47.517651Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [FlickerMgrAdapt] [Calculate] [Calculate:262] flko is not enabled ! (Calculate){#262:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/common/mgr_3a_adapter/FlickerMgrAdapt.cpp}
+[0:06:59.490289041] [4199] [1;33m WARN [1;37mMtkISP7 [1;34mcapture.cpp:199 [0mSof Task triggered before run(). Some previous tasks may delay the Sof task
+2026-11-07T19:00:47.522213Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [MgrOutputCtrl] [Read][AE] Cannot find specified id(#0xfff12345) ! (PrintLogE){#49:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/common/mgr_3a_adapter/MgrOutputCtrl.cpp}
+2026-11-07T19:00:47.522256Z WARNING ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:70] W [Hal3AImp_v1_0] [UpdateBufInfo] [idx(0)] UpdateBufInfo with ReadLast id(1)
+2026-11-07T19:00:47.524800Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [MgrOutputCtrl] [Read][AE] Cannot find specified id(#0xfff12345) ! (PrintLogE){#49:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/common/mgr_3a_adapter/MgrOutputCtrl.cpp}
+2026-11-07T19:00:47.524846Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [SensorMgrAdapt] [Calculate] [Calculate:142] Fail to get AE last data! (Calculate){#142:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/common/mgr_3a_adapter/SensorMgrAdapt.cpp}
+2026-11-07T19:00:47.524917Z WARNING ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:70] W [ISP3ADataPool] [getData] id(#fff12345) not matched, get latest data_isp !
+2026-11-07T19:00:47.524938Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [LscMgrAdapt] [Calculate:243] tsfo is not enabled !
+2026-11-07T19:00:47.524986Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [TsfImp] [getTsfsGain] Invalid TSFSO Gain, use default value (getTsfsGain){#517:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/lsc_mgr/lsc_mtk/TsfImp.cpp}
+2026-11-07T19:00:47.525039Z WARNING ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:70] W [ISP3ADataPool] [getData] id(#fff12345) not matched, get latest data_isp !
+2026-11-07T19:00:47.525401Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [MgrOutputCtrl] [Read][AE] Cannot find specified id(#0xfff12345) ! (PrintLogE){#49:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/common/mgr_3a_adapter/MgrOutputCtrl.cpp}
+2026-11-07T19:00:47.525430Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [FlickerMgrAdapt] [Calculate] [Calculate:227] Fail to get id = 4293993285 AE data! (Calculate){#227:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/common/mgr_3a_adapter/FlickerMgrAdapt.cpp}
+2026-11-07T19:00:47.525453Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [MgrOutputCtrl] [Read][Flicker] Cannot find specified id(#0xfff12345) ! (PrintLogE){#49:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/common/mgr_3a_adapter/MgrOutputCtrl.cpp}
+2026-11-07T19:00:47.525473Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [FlickerMgrAdapt] [Calculate] [Calculate:244] Fail to get id = 4293993285 Flicker data! (Calculate){#244:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/common/mgr_3a_adapter/FlickerMgrAdapt.cpp}
+2026-11-07T19:00:47.525492Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [FlickerMgrAdapt] [Calculate] [Calculate:262] flko is not enabled ! (Calculate){#262:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/common/mgr_3a_adapter/FlickerMgrAdapt.cpp}
+2026-11-07T19:00:47.534998Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [MgrOutputCtrl] [Read][AE] Cannot find specified id(#0xfff12345) ! (PrintLogE){#49:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/common/mgr_3a_adapter/MgrOutputCtrl.cpp}
+2026-11-07T19:00:47.535051Z WARNING ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:70] W [Hal3AImp_v1_0] [UpdateBufInfo] [idx(0)] UpdateBufInfo with ReadLast id(2)
+2026-11-07T19:00:47.537248Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [MgrOutputCtrl] [Read][AE] Cannot find specified id(#0xfff12345) ! (PrintLogE){#49:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/common/mgr_3a_adapter/MgrOutputCtrl.cpp}
+2026-11-07T19:00:47.537293Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [SensorMgrAdapt] [Calculate] [Calculate:142] Fail to get AE last data! (Calculate){#142:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/common/mgr_3a_adapter/SensorMgrAdapt.cpp}
+2026-11-07T19:00:47.537367Z WARNING ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:70] W [ISP3ADataPool] [getData] id(#fff12345) not matched, get latest data_isp !
+2026-11-07T19:00:47.537388Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [LscMgrAdapt] [Calculate:243] tsfo is not enabled !
+2026-11-07T19:00:47.537438Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [TsfImp] [getTsfsGain] Invalid TSFSO Gain, use default value (getTsfsGain){#517:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/lsc_mgr/lsc_mtk/TsfImp.cpp}
+2026-11-07T19:00:47.537489Z WARNING ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:70] W [ISP3ADataPool] [getData] id(#fff12345) not matched, get latest data_isp !
+2026-11-07T19:00:47.537840Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [MgrOutputCtrl] [Read][AE] Cannot find specified id(#0xfff12345) ! (PrintLogE){#49:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/common/mgr_3a_adapter/MgrOutputCtrl.cpp}
+2026-11-07T19:00:47.537869Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [FlickerMgrAdapt] [Calculate] [Calculate:227] Fail to get id = 4293993285 AE data! (Calculate){#227:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/common/mgr_3a_adapter/FlickerMgrAdapt.cpp}
+2026-11-07T19:00:47.537889Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [MgrOutputCtrl] [Read][Flicker] Cannot find specified id(#0xfff12345) ! (PrintLogE){#49:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/common/mgr_3a_adapter/MgrOutputCtrl.cpp}
+2026-11-07T19:00:47.537905Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [FlickerMgrAdapt] [Calculate] [Calculate:244] Fail to get id = 4293993285 Flicker data! (Calculate){#244:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/common/mgr_3a_adapter/FlickerMgrAdapt.cpp}
+2026-11-07T19:00:47.537925Z ERROR ciri-libcamera-host: [-isp7-utils-9999/platform2/platform_camera/hal/mediatek/mtkcam_tinymw/mtkcam-utils/log_service/platform_log.cpp:73] E [FlickerMgrAdapt] [Calculate] [Calculate:262] flko is not enabled ! (Calculate){#262:../mtkcam-protect-isp7-9999/platform_camera/mtkcam-core/aaa/common/mgr_3a_adapter/FlickerMgrAdapt.cpp}
+[0:06:59.570955802] [4199] [1;32m INFO [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1911 [0;32m/dev/video81[26:cap]: [0mZero sequence expected for first frame (got 5)
+[0:06:59.571054109] [4199] [1;32m INFO [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1911 [0;32m/dev/video82[27:cap]: [0mZero sequence expected for first frame (got 5)
+[0:06:59.571081570] [4199] [1;32m INFO [1;37mV4L2 [1;34mv4l2_videodevice.cpp:1911 [0;32m/dev/video88[33:cap]: [0mZero sequence expected for first frame (got 5)
+419.538182 (0.00 fps) cam0-stream0 seq: 000000 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = 0.200000
+	LensState = 0
+	ExposureTime = 30004
+	SensorTimestamp = 419538182671
+	AnalogueGain = 103.125000
+	AeState = 1
+	FrameDuration = 33350000
+	LensPosition = 376.000000
+	AwbState = 0
+	AfState = 6
+419.571669 (29.86 fps) cam0-stream0 seq: 000001 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = 0.200000
+	LensState = 0
+	ExposureTime = 30004
+	SensorTimestamp = 419571669027
+	AnalogueGain = 189.062500
+	AeState = 1
+	FrameDuration = 33350000
+	LensPosition = 376.000000
+	AwbState = 1
+	AfState = 6
+419.613990 (23.63 fps) cam0-stream0 seq: 000002 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = 0.200000
+	LensState = 0
+	ExposureTime = 39988
+	SensorTimestamp = 419613990546
+	AnalogueGain = 201.562500
+	AeState = 1
+	FrameDuration = 39988000
+	LensPosition = 376.000000
+	AwbState = 2
+	AfState = 6
+419.651950 (26.34 fps) cam0-stream0 seq: 000003 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = 0.200000
+	LensState = 0
+	ExposureTime = 39988
+	SensorTimestamp = 419651950406
+	AnalogueGain = 246.875000
+	AeState = 1
+	FrameDuration = 39988000
+	LensPosition = 376.000000
+	AwbState = 2
+	AfState = 6
+419.692234 (24.82 fps) cam0-stream0 seq: 000004 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = 0.200000
+	LensState = 0
+	ExposureTime = 39988
+	SensorTimestamp = 419692234479
+	AnalogueGain = 379.687500
+	AeState = 1
+	FrameDuration = 39988000
+	LensPosition = 376.000000
+	AwbState = 1
+	AfState = 6
+419.742349 (19.95 fps) cam0-stream0 seq: 000005 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = 0.200000
+	LensState = 0
+	ExposureTime = 49998
+	SensorTimestamp = 419742349091
+	AnalogueGain = 439.062500
+	AeState = 1
+	FrameDuration = 49998000
+	LensPosition = 376.000000
+	AwbState = 1
+	AfState = 6
+419.792677 (19.87 fps) cam0-stream0 seq: 000006 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = 0.200000
+	LensState = 0
+	ExposureTime = 49998
+	SensorTimestamp = 419792677164
+	AnalogueGain = 546.875000
+	AeState = 1
+	FrameDuration = 49998000
+	LensPosition = 376.000000
+	AwbState = 2
+	AfState = 6
+419.842986 (19.88 fps) cam0-stream0 seq: 000007 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = 0.200000
+	LensState = 0
+	ExposureTime = 49998
+	SensorTimestamp = 419842986774
+	AnalogueGain = 620.312500
+	AeState = 1
+	FrameDuration = 49998000
+	LensPosition = 376.000000
+	AwbState = 2
+	AfState = 6
+419.893635 (19.74 fps) cam0-stream0 seq: 000008 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = 0.200000
+	LensState = 0
+	AnalogueGain = 804.687500
+	SensorTimestamp = 419893635921
+	ExposureTime = 50024
+	FrameDuration = 50024000
+	AeState = 1
+	LensPosition = 376.000000
+	AwbState = 2
+	AfState = 6
+419.953360 (16.74 fps) cam0-stream0 seq: 000009 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = 0.200000
+	LensState = 0
+	AnalogueGain = 784.375000
+	SensorTimestamp = 419953360074
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 1
+	LensPosition = 376.000000
+	AwbState = 2
+	AfState = 6
+420.013509 (16.63 fps) cam0-stream0 seq: 000010 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = 0.200000
+	LensState = 0
+	AnalogueGain = 853.125000
+	SensorTimestamp = 420013509621
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 1
+	LensPosition = 376.000000
+	AwbState = 2
+	AfState = 6
+420.073903 (16.56 fps) cam0-stream0 seq: 000011 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = 0.200000
+	LensState = 0
+	AnalogueGain = 892.187500
+	SensorTimestamp = 420073903248
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 1
+	LensPosition = 376.000000
+	AwbState = 1
+	AfState = 6
+420.133968 (16.65 fps) cam0-stream0 seq: 000012 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = 0.200000
+	LensState = 0
+	AnalogueGain = 915.625000
+	SensorTimestamp = 420133968262
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 1
+	LensPosition = 376.000000
+	AwbState = 1
+	AfState = 6
+420.194285 (16.58 fps) cam0-stream0 seq: 000013 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = 0.200000
+	LensState = 0
+	AnalogueGain = 931.250000
+	SensorTimestamp = 420194285351
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 1
+	LensPosition = 376.000000
+	AwbState = 2
+	AfState = 6
+420.254382 (16.64 fps) cam0-stream0 seq: 000014 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = 0.200000
+	LensState = 0
+	AnalogueGain = 942.187500
+	SensorTimestamp = 420254382672
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 1
+	LensPosition = 376.000000
+	AwbState = 2
+	AfState = 6
+420.314723 (16.57 fps) cam0-stream0 seq: 000015 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = 0.200000
+	LensState = 0
+	AnalogueGain = 951.562500
+	SensorTimestamp = 420314723530
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 1
+	LensPosition = 376.000000
+	AwbState = 2
+	AfState = 6
+420.379287 (15.49 fps) cam0-stream0 seq: 000016 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = 0.200000
+	LensState = 0
+	AnalogueGain = 959.375000
+	SensorTimestamp = 420379287357
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 1
+	LensPosition = 376.000000
+	AwbState = 1
+	AfState = 6
+420.435138 (17.90 fps) cam0-stream0 seq: 000017 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = 0.200000
+	LensState = 0
+	AnalogueGain = 962.500000
+	SensorTimestamp = 420435138094
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 1
+	LensPosition = 376.000000
+	AwbState = 2
+	AfState = 6
+420.495462 (16.58 fps) cam0-stream0 seq: 000018 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = 0.200000
+	LensState = 0
+	AnalogueGain = 965.625000
+	SensorTimestamp = 420495462645
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 1
+	LensPosition = 376.000000
+	AwbState = 2
+	AfState = 6
+420.555572 (16.64 fps) cam0-stream0 seq: 000019 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = 0.200000
+	LensState = 0
+	AnalogueGain = 965.625000
+	SensorTimestamp = 420555572581
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 1
+	LensPosition = 376.000000
+	AwbState = 2
+	AfState = 6
+420.615852 (16.59 fps) cam0-stream0 seq: 000020 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = 0.200000
+	LensState = 0
+	AnalogueGain = 965.625000
+	SensorTimestamp = 420615852055
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 1
+	LensPosition = 376.000000
+	AwbState = 2
+	AfState = 6
+420.680699 (15.42 fps) cam0-stream0 seq: 000021 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = 0.200000
+	LensState = 0
+	AnalogueGain = 965.625000
+	SensorTimestamp = 420680699111
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 376.000000
+	AwbState = 2
+	AfState = 6
+420.736114 (18.05 fps) cam0-stream0 seq: 000022 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = 0.200000
+	LensState = 0
+	AnalogueGain = 965.625000
+	SensorTimestamp = 420736114698
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 376.000000
+	AwbState = 2
+	AfState = 6
+420.796398 (16.59 fps) cam0-stream0 seq: 000023 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = 0.200000
+	LensState = 0
+	AnalogueGain = 965.625000
+	SensorTimestamp = 420796398556
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 376.000000
+	AwbState = 2
+	AfState = 6
+420.861002 (15.48 fps) cam0-stream0 seq: 000024 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = 0.200000
+	LensState = 0
+	AnalogueGain = 965.625000
+	SensorTimestamp = 420861002690
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 376.000000
+	AwbState = 2
+	AfState = 6
+420.920403 (16.83 fps) cam0-stream0 seq: 000025 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = 0.200000
+	LensState = 0
+	AnalogueGain = 965.625000
+	SensorTimestamp = 420920403709
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 376.000000
+	AwbState = 2
+	AfState = 6
+420.981830 (16.28 fps) cam0-stream0 seq: 000026 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = 0.200000
+	LensState = 0
+	AnalogueGain = 965.625000
+	SensorTimestamp = 420981830485
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 376.000000
+	AwbState = 2
+	AfState = 6
+421.037355 (18.01 fps) cam0-stream0 seq: 000027 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = 0.200000
+	LensState = 0
+	AnalogueGain = 965.625000
+	SensorTimestamp = 421037355471
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 376.000000
+	AwbState = 2
+	AfState = 6
+421.104049 (14.99 fps) cam0-stream0 seq: 000028 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = -0.000000
+	LensState = 1
+	AnalogueGain = 965.625000
+	SensorTimestamp = 421104049608
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 376.000000
+	AwbState = 2
+	AfState = 1
+421.162081 (17.23 fps) cam0-stream0 seq: 000029 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = -0.000000
+	LensState = 1
+	AnalogueGain = 965.625000
+	SensorTimestamp = 421162081730
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 376.000000
+	AwbState = 2
+	AfState = 1
+421.218007 (17.88 fps) cam0-stream0 seq: 000030 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = -0.000000
+	LensState = 1
+	AnalogueGain = 965.625000
+	SensorTimestamp = 421218007791
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 376.000000
+	AwbState = 2
+	AfState = 1
+421.281962 (15.64 fps) cam0-stream0 seq: 000031 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = -0.000000
+	LensState = 1
+	AnalogueGain = 965.625000
+	SensorTimestamp = 421281962409
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 370.000000
+	AwbState = 2
+	AfState = 1
+421.342287 (16.58 fps) cam0-stream0 seq: 000032 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = -0.000000
+	LensState = 1
+	AnalogueGain = 965.625000
+	SensorTimestamp = 421342287361
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 376.000000
+	AwbState = 2
+	AfState = 1
+421.398592 (17.76 fps) cam0-stream0 seq: 000033 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = -0.000000
+	LensState = 1
+	AnalogueGain = 965.625000
+	SensorTimestamp = 421398592034
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 382.000000
+	AwbState = 2
+	AfState = 1
+421.458866 (16.59 fps) cam0-stream0 seq: 000034 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = -0.000000
+	LensState = 0
+	AnalogueGain = 965.625000
+	SensorTimestamp = 421458866525
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 388.000000
+	AwbState = 2
+	AfState = 1
+421.518975 (16.64 fps) cam0-stream0 seq: 000035 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = -0.000000
+	LensState = 0
+	AnalogueGain = 965.625000
+	SensorTimestamp = 421518975325
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 394.000000
+	AwbState = 2
+	AfState = 1
+421.579281 (16.58 fps) cam0-stream0 seq: 000036 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = -0.000000
+	LensState = 0
+	AnalogueGain = 965.625000
+	SensorTimestamp = 421579281815
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 380.000000
+	AwbState = 2
+	AfState = 1
+421.642702 (15.77 fps) cam0-stream0 seq: 000037 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = -0.000000
+	LensState = 0
+	AnalogueGain = 965.625000
+	SensorTimestamp = 421642702360
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 380.000000
+	AwbState = 2
+	AfState = 2
+421.706770 (15.61 fps) cam0-stream0 seq: 000038 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = -0.000000
+	LensState = 0
+	AnalogueGain = 965.625000
+	SensorTimestamp = 421706770824
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 380.000000
+	AwbState = 2
+	AfState = 2
+421.763909 (17.50 fps) cam0-stream0 seq: 000039 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = -0.000000
+	LensState = 0
+	AnalogueGain = 965.625000
+	SensorTimestamp = 421763909491
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 380.000000
+	AwbState = 2
+	AfState = 2
+421.820099 (17.80 fps) cam0-stream0 seq: 000040 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = -0.000000
+	LensState = 0
+	AnalogueGain = 965.625000
+	SensorTimestamp = 421820099165
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 380.000000
+	AwbState = 2
+	AfState = 2
+421.884671 (15.49 fps) cam0-stream0 seq: 000041 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = -0.000000
+	LensState = 0
+	AnalogueGain = 965.625000
+	SensorTimestamp = 421884671932
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 380.000000
+	AwbState = 2
+	AfState = 2
+421.940565 (17.89 fps) cam0-stream0 seq: 000042 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = -0.000000
+	LensState = 0
+	AnalogueGain = 965.625000
+	SensorTimestamp = 421940565685
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 380.000000
+	AwbState = 2
+	AfState = 2
+422.000789 (16.60 fps) cam0-stream0 seq: 000043 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = -0.000000
+	LensState = 0
+	AnalogueGain = 965.625000
+	SensorTimestamp = 422000789261
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 380.000000
+	AwbState = 2
+	AfState = 2
+422.066768 (15.16 fps) cam0-stream0 seq: 000044 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = -0.000000
+	LensState = 0
+	AnalogueGain = 965.625000
+	SensorTimestamp = 422066768576
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 380.000000
+	AwbState = 2
+	AfState = 2
+422.121183 (18.38 fps) cam0-stream0 seq: 000045 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = -0.000000
+	LensState = 0
+	AnalogueGain = 965.625000
+	SensorTimestamp = 422121183431
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 380.000000
+	AwbState = 2
+	AfState = 2
+422.181433 (16.60 fps) cam0-stream0 seq: 000046 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = -0.000000
+	LensState = 0
+	AnalogueGain = 965.625000
+	SensorTimestamp = 422181433016
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 380.000000
+	AwbState = 2
+	AfState = 2
+422.246505 (15.37 fps) cam0-stream0 seq: 000047 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = -0.000000
+	LensState = 0
+	AnalogueGain = 965.625000
+	SensorTimestamp = 422246505490
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 380.000000
+	AwbState = 2
+	AfState = 2
+422.305980 (16.81 fps) cam0-stream0 seq: 000048 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = -0.000000
+	LensState = 0
+	AnalogueGain = 965.625000
+	SensorTimestamp = 422305980849
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 380.000000
+	AwbState = 2
+	AfState = 2
+422.366056 (16.65 fps) cam0-stream0 seq: 000049 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = -0.000000
+	LensState = 0
+	AnalogueGain = 965.625000
+	SensorTimestamp = 422366056127
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 380.000000
+	AwbState = 2
+	AfState = 2
+422.422133 (17.83 fps) cam0-stream0 seq: 000050 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = -0.000000
+	LensState = 0
+	AnalogueGain = 965.625000
+	SensorTimestamp = 422422133894
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 380.000000
+	AwbState = 2
+	AfState = 2
+422.486350 (15.57 fps) cam0-stream0 seq: 000051 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = -0.000000
+	LensState = 0
+	AnalogueGain = 965.625000
+	SensorTimestamp = 422486350221
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 380.000000
+	AwbState = 2
+	AfState = 2
+422.546378 (16.66 fps) cam0-stream0 seq: 000052 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = -0.000000
+	LensState = 0
+	AnalogueGain = 965.625000
+	SensorTimestamp = 422546378191
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 380.000000
+	AwbState = 2
+	AfState = 2
+422.606379 (16.67 fps) cam0-stream0 seq: 000053 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = -0.000000
+	LensState = 0
+	AnalogueGain = 965.625000
+	SensorTimestamp = 422606379085
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 380.000000
+	AwbState = 2
+	AfState = 2
+422.662989 (17.66 fps) cam0-stream0 seq: 000054 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = -0.000000
+	LensState = 0
+	AnalogueGain = 965.625000
+	SensorTimestamp = 422662989772
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 380.000000
+	AwbState = 2
+	AfState = 2
+422.723331 (16.57 fps) cam0-stream0 seq: 000055 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = -0.000000
+	LensState = 0
+	AnalogueGain = 965.625000
+	SensorTimestamp = 422723331279
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 380.000000
+	AwbState = 2
+	AfState = 2
+422.783602 (16.59 fps) cam0-stream0 seq: 000056 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = -0.000000
+	LensState = 0
+	AnalogueGain = 965.625000
+	SensorTimestamp = 422783602094
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 380.000000
+	AwbState = 2
+	AfState = 2
+422.848411 (15.43 fps) cam0-stream0 seq: 000057 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = -0.000000
+	LensState = 0
+	AnalogueGain = 965.625000
+	SensorTimestamp = 422848411339
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 380.000000
+	AwbState = 2
+	AfState = 2
+422.904054 (17.97 fps) cam0-stream0 seq: 000058 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = -0.000000
+	LensState = 0
+	AnalogueGain = 965.625000
+	SensorTimestamp = 422904054109
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 380.000000
+	AwbState = 2
+	AfState = 2
+422.969050 (15.39 fps) cam0-stream0 seq: 000059 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = -0.000000
+	LensState = 0
+	AnalogueGain = 965.625000
+	SensorTimestamp = 422969050123
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 380.000000
+	AwbState = 2
+	AfState = 2
+423.024260 (18.11 fps) cam0-stream0 seq: 000060 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = -0.000000
+	LensState = 0
+	AnalogueGain = 965.625000
+	SensorTimestamp = 423024260294
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 380.000000
+	AwbState = 2
+	AfState = 2
+423.089687 (15.28 fps) cam0-stream0 seq: 000061 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = -0.000000
+	LensState = 0
+	AnalogueGain = 965.625000
+	SensorTimestamp = 423089687784
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 380.000000
+	AwbState = 2
+	AfState = 2
+423.144825 (18.14 fps) cam0-stream0 seq: 000062 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = -0.000000
+	LensState = 0
+	AnalogueGain = 965.625000
+	SensorTimestamp = 423144825034
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 380.000000
+	AwbState = 2
+	AfState = 2
+423.211787 (14.93 fps) cam0-stream0 seq: 000063 bytesused: 307200/153600
+	TestPatternMode = 0
+	PipelineDepth = 8
+	LensFocusDistance = -0.000000
+	LensState = 0
+	AnalogueGain = 965.625000
+	SensorTimestamp = 423211787283
+	ExposureTime = 60008
+	FrameDuration = 60008000
+	AeState = 2
+	LensPosition = 380.000000
+	AwbState = 2
+	AfState = 2
+Standalone IPA worker: ipaRun returned 0
+]3008;end=55d568a6f0b44e7aad98f6ee6c932206\Connection to 192.168.0.191 closed.

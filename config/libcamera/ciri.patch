@@ -1,0 +1,378 @@
+diff --git a/src/apps/common/meson.build b/src/apps/common/meson.build
+index 479326c..26c60ba 100644
+--- a/src/apps/common/meson.build
++++ b/src/apps/common/meson.build
+@@ -23,4 +23,4 @@ endif
+ 
+ apps_lib = static_library('apps', apps_sources,
+                           cpp_args : apps_cpp_args,
+-                          dependencies : [libcamera_public])
++                          dependencies : [libcamera_public, libevent])
+diff --git a/src/gstreamer/gstlibcameraallocator.cpp b/src/gstreamer/gstlibcameraallocator.cpp
+index c740b8f..1ad9b80 100644
+--- a/src/gstreamer/gstlibcameraallocator.cpp
++++ b/src/gstreamer/gstlibcameraallocator.cpp
+@@ -200,8 +200,11 @@ gst_libcamera_allocator_new(std::shared_ptr<Camera> camera,
+ 		gint ret;
+
+ 		ret = self->fb_allocator->allocate(stream);
+-		if (ret == 0)
++		if (ret <= 0) {
++			GST_ERROR_OBJECT(self, "Failed to allocate camera buffers: %d", ret);
++			g_object_unref(self);
+ 			return nullptr;
++		}
+
+ 		GQueue *pool = g_queue_new();
+ 		for (const std::unique_ptr<FrameBuffer> &buffer :
+diff --git a/src/gstreamer/meson.build b/src/gstreamer/meson.build
+index 20784b7..4a1e4a8 100644
+--- a/src/gstreamer/meson.build
++++ b/src/gstreamer/meson.build
+@@ -39,6 +39,12 @@ if cc.get_id() == 'clang' and glib_dep.version().version_compare('<2.63.0')
+     libcamera_gst_cpp_args += ['-Wno-unused-function']
+ endif
+
++# GLib's generated parent-class globals can be intentionally unused. Newer
++# Clang diagnoses these under -Werror; keep suppression local to this plugin.
++if cc.get_id() == 'clang'
++    libcamera_gst_cpp_args += cc.get_supported_arguments('-Wno-unused-but-set-global')
++endif
++
+ libcamera_gst = shared_library('gstlibcamera',
+     libcamera_gst_sources,
+     cpp_args : libcamera_gst_cpp_args,
+diff --git a/src/ipa/mtkisp7/hal3a/hal_3a.cpp b/src/ipa/mtkisp7/hal3a/hal_3a.cpp
+index da4e1c1..b0830ec 100644
+--- a/src/ipa/mtkisp7/hal3a/hal_3a.cpp
++++ b/src/ipa/mtkisp7/hal3a/hal_3a.cpp
+@@ -628,6 +628,7 @@ mtk::hal3a::v1_0::mtk_3a_param Hal3A::get3AParam(
+ 			r_3a_param.color_correct_mode = controls_opt->get(controls::draft::ColorCorrectionMode).value_or(1);
+ 		}
+ 		const float defaultColorCorrectionGains[4] = { 1.0f,
++							       1.0f,
+ 							       1.0f,
+ 							       1.0f };
+ 		const auto &colorCorrectionGains = controls_opt->get(controls::draft::ColorCorrectionGains).value_or(defaultColorCorrectionGains);
+diff --git a/src/ipa/mtkisp7/meson.build b/src/ipa/mtkisp7/meson.build
+index 849fb23..b1fbfbf 100644
+--- a/src/ipa/mtkisp7/meson.build
++++ b/src/ipa/mtkisp7/meson.build
+@@ -13,20 +13,20 @@ mtkisp7_ipa_sources = files([
+ ])
+ 
+ libcamalgo_fdft = cc.find_library('camalgo.fdft', required : false)
+-libcam_hal3a = cc.find_library('libcam.hal3a', required : true)
+-libcam_hal3a_v3_nvram_v4l2 = cc.find_library('libcam.hal3a.v3.nvram.v4l2', required : true)
+-libmtkcam_metadata_container = cc.find_library('libmtkcam_metadata.container', required : true, static : true)
+-libmtkcam_ulog = cc.find_library('libmtkcam_ulog', required : true)
+-libmtk_platform_log = cc.find_library('libmtk_platform_log', required : true)
+-libmtkcam_debugwrapper = cc.find_library('libmtkcam.debugwrapper', required : true)
+-libcam_halsensor = cc.find_library('libcam.halsensor', required : true)
+-libcam_halisp_utils_pub = cc.find_library('libcam.halisp.utils.pub', required : true)
++libcam_hal3a = cc.find_library('cam.hal3a', required : true)
++libcam_hal3a_v3_nvram_v4l2 = cc.find_library('cam.hal3a.v3.nvram.v4l2', required : true)
++libmtkcam_metadata_container = cc.find_library('mtkcam_metadata', required : true)
++libmtkcam_ulog = cc.find_library('mtkcam_ulog', required : true)
++libmtk_platform_log = cc.find_library('mtk_platform_log', required : true)
++libmtkcam_debugwrapper = cc.find_library('mtkcam.debugwrapper', required : true)
++libcam_halsensor = cc.find_library('cam.halsensor', required : true)
++libcam_halisp_utils_pub = cc.find_library('cam.halisp.utils.pub', required : true)
+ 
+ libcam_halisp_imp_v4l2 = cc.find_library('cam.halisp.imp.v4l2', required : true)
+ libcam_halisp_tuning_provider = cc.find_library('cam.halisp.TuningDataProvider', required : true)
+ 
+-libmtkcam_tuning_utils = cc.find_library('libmtkcam_tuning_utils', required : true)
+-libmtkcam_stdutils = cc.find_library('libmtkcam_stdutils', required : true)
++libmtkcam_tuning_utils = cc.find_library('mtkcam_tuning_utils', required : true)
++libmtkcam_stdutils = cc.find_library('mtkcam_stdutils', required : true)
+ 
+ libcamalgo_bss = cc.find_library('camalgo.bss', required : true)
+ libcamalgo_mfnr = cc.find_library('camalgo.mfnr', required : true)
+diff --git a/src/libcamera/cros_gyro_sensor.cpp b/src/libcamera/cros_gyro_sensor.cpp
+index 57a339c..0dcc307 100644
+--- a/src/libcamera/cros_gyro_sensor.cpp
++++ b/src/libcamera/cros_gyro_sensor.cpp
+@@ -71,6 +71,9 @@ GyroSensor::Private::Private()
+ 
+ int GyroSensor::Private::init(Location location)
+ {
++	/* Standalone libcamera applications do not have a ChromeOS Mojo token. */
++	if (!gCrosMojoToken)
++		return -ENXIO;
+ 	sensorHalClient_ = cros::SensorHalClient::GetInstance(gCrosMojoToken);
+ 	location_ = static_cast<cros::SensorHalClient::Location>(location);
+ 	if (sensorHalClient_ &&
+diff --git a/src/libcamera/dma_heaps.cpp b/src/libcamera/dma_heaps.cpp
+index a26891d..52f9196 100644
+--- a/src/libcamera/dma_heaps.cpp
++++ b/src/libcamera/dma_heaps.cpp
+@@ -31,7 +31,7 @@ DmaHeap::DmaHeap()
+ {
+ 	valid_ = false;
+ 
+-	int fd = ::open(kHeapName, O_RDWR, O_RDONLY | O_CLOEXEC);
++	int fd = ::open(kHeapName, O_RDWR | O_CLOEXEC);
+ 	if (fd < 0) {
+ 		LOG(DmaHeap, Error) << "Failed to open " << kHeapName << ": "
+ 				    << strerror(errno);
+@@ -40,7 +40,7 @@ DmaHeap::DmaHeap()
+ 
+ 	UniqueFD systemHeap(fd);
+ 
+-	fd = ::open(kHeapCmaName, O_RDWR, O_RDONLY | O_CLOEXEC);
++	fd = ::open(kHeapCmaName, O_RDWR | O_CLOEXEC);
+ 	if (fd < 0) {
+ 		LOG(DmaHeap, Error) << "Failed to open " << kHeapCmaName << ": "
+ 				    << strerror(errno);
+@@ -68,7 +68,7 @@ UniqueFD DmaHeap::alloc(std::size_t size, Type type)
+ 	int ret;
+ 	do {
+ 		ret = ioctl(dmaFd, DMA_HEAP_IOCTL_ALLOC, &heap_data);
+-	} while (!ret && (errno == EINTR || errno == EAGAIN));
++	} while (ret < 0 && errno == EINTR);
+ 
+ 	if (ret) {
+ 		LOG(DmaHeap, Error) << "Unable to allocate from "
+@@ -113,7 +113,7 @@ void DmaHeap::sync(int fd, SyncStep step, SyncType type)
+ 	int ret;
+ 	do {
+ 		ret = ioctl(fd, DMA_BUF_IOCTL_SYNC, &sync);
+-	} while (!ret && (errno == EINTR || errno == EAGAIN));
++	} while (ret < 0 && errno == EINTR);
+ 
+ 	if (ret) {
+ 		LOG(DmaHeap, Error) << "Unable to sync dma fd " << fd
+diff --git a/src/libcamera/meson.build b/src/libcamera/meson.build
+index 60e308c..ef1f98a 100644
+--- a/src/libcamera/meson.build
++++ b/src/libcamera/meson.build
+@@ -67,6 +67,8 @@ libcamera_deps = []
+ if get_option('android').enabled() and get_option('android_platform') == 'cros'
+     libcamera_sources += files(['cros_gyro_sensor.cpp'])
+     libcamera_deps += [dependency('libcros_camera')]
++else
++    libcamera_sources += files(['ciri_gyro_sensor.cpp'])
+ endif
+ 
+ libatomic = cc.find_library('atomic', required : false)
+diff --git a/src/libcamera/pipeline/mtkisp7/face_detect/detector.cpp b/src/libcamera/pipeline/mtkisp7/face_detect/detector.cpp
+index 3a0833b..46fe42f 100644
+--- a/src/libcamera/pipeline/mtkisp7/face_detect/detector.cpp
++++ b/src/libcamera/pipeline/mtkisp7/face_detect/detector.cpp
+@@ -255,9 +255,12 @@ void FaceDetector::queueRequest(FaceDetectRequest &request)
+ 	triggerNextRequest();
+ }
+ 
+-bool FaceDetector::shouldRun(uint32_t internalRequestId)
++bool FaceDetector::shouldRun([[maybe_unused]] uint32_t internalRequestId)
+ {
+-	return internalRequestId % period_ == 0;
++	/* Face detection is deliberately disabled in the standalone Ciri stack.
++	 * FaceDetectTask still calls notifyDone(), so task dependencies complete.
++	 */
++	return false;
+ }
+ 
+ // Called from other thread
+@@ -362,23 +365,13 @@ int FaceDetector::initOnThread(MediaDevice *media)
+ // Called from main thread
+ int FaceDetector::start()
+ {
+-	return aieDev_->invokeMethod(&AieDevice::start, ConnectionTypeBlocking);
++	return 0; /* No AIE stream: face detection is disabled. */
+ }
+ 
+ // Called from main thread
+ int FaceDetector::stop()
+ {
+-	// Cancel pending requests
+-	this->invokeMethod(&FaceDetector::cancelPendingRequests, ConnectionTypeBlocking);
+-
+-	// Wait for current running request finish
+-	{
+-		MutexLocker locker(isProcessingMutex_);
+-		isProcessingCv_.wait(
+-			locker, [&]() LIBCAMERA_TSA_REQUIRES(isProcessingMutex_) { return !isProcessing_; });
+-	}
+-
+-	return aieDev_->invokeMethod(&AieDevice::stop, ConnectionTypeBlocking);
++	return 0; /* No requests or hardware stream were started. */
+ }
+ 
+ } /* namespace libcamera */
+diff --git a/src/libcamera/pipeline/mtkisp7/face_detect/detector.h b/src/libcamera/pipeline/mtkisp7/face_detect/detector.h
+index 22568fa..c90988f 100644
+--- a/src/libcamera/pipeline/mtkisp7/face_detect/detector.h
++++ b/src/libcamera/pipeline/mtkisp7/face_detect/detector.h
+@@ -95,7 +95,7 @@ private:
+ 	IPADelegate *ipa_;
+ 
+ 	std::unique_ptr<AieDevice> aieDev_;
+-	const uint32_t period_;
++	[[maybe_unused]] const uint32_t period_; /* Preserve ABI with face detection disabled. */
+ 
+ 	SharedMailBox<FdDrv_input_struct> faceToneConfig_;
+ 
+diff --git a/src/libcamera/pipeline/mtkisp7/meson.build b/src/libcamera/pipeline/mtkisp7/meson.build
+index e3a619b..b857a51 100644
+--- a/src/libcamera/pipeline/mtkisp7/meson.build
++++ b/src/libcamera/pipeline/mtkisp7/meson.build
+@@ -1,15 +1,16 @@
+ # SPDX-License-Identifier: CC0-1.0
+ 
+-libmtkcam_metadata_container = cc.find_library('libmtkcam_metadata.container', required : true, static : true)
+-libmtkcam_ulog = cc.find_library('libmtkcam_ulog', required : true)
+-libmtk_platform_log = cc.find_library('libmtk_platform_log', required : true)
+-libmtkcam_debugwrapper = cc.find_library('libmtkcam.debugwrapper', required : true)
+-libcam_halsensor = cc.find_library('libcam.halsensor', required : true)
+-libcam_halisp_utils_pub = cc.find_library('libcam.halisp.utils.pub', required : true)
++# The recovery provides the same metadata implementation as a shared library.
++libmtkcam_metadata_container = cc.find_library('mtkcam_metadata', required : true)
++libmtkcam_ulog = cc.find_library('mtkcam_ulog', required : true)
++libmtk_platform_log = cc.find_library('mtk_platform_log', required : true)
++libmtkcam_debugwrapper = cc.find_library('mtkcam.debugwrapper', required : true)
++libcam_halsensor = cc.find_library('cam.halsensor', required : true)
++libcam_halisp_utils_pub = cc.find_library('cam.halisp.utils.pub', required : true)
+ 
+ # TODO: move to IPA
+-libmtkcam_tuning_utils = cc.find_library('libmtkcam_tuning_utils', required : true)
+-libmtkcam_stdutils = cc.find_library('libmtkcam_stdutils', required : true)
++libmtkcam_tuning_utils = cc.find_library('mtkcam_tuning_utils', required : true)
++libmtkcam_stdutils = cc.find_library('mtkcam_stdutils', required : true)
+ 
+ libcamera_deps += [
+     libmtkcam_metadata_container,
+diff --git a/src/libcamera/pipeline/mtkisp7/mtkisp7.cpp b/src/libcamera/pipeline/mtkisp7/mtkisp7.cpp
+index 6b1d9ee..98b3618 100644
+--- a/src/libcamera/pipeline/mtkisp7/mtkisp7.cpp
++++ b/src/libcamera/pipeline/mtkisp7/mtkisp7.cpp
+@@ -5,11 +5,14 @@
+  * mtkisp7.cpp - Pipeline handler for Mediatek MtkISP7
+  */
+ 
++#include <array>
++#include <cerrno>
+ #include <cstddef>
+ #include <cstdint>
+ #include <cstdlib>
+ #include <fstream>
+ #include <ios>
++#include <limits>
+ #include <memory>
+ #include <string>
+ #include <sys/resource.h>
+@@ -28,7 +31,10 @@
+ 
+ #include "libcamera/internal/camera.h"
+ #include "libcamera/internal/device_enumerator.h"
++#include "libcamera/internal/dma_heaps.h"
++#include "libcamera/internal/ciri_dma_buffers.h"
+ #include "libcamera/internal/gyro_sensor.h"
++#include "libcamera/internal/framebuffer.h"
+ #include "libcamera/internal/ipa_manager.h"
+ #include "libcamera/internal/mailbox.h"
+ #include "libcamera/internal/media_device.h"
+@@ -416,8 +422,24 @@ void CompleteRequestTask::run()
+ 	for (auto it : request_->buffers()) {
+ 		FrameBuffer *buffer = it.second;
+ 
+-		if (mfnrStreams_.find(it.first) == mfnrStreams_.end())
++		if (mfnrStreams_.find(it.first) == mfnrStreams_.end()) {
++			/* The external-buffer descriptor path leaves payload metadata
++			 * unset. Publish fixed NV12 plane lengths only on success so
++			 * standard clients can save frames and identify them uniquely.
++			 */
++			FrameMetadata &frame = buffer->_d()->metadata();
++			const auto &planes = buffer->planes();
++			if (frame.status == FrameMetadata::FrameSuccess &&
++			    frame.planes().size() == planes.size() &&
++			    it.first->configuration().pixelFormat == formats::NV12) {
++				for (unsigned int p = 0; p < planes.size(); ++p)
++					if (!frame.planes()[p].bytesused)
++						frame.planes()[p].bytesused = planes[p].length;
++				frame.sequence = request_->sequence();
++				frame.timestamp = request_->metadata().get(controls::SensorTimestamp).value_or(0);
++			}
+ 			pipe_->completeBuffer(request_, buffer);
++		}
+ 	}
+ 
+ 	if (onDeviceTuner_->isEnabled()) {
+@@ -594,11 +616,11 @@ PipelineHandlerMtkISP7::generateConfiguration(Camera *camera, Span<const StreamR
+ }
+ 
+ int PipelineHandlerMtkISP7::exportFrameBuffers([[maybe_unused]] Camera *camera,
+-					       [[maybe_unused]] Stream *stream,
+-					       [[maybe_unused]] std::vector<std::unique_ptr<FrameBuffer>> *buffers)
++					       Stream *stream,
++					       std::vector<std::unique_ptr<FrameBuffer>> *buffers)
+ {
+-	/* todo: Generate frame buffers by DMA heap */
+-	return -EINVAL;
++	/* Supply standard clients through the library's existing DMA helper. */
++	return ciriExportFrameBuffers(stream->configuration(), dmaHeap_.get(), buffers);
+ }
+ 
+ void PipelineHandlerMtkISP7::adjustRLimit()
+@@ -905,7 +927,7 @@ bool PipelineHandlerMtkISP7::match(DeviceEnumerator *enumerator)
+ 	imgSysDev_.init(imgSysMedia_, dmaHeap_.get());
+ 	std::vector<SensorInfo::CamSysData> dataArray;
+ 	for (const auto &data : camSysDataArray_) {
+-		dataArray.emplace_back(data.has_af, data.mbus_code);
++		dataArray.push_back({ data.has_af, data.mbus_code });
+ 	}
+ 	SensorInfo::add_sensor(dataArray);
+ 
+@@ -1486,6 +1508,14 @@ int MtkISP7CameraData::queueRequest(Request *request)
+ 
+ 	std::string sequence = std::to_string(request->sequence());
+ 
++	/* Standard clients may leave controls empty. The recovered IPA's fallback
++	 * accidentally initializes only three gains; preserve neutral blue too.
++	 */
++	if (!request->controls().contains(controls::draft::ColorCorrectionGains.id())) {
++		const std::array<float, 4> gains{ 1.0f, 1.0f, 1.0f, 1.0f };
++		request->controls().set(controls::draft::ColorCorrectionGains, gains);
++	}
++
+ 	// TODO: Implement the padding condition for per-frame control
+ 	std::shared_ptr<ControlList> controls_cur = std::make_shared<ControlList>(request->controls());
+ 
+diff --git a/src/platform/mtkisp7/meson.build b/src/platform/mtkisp7/meson.build
+index 6a8e9b8..e67eaee 100644
+--- a/src/platform/mtkisp7/meson.build
++++ b/src/platform/mtkisp7/meson.build
+@@ -8,7 +8,7 @@ mtkisp7_platform_sources = files([
+   'platform_utils.cpp'
+ ])
+ 
+-libcam_halsensor = cc.find_library('libcam.halsensor', required : true)
++libcam_halsensor = cc.find_library('cam.halsensor', required : true)
+ 
+ platform_mtkisp7_libs = shared_library('libcamera-mtkisp7-platform',
+                                        mtkisp7_platform_sources,
+diff --git a/utils/codegen/ipc/mojo/public/tools/mojom/mojom/fileutil.py b/utils/codegen/ipc/mojo/public/tools/mojom/mojom/fileutil.py
+index bf626f5..e1c823d 100644
+--- a/utils/codegen/ipc/mojo/public/tools/mojom/mojom/fileutil.py
++++ b/utils/codegen/ipc/mojo/public/tools/mojom/mojom/fileutil.py
+@@ -3,7 +3,6 @@
+ # found in the LICENSE file.
+ 
+ import errno
+-import imp
+ import os.path
+ import sys
+ 
+diff --git a/utils/codegen/ipc/mojo/public/tools/mojom/mojom/parse/lexer.py b/utils/codegen/ipc/mojo/public/tools/mojom/mojom/parse/lexer.py
+index 3e084bb..1e8b49f 100644
+--- a/utils/codegen/ipc/mojo/public/tools/mojom/mojom/parse/lexer.py
++++ b/utils/codegen/ipc/mojo/public/tools/mojom/mojom/parse/lexer.py
+@@ -2,7 +2,6 @@
+ # Use of this source code is governed by a BSD-style license that can be
+ # found in the LICENSE file.
+ 
+-import imp
+ import os.path
+ import sys
+ 
