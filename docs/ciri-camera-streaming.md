@@ -12,7 +12,26 @@ matching libcamerasrc → bounded leaky queue → videoconvert → YUY2 → file
 
 This is an interoperability bridge, **not a colour correction** or a modern libcamera ABI port. The proprietary runtime remains private under `/opt/ciri-libcamera`. Nothing here replaces the kernel, firmware, audio setup, Arch libraries or `/opt/ciri-camera`.
 
-## Verified status — 2026-11-07
+## Current status — 2026-11-09
+
+The operator confirms that normal streaming works after the corrected-core and
+filesink-launcher updates, and that video plays on the console with:
+
+```bash
+ffplay /dev/video115
+```
+
+This confirms the normal camera → GStreamer/filesink → v4l2loopback → ffplay
+path on Ciri. The core's colour-bar and ordinary-scene pixel checks are recorded
+in [the capture report](ciri-camera-colour-bars.md). No new kernel/module,
+GStreamer/plugin, IPA or algorithm build was required for these promotions.
+The loopback node is currently `/dev/video115`, not a permanent device number;
+no automatic module loading or streaming service has been configured. Sustained
+rate/latency, repeated shutdown/startup and desktop/browser clients have not yet
+been separately measured or confirmed. This is an operator-reported device
+result, not an assistant-executed Ciri test.
+
+## Historical status — 2026-11-07
 
 - The device owner confirms standard `cam` capture at approximately **18 fps**, with a **strong green tint**, after the IPA loader-scope update.
 - The matching ChromiumOS fork's `libgstlibcamera.so` is cross-built, reusing retained Meson/Ninja objects. No kernel rebuild was needed.
@@ -25,6 +44,126 @@ This is an interoperability bridge, **not a colour correction** or a modern libc
 - `v4l2loopback` **0.15.4 is now cross-built** for `7.3.0-rc4-ciri`, using the retained Docker GCC 14 toolchain and complete matching kernel objects. The kernel/source volume was mounted **read-only**; only the external module was compiled. The four-file kit passed checksums, ELF64/AArch64, vermagic and installer preflight. The device owner's logs now show module installation/loading and a loopback output at `/dev/video115` in that run. The initial pre-install `sync` failed with an I/O error; a later successful retry does not establish storage health. The complete kernel object tree remains remote, not in the local output-only kernel directories.
 
 Static import checks do not prove loader scopes, C++ layout compatibility, camera operation or image quality. A synthetic module-header test is not evidence that a real kernel module compiles or loads.
+
+## Verified core promotion — 2026-11-09
+
+The separate-plane MCNR/P2 allocation correction has now passed operator-run
+native colour-bar and ordinary rear-camera scene tests. The later scene frames
+are full-height and no longer green; startup AE makes the first frame dark.
+See [the capture results](ciri-camera-colour-bars.md#normal-scene-native-result-2026-11-09).
+This is an allocation correction, not a colour filter; absolute calibration and
+sustained streaming still need their own verification. The scene test measured
+about 16.7 fps with 60-ms exposure in that lighting, not 30 fps.
+
+The already built and native-tested core is reused without recompilation:
+
+```text
+build/camera/updates/p2-planes.q0SJX15h/libcamera.so.0.1.0
+db6c0b1462ae72dcc6df55362600aa5e2c98204422dfbc2ffdca4e211932661d
+```
+
+Prepare a fresh core-only install kit on the build host:
+
+```bash
+bash scripts/stage-ciri-libcamera-core-update.sh \
+    /home/jono/Source/ciri-arch/build/camera/updates/p2-planes.q0SJX15h
+```
+
+The kit prepared for this promotion is
+`build/camera/updates/core-update.q6sihz78`. It contains only the corrected core,
+its build/native-test provenance, the authored installer and `SHA256SUMS`.
+No recovered runtime, GStreamer plugin, client, kernel or module is recopied.
+
+**Stop the existing camera producer first.** Transfer that kit to a fresh
+operator-owned directory on Ciri, then run (substitute its actual location):
+
+```bash
+sudo bash /dev/shm/ciri-core-update.XXXXXXXX/install-core-update.sh \
+    --core /dev/shm/ciri-core-update.XXXXXXXX
+```
+
+The core mode of `scripts/update-ciri-libcamera-host.sh` recognizes only the
+pinned original core and this native-verified replacement. It checks the kit,
+all installed manifest files, the AArch64 replacement, every regular-file alias
+and the recorded native/static checks before updating:
+
+- `rootfs/usr/lib/ciri-libcamera/libcamera.so`
+- `rootfs/usr/lib/ciri-libcamera/libcamera.so.0.1`
+- `rootfs/usr/lib/ciri-libcamera/libcamera.so.0.1.0`
+- `core-update-info.json` (a receipt copied from this kit's provenance)
+- `SHA256SUMS`
+
+Covering all three materialized aliases is required: the client/plugin uses the
+SONAME `libcamera.so.0.1`, not necessarily the full-version filename. Existing
+ELF reports remain their historical build-time records; the checksummed receipt
+contains the corrected core's report. Everything else, including `cam`, the
+supervisor, launchers, plugins, IPA, algorithms, calibration, firmware, audio and
+kernel, is preserved. No backups are made and no existing backups are removed.
+
+Each file replacement is atomic, but the multi-file update is not one atomic
+transaction. A reported replacement/manifest/sync failure must be investigated
+and this same kit rerun successfully **before restarting the producer**. Known
+partial updates are repairable; unexpected hashes, symlinks and unrelated
+runtime changes are refused. Sync errors are not bypassed.
+
+After successful installation, restart the same existing `stream-camera`
+command with its actual loopback device. No GStreamer or loopback rebuild,
+module reload, service change or alternate capture application is required.
+The producer will load the corrected core from its usual private library path;
+no RAM alias override or dump config is needed. The installer neither starts a
+stream nor loads a module. At kit preparation, **125 repository tests pass**,
+including alias coverage, unchanged streaming/algorithm fixtures, idempotence,
+partial alias/receipt/manifest repair and final-sync failure. The assistant has
+not installed this kit or verified the normal streaming path on Ciri yet.
+
+### Follow-up: installed launcher still used MMAP v4l2sink
+
+After the core promotion instructions, the operator reported a streaming failure
+in `gstv4l2_allocator_dqbuf`: `buffer 0 was not queued`, followed by
+`gstv4l2_buffer_pool_alloc_buffer` failure and the camera's shutdown
+`foundRequest == true` assertion. The log explicitly identifies `v4l2sink0`.
+The preserved installed launcher was therefore still using the obsolete MMAP
+path, not the already corrected authored filesink bridge. The core-only updater
+intentionally preserved launchers, so promoting the core alone did not deploy
+this separate script correction.
+
+The retained `build/camera/packages/gstreamer-addon/stream-camera` was read and
+confirmed to contain `v4l2sink ... io-mode=mmap`. Its SHA256 is
+`0489e6babd3c7ec7180579be6cbe12dc25e1c41f4f1b23845a205b1f875b4b83`.
+The current authored `scripts/stream-ciri-camera.sh` instead uses host
+`v4l2-ctl` format/rate setup and `filesink buffer-mode=unbuffered sync=false`.
+Its SHA256 is
+`efad40e637f6d8dcc26073bf8a61567d3075e8dd5031ab1f20a5af057d2739eb`.
+Neither the MMAP sink nor GStreamer 1.22's unimplemented RW-output stub should
+be used here. No camera request-tracking assertion is disabled by this fix.
+
+A launcher-only kit is now reproducible without rebuilding or copying any
+runtime libraries:
+
+```bash
+bash scripts/stage-ciri-stream-launcher-update.sh
+```
+
+The prepared kit is `build/camera/updates/stream-update.jo088hrm`. Stop any
+producer, transfer it to a fresh operator-owned directory on Ciri, then run:
+
+```bash
+sudo bash /dev/shm/ciri-stream-update.XXXXXXXX/install-stream-update.sh \
+    --stream /dev/shm/ciri-stream-update.XXXXXXXX
+```
+
+The `--stream` update mode checks the complete installed manifest and recognizes
+only the original packaged launcher or the replacement in this same kit. It
+atomically replaces **only `stream-camera` and `SHA256SUMS`**; it neither changes
+the corrected core/receipt nor recopies clients, GStreamer plugins, algorithms,
+tuning, audio or kernel files. Known launcher/manifest partial updates can be
+repaired by rerunning the same kit; failed sync remains an error. No backups or
+module reloads are performed. Restart the same producer with its actual current
+loopback node after success. Local verification now passes **128 tests**,
+including filesink launcher installation, unchanged core/plugin bytes,
+idempotence, manifest repair and refusal of unknown launcher bytes. Installation
+and a corrected normal streaming run remain operator actions, not
+assistant-performed results.
 
 ## Retained inputs and outputs
 
