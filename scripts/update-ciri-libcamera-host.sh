@@ -1,11 +1,14 @@
 #!/bin/bash
-# Operator-run helper-only update; no recovered files copied and no backups made.
+# Operator-run executable-only update; --cam selects cam instead of the executable.
+# No recovered files copied and no backups made.
 set -euo pipefail
 [[ $EUID == 0 ]] || { printf 'Run with sudo.\n' >&2; exit 1; }
-[[ $# -le 2 ]] || { printf 'Usage: %s [UPDATE_DIRECTORY [RUNTIME_PREFIX]]\n' "$0" >&2; exit 2; }
+component=host
+if [[ ${1:-} == --cam ]]; then component=cam; shift; fi
+[[ $# -le 2 ]] || { printf 'Usage: %s [--cam] [UPDATE_DIRECTORY [RUNTIME_PREFIX]]\n' "$0" >&2; exit 2; }
 source=${1:-$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)}
 prefix=${2:-/opt/ciri-libcamera}
-python3 -I - "$source" "$prefix" <<'PY'
+python3 -I - "$source" "$prefix" "$component" <<'PY'
 import hashlib
 import json
 import os
@@ -18,8 +21,18 @@ import sys
 import tempfile
 
 OLD = '1e300cd036fc30ae5121a18ea79c5bdda5e70730ced8619be0e3ef0cad2f2b45'
+CAM_OLD = 'a8e0393e09af9b63eddb3b9dbb3e064bff51e355095fddfa1cc47599452e9661'
 HOST = 'rootfs/usr/bin/ciri-libcamera-host'
-KIT = {'ciri-libcamera-host', 'build-info.txt', 'install-host-update.sh'}
+BINARY = 'ciri-libcamera-host'
+KIT = {BINARY, 'build-info.txt', 'install-host-update.sh'}
+component = sys.argv[3] if len(sys.argv) > 3 else 'host'
+if component == 'cam':
+    OLD = CAM_OLD
+    HOST = 'rootfs/usr/bin/cam'
+    BINARY = 'cam'
+    KIT = {BINARY, 'build-info.txt', 'install-cam-update.sh'}
+elif component != 'host':
+    raise SystemExit('Unknown update component')
 source = Path(sys.argv[1]).resolve(strict=True)
 requested = Path(sys.argv[2]).absolute()
 prefix = requested.resolve(strict=True)
@@ -71,8 +84,8 @@ try:
     for name, sha in kit.items():
         if digest(checked_file(source, name)) != sha:
             raise ValueError('Update-kit checksum mismatch: ' + name)
-    new = kit['ciri-libcamera-host']
-    replacement = checked_file(source, 'ciri-libcamera-host')
+    new = kit[BINARY]
+    replacement = checked_file(source, BINARY)
     with replacement.open('rb') as stream:
         header = stream.read(20)
     if (len(header) != 20 or header[:6] != b'\x7fELF\x02\x01' or
@@ -80,17 +93,18 @@ try:
         raise ValueError('Replacement must be little-endian ELF64 AArch64')
     rows = manifest(prefix)
     required = {HOST, 'elf-report.json', 'run-libcamera', 'rootfs/usr/bin/cam',
+                'rootfs/usr/bin/ciri-libcamera-host',
                 'rootfs/usr/lib/ciri-libcamera/libcamera.so.0.1.0'}
     if not required.issubset(rows):
         raise ValueError('Not a complete checksummed Ciri libcamera runtime')
     target = checked_file(prefix, HOST)
     current = digest(target)
     if current not in (OLD, new) or rows[HOST] not in (OLD, new):
-        raise ValueError('Unexpected installed helper; refusing overwrite')
+        raise ValueError('Unexpected installed executable; refusing overwrite')
     if current == OLD and rows[HOST] != OLD:
-        raise ValueError('Installed helper and manifest disagree')
+        raise ValueError('Installed executable and manifest disagree')
     for name, sha in rows.items():
-        # Also permits repair after helper replacement succeeded but manifest
+        # Also permits repair after executable replacement succeeded but manifest
         # replacement or final sync failed. All OTHER files must still match.
         if name != HOST and digest(checked_file(prefix, name)) != sha:
             raise ValueError('Installed runtime checksum mismatch: ' + name)
@@ -115,7 +129,7 @@ try:
             stream.flush()
             os.fsync(stream.fileno())
         if digest(Path(binary_temp)) != new or digest(target) != current:
-            raise ValueError('Helper changed during staging; refusing replacement')
+            raise ValueError('Executable changed during staging; refusing replacement')
         os.replace(binary_temp, target)
     os.replace(temp, prefix / 'SHA256SUMS')
     for name, sha in rows.items():

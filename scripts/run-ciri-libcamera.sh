@@ -34,6 +34,12 @@ for heap in /dev/dma_heap/system /dev/dma_heap/scp-isp-cma-region; do
 done
 export LIBCAMERA_LOG_LEVELS="${LIBCAMERA_LOG_LEVELS:-*:INFO}"
 export GST_DEBUG="${GST_DEBUG:-2}"
+# Opt-in export-only diagnostic. The RAM wrapper passes a freshly copied config;
+# normal launches do not create tuning flags or change camera processing.
+export CIRI_P1_DUMP_CONFIG="${CIRI_P1_DUMP_CONFIG:-}"
+if [[ -n $CIRI_P1_DUMP_CONFIG ]]; then
+    [[ -f $CIRI_P1_DUMP_CONFIG && ! -L $CIRI_P1_DUMP_CONFIG ]] || fail 'P1 dump config missing or symlinked.'
+fi
 exec unshare --mount --propagation private /bin/bash -c '
     set -euo pipefail
     prefix=$1; rootfs=$2; shift 2
@@ -48,6 +54,13 @@ exec unshare --mount --propagation private /bin/bash -c '
     mkdir -p "$prefix/captures"
     output=$(mktemp -d "$prefix/captures/run.XXXXXXXX")
     mount --bind "$output" "$rootfs/captures"
+    if [[ -n $CIRI_P1_DUMP_CONFIG ]]; then
+        mkdir "$rootfs/captures/p1-dump"
+        cp "$CIRI_P1_DUMP_CONFIG" "$rootfs/captures/p1-dump/dump.cfg"
+        : > "$rootfs/run/camera/enable_tuning"
+        printf "2\n" > "$rootfs/run/camera/export_dump"
+        printf "P1 export: two early requests; directory %s/p1-dump\n" "$output"
+    fi
     printf "Output directory: %s\n" "$output"
     cd "$rootfs/captures"
     exec env -i PATH=/usr/bin:/bin HOME=/tmp \

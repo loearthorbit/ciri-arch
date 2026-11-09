@@ -1,3 +1,51 @@
+diff --git a/include/libcamera/internal/info_frame.h b/include/libcamera/internal/info_frame.h
+index faecef5..55a595f 100644
+--- a/include/libcamera/internal/info_frame.h
++++ b/include/libcamera/internal/info_frame.h
+@@ -67,6 +67,12 @@ public:
+ 			  DmaHeap::Type type = DmaHeap::System,
+ 			  unsigned int strideAlign = 1, unsigned scanAlign = 1);
+
++	/* ImgSys CAPTURE queues cannot retain nonzero DMA-buffer plane offsets. */
++	int createSeparatePlaneBuffers(DmaHeap *dmaHeap, const PixelFormat &format,
++				      const Size &size, uint32_t count,
++				      DmaHeap::Type type = DmaHeap::System,
++				      unsigned int strideAlign = 1, unsigned scanAlign = 1);
++
+ 	void release();
+
+ 	void fetch(SharedMailBox<InfoFrame> &mailBox);
+diff --git a/src/apps/cam/capture_script.cpp b/src/apps/cam/capture_script.cpp
+index 062a725..bea8302 100644
+--- a/src/apps/cam/capture_script.cpp
++++ b/src/apps/cam/capture_script.cpp
+@@ -11,6 +11,8 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+
++#include <libcamera/control_ids.h>
++
+ using namespace libcamera;
+
+ CaptureScript::CaptureScript(std::shared_ptr<Camera> camera,
+@@ -43,7 +45,7 @@ CaptureScript::CaptureScript(std::shared_ptr<Camera> camera,
+ /* Retrieve the control list associated with a frame number. */
+ const ControlList &CaptureScript::frameControls(unsigned int frame)
+ {
+-	static ControlList controls{};
++	static ControlList controls{ controls::controls };
+ 	unsigned int idx = frame;
+
+ 	/* If we loop, repeat the controls every 'loop_' frames. */
+@@ -270,7 +272,7 @@ int CaptureScript::parseFrame(EventPtr event)
+ 	if (!event)
+ 		return -EINVAL;
+
+-	ControlList controls{};
++	ControlList controls{ controls::controls };
+
+ 	while (1) {
+ 		event = nextEvent();
 diff --git a/src/apps/common/meson.build b/src/apps/common/meson.build
 index 479326c..26c60ba 100644
 --- a/src/apps/common/meson.build
@@ -143,6 +191,52 @@ index a26891d..52f9196 100644
  
  	if (ret) {
  		LOG(DmaHeap, Error) << "Unable to sync dma fd " << fd
+diff --git a/src/libcamera/info_frame.cpp b/src/libcamera/info_frame.cpp
+index 75d7f60..f5e8d22 100644
+--- a/src/libcamera/info_frame.cpp
++++ b/src/libcamera/info_frame.cpp
+@@ -193,6 +193,41 @@ int InfoFramePool::createBuffers(DmaHeap *dmaHeap,
+ 	return setBuffers(format, size, buffers, strideAlign, scanAlign);
+ }
+
++int InfoFramePool::createSeparatePlaneBuffers(DmaHeap *dmaHeap,
++					    const PixelFormat &format, const Size &size,
++					    unsigned int count, DmaHeap::Type type,
++					    unsigned int strideAlign, unsigned scanAlign)
++{
++	release();
++	const PixelFormatInfo &info = PixelFormatInfo::info(format);
++
++	/* Keep createBuffers() and its contiguous CAMSYS layout unchanged.
++	 * Each ImgSys plane starts at its own FD's base: CAPTURE QBUF drops
++	 * userspace data_offset, so an offset into a shared FD cannot work.
++	 */
++	std::vector<std::unique_ptr<FrameBuffer>> buffers;
++	buffers.reserve(count);
++	for (unsigned int i = 0; i < count; i++) {
++		std::vector<FrameBuffer::Plane> planes;
++		planes.reserve(info.numPlanes());
++		for (unsigned int j = 0; j < info.numPlanes(); j++) {
++			FrameBuffer::Plane plane;
++			plane.length = info.planeSize(size, j, strideAlign, scanAlign);
++			SharedFD fd(dmaHeap->alloc(plane.length, type));
++			if (!fd.isValid())
++				return -EBUSY; /* Local vectors release every partial allocation. */
++
++			plane.fd = fd;
++			plane.offset = 0;
++			plane.stride = info.stride(size.width, j, strideAlign);
++			planes.emplace_back(plane);
++		}
++		buffers.emplace_back(std::make_unique<FrameBuffer>(planes));
++	}
++
++	return setBuffers(format, size, buffers, strideAlign, scanAlign);
++}
++
+ int LazyInfoFramePool::setFormat(DmaHeap *dmaHeap, const PixelFormat &format,
+ 				 const Size &size,
+ 				 DmaHeap::Type type,
 diff --git a/src/libcamera/meson.build b/src/libcamera/meson.build
 index 60e308c..ef1f98a 100644
 --- a/src/libcamera/meson.build
@@ -214,6 +308,61 @@ index 22568fa..c90988f 100644
  
  	SharedMailBox<FdDrv_input_struct> faceToneConfig_;
  
+diff --git a/src/libcamera/pipeline/mtkisp7/imgsys/mcnr.cpp b/src/libcamera/pipeline/mtkisp7/imgsys/mcnr.cpp
+index 9b140fd..9d672ba 100644
+--- a/src/libcamera/pipeline/mtkisp7/imgsys/mcnr.cpp
++++ b/src/libcamera/pipeline/mtkisp7/imgsys/mcnr.cpp
+@@ -203,10 +203,10 @@ int McnrTasksManager::configureBuffers()
+ 	meMv0_.createBuffers(dmaHeap_, formats::Y32_MTISP, kMeL1Size, 24);
+ 	meMv1_.createBuffers(dmaHeap_, formats::Y32_MTISP, kFmbSize, 24);
+
+-	meMmap0_.createBuffers(dmaHeap_, formats::WARP2P_MTISP, meMmapSizes[0], 8, DmaHeap::System, 1168, 217);
+-	meMmap1_.createBuffers(dmaHeap_, formats::WARP2P_MTISP, meMmapSizes[1], 8, DmaHeap::System, 1168, 217);
+-	meMmap2_.createBuffers(dmaHeap_, formats::WARP2P_MTISP, meMmapSizes[2], 8, DmaHeap::System, 1168, 217);
+-	meMmap3_.createBuffers(dmaHeap_, formats::WARP2P_MTISP, meMmapSizes[3], 8, DmaHeap::System, 1168, 217);
++	meMmap0_.createSeparatePlaneBuffers(dmaHeap_, formats::WARP2P_MTISP, meMmapSizes[0], 8, DmaHeap::System, 1168, 217);
++	meMmap1_.createSeparatePlaneBuffers(dmaHeap_, formats::WARP2P_MTISP, meMmapSizes[1], 8, DmaHeap::System, 1168, 217);
++	meMmap2_.createSeparatePlaneBuffers(dmaHeap_, formats::WARP2P_MTISP, meMmapSizes[2], 8, DmaHeap::System, 1168, 217);
++	meMmap3_.createSeparatePlaneBuffers(dmaHeap_, formats::WARP2P_MTISP, meMmapSizes[3], 8, DmaHeap::System, 1168, 217);
+
+ 	meConf0_.createBuffers(dmaHeap_, formats::GREY, kMeL1Size, 8, DmaHeap::System, 144, 108);
+ 	meConf4_.createBuffers(dmaHeap_, formats::GREY,
+@@ -214,11 +214,11 @@ int McnrTasksManager::configureBuffers()
+ 	meConf5_.createBuffers(dmaHeap_, formats::GREY,
+ 			       mcnrSizes[5].boundedTo(kMeL1Size), 12, DmaHeap::System, 144, 108);
+
+-	idi_.createBuffers(dmaHeap_, formats::NV21, mcnrSizes[6], 21);
++	idi_.createSeparatePlaneBuffers(dmaHeap_, formats::NV21, mcnrSizes[6], 21);
+ 	tnrSo_.createBuffers(dmaHeap_, formats::Y32_MTISP, kTnrsoSize, 8);
+
+-	img4oF0_.createBuffers(dmaHeap_, formats::NV12_10P_MTISP, mcnrSizes[0], 8);
+-	img4oF1_.createBuffers(dmaHeap_, formats::NV12_12P_MTISP, mcnrSizes[1], 8);
++	img4oF0_.createSeparatePlaneBuffers(dmaHeap_, formats::NV12_10P_MTISP, mcnrSizes[0], 8);
++	img4oF1_.createSeparatePlaneBuffers(dmaHeap_, formats::NV12_12P_MTISP, mcnrSizes[1], 8);
+
+ 	trawStt_.createBuffers(dmaHeap_, formats::MTFD_MTISP, kTrawSttSize, 4, DmaHeap::CMA);
+
+@@ -236,13 +236,13 @@ int McnrTasksManager::configureBuffers()
+ 		tncSize.height = tncSize.width * 9 / 16;
+ 	}
+
+-	img3o_[0].createBuffers(dmaHeap_, formats::NV12_10P_MTISP, tncSize, 3);
+-	img3o_[1].createBuffers(dmaHeap_, formats::NV12_12P_MTISP, mcnrSizes[1], 16, DmaHeap::System, 1, 64);
+-	img3o_[2].createBuffers(dmaHeap_, formats::NV12_12P_MTISP, mcnrSizes[2], 16, DmaHeap::System, 1, 64);
+-	img3o_[3].createBuffers(dmaHeap_, formats::NV12_12P_MTISP, mcnrSizes[3], 16, DmaHeap::System, 1, 64);
+-	img3o_[4].createBuffers(dmaHeap_, formats::NV12_12P_MTISP, mcnrSizes[4], 16, DmaHeap::System, 1, 64);
+-	img3o_[5].createBuffers(dmaHeap_, formats::NV12_12P_MTISP, mcnrSizes[5], 16, DmaHeap::System, 1, 64);
+-	img3o_[6].createBuffers(dmaHeap_, formats::NV12_12P_MTISP, mcnrSizes[6], 16, DmaHeap::System, 1, 64);
++	img3o_[0].createSeparatePlaneBuffers(dmaHeap_, formats::NV12_10P_MTISP, tncSize, 3);
++	img3o_[1].createSeparatePlaneBuffers(dmaHeap_, formats::NV12_12P_MTISP, mcnrSizes[1], 16, DmaHeap::System, 1, 64);
++	img3o_[2].createSeparatePlaneBuffers(dmaHeap_, formats::NV12_12P_MTISP, mcnrSizes[2], 16, DmaHeap::System, 1, 64);
++	img3o_[3].createSeparatePlaneBuffers(dmaHeap_, formats::NV12_12P_MTISP, mcnrSizes[3], 16, DmaHeap::System, 1, 64);
++	img3o_[4].createSeparatePlaneBuffers(dmaHeap_, formats::NV12_12P_MTISP, mcnrSizes[4], 16, DmaHeap::System, 1, 64);
++	img3o_[5].createSeparatePlaneBuffers(dmaHeap_, formats::NV12_12P_MTISP, mcnrSizes[5], 16, DmaHeap::System, 1, 64);
++	img3o_[6].createSeparatePlaneBuffers(dmaHeap_, formats::NV12_12P_MTISP, mcnrSizes[6], 16, DmaHeap::System, 1, 64);
+
+ 	tnrmo_[1].createBuffers(dmaHeap_, formats::GREY, mcnrSizes[1], 3, DmaHeap::System, 16);
+ 	tnrmo_[2].createBuffers(dmaHeap_, formats::GREY, mcnrSizes[2], 3, DmaHeap::System, 16);
 diff --git a/src/libcamera/pipeline/mtkisp7/meson.build b/src/libcamera/pipeline/mtkisp7/meson.build
 index e3a619b..b857a51 100644
 --- a/src/libcamera/pipeline/mtkisp7/meson.build
@@ -339,6 +488,105 @@ index 6b1d9ee..98b3618 100644
  	// TODO: Implement the padding condition for per-frame control
  	std::shared_ptr<ControlList> controls_cur = std::make_shared<ControlList>(request->controls());
  
+diff --git a/src/libcamera/pipeline/mtkisp7/odt/imagiq_adapter/imagiq_adapter.cpp b/src/libcamera/pipeline/mtkisp7/odt/imagiq_adapter/imagiq_adapter.cpp
+index 2891ea3..3cd7738 100644
+--- a/src/libcamera/pipeline/mtkisp7/odt/imagiq_adapter/imagiq_adapter.cpp
++++ b/src/libcamera/pipeline/mtkisp7/odt/imagiq_adapter/imagiq_adapter.cpp
+@@ -13,12 +13,15 @@
+ #include <fstream>
+ #include <memory>
+ #include <sstream>
++#include <unordered_set>
++#include <vector>
+
+ #include <libcamera/base/log.h>
+
+ #include <libcamera/formats.h>
+ #include <libcamera/pixel_format.h>
+
++#include "libcamera/internal/dma_heaps.h"
+ #include "libcamera/internal/formats.h"
+ #include "libcamera/internal/mapped_framebuffer.h"
+
+@@ -51,6 +54,19 @@ namespace {
+ const std::filesystem::path kDumpConfigPath = "dump.cfg";
+ const std::filesystem::path kImportConfigPath = "dump_import.cfg";
+
++/* Sync each allocation once, for both shared-FD P1 and separate-FD P2 frames. */
++std::vector<std::unique_ptr<DmaSyncer>> syncFramePlanes(const FrameBuffer *buffer)
++{
++	std::unordered_set<int> fds;
++	std::vector<std::unique_ptr<DmaSyncer>> syncers;
++	for (const FrameBuffer::Plane &plane : buffer->planes()) {
++		const int fd = plane.fd.get();
++		if (fds.insert(fd).second)
++			syncers.emplace_back(std::make_unique<DmaSyncer>(fd));
++	}
++	return syncers;
++}
++
+ } // namespace
+
+ std::unique_ptr<NSCam::TuningUtils::NddInitializer>
+@@ -244,7 +260,7 @@ ImagiqAdapter::ExportResult ImagiqAdapter::exportArrayDump(
+ ImagiqAdapter::ExportResult ImagiqAdapter::exportFrameDump(
+ 	const Dump &dump, const NSCam::TuningUtils::NddData &ndd)
+ {
+-	DmaSyncer syncer(dump.frame->buffer()->planes()[0].fd.get());
++	auto syncers = syncFramePlanes(dump.frame->buffer());
+ 	const MappedFrameBuffer mappedBuffer(
+ 		dump.frame->buffer(), MappedFrameBuffer::MapFlag::Read);
+
+@@ -480,7 +496,7 @@ int ImagiqAdapter::importDump(const Dump &dump)
+ 		return -EINVAL;
+ 	}
+
+-	DmaSyncer syncer(dump.frame->buffer()->planes()[0].fd.get());
++	auto syncers = syncFramePlanes(dump.frame->buffer());
+
+ 	MappedFrameBuffer mappedBuffer(
+ 		dump.frame->buffer(), MappedFrameBuffer::MapFlag::ReadWrite);
+diff --git a/src/libcamera/pipeline/mtkisp7/odt/on_device_tuner.cpp b/src/libcamera/pipeline/mtkisp7/odt/on_device_tuner.cpp
+index 0981317..03cec90 100644
+--- a/src/libcamera/pipeline/mtkisp7/odt/on_device_tuner.cpp
++++ b/src/libcamera/pipeline/mtkisp7/odt/on_device_tuner.cpp
+@@ -14,6 +14,7 @@
+ #include <fstream>
+ #include <memory>
+ #include <optional>
++#include <system_error>
+ #include <unistd.h>
+ #include <vector>
+
+@@ -57,7 +58,8 @@ constexpr const char *kEnableTuningPath = "/run/camera/enable_tuning";
+ constexpr const char *kEnforceLowIsoLpnr = "/run/camera/enforce_low_iso_lpnr";
+ constexpr const char *kExportRequestPath = "/run/camera/export_dump";
+ constexpr const char *kImportRequestPath = "/run/camera/import_dump";
+-constexpr const char *kWorkDir = "/mnt/stateful_partition/vendor/camera_dump";
++/* The standalone launcher binds each session's RAM/disk output here. */
++constexpr const char *kWorkDir = "/captures/p1-dump";
+ constexpr const char *kEnableCamsysDebugFrame =
+ 	"/run/camera/camsys_debug_frame";
+
+@@ -427,12 +429,12 @@ int OnDeviceTuner::prepareNewExportDirectory()
+ 		workPath /
+ 		("UKey" + ImagiqAdapter::formatTimestamp(sessionTimestamp_));
+ 	if (!isIpa_) {
+-		auto cmd = "mkdir -p " + newPath.string();
+-		int ret = system(cmd.c_str());
+-		if (ret != 0) {
+-			LOG(MtkISP7, Error) << "Failed to prepare dump directory, error code: "
+-					    << ret;
+-			return ret;
++		std::error_code error;
++		std::filesystem::create_directories(newPath, error);
++		if (error) {
++			LOG(MtkISP7, Error) << "Failed to prepare dump directory: "
++					    << error.message();
++			return -error.value();
+ 		}
+ 	}
+ 	LOG(MtkISP7, Info) << "Current dump directory: " << newPath.string();
 diff --git a/src/platform/mtkisp7/meson.build b/src/platform/mtkisp7/meson.build
 index 6a8e9b8..e67eaee 100644
 --- a/src/platform/mtkisp7/meson.build

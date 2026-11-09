@@ -10,6 +10,17 @@ ROOT = Path(__file__).resolve().parent.parent
 
 
 class LibcameraStackTests(unittest.TestCase):
+    def test_capture_script_lists_keep_libcamera_control_id_map(self):
+        patch = (ROOT / "config/libcamera/ciri.patch").read_text()
+        client_patch = patch.split("diff --git a/src/apps/cam/capture_script.cpp", 1)[1].split("diff --git ", 1)[0]
+        added = "\n".join(line[1:] for line in client_patch.splitlines()
+                          if line.startswith("+") and not line.startswith("+++"))
+        self.assertIn("#include <libcamera/control_ids.h>", added)
+        self.assertIn("static ControlList controls{ controls::controls };", added)
+        self.assertIn("\n\tControlList controls{ controls::controls };", added)
+        self.assertNotIn("ControlList controls{};", added)
+        self.assertNotIn("camera_->controls()", added)
+
     def test_patch_routes_standard_allocator_and_keeps_errors(self):
         patch = (ROOT / "config/libcamera/ciri.patch").read_text()
         added = "\n".join(line[1:] for line in patch.splitlines()

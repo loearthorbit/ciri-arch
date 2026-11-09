@@ -42,7 +42,7 @@ fi
 python3 -I - "$source" "$repo/config/libcamera/ciri.patch" <<'PY'
 from pathlib import Path
 import subprocess, sys
-actual = subprocess.check_output(['git', '-C', sys.argv[1], 'diff', '--', 'src', 'utils'], text=True)
+actual = subprocess.check_output(['git', '-C', sys.argv[1], 'diff', '--', 'include', 'src', 'utils'], text=True)
 expected = Path(sys.argv[2]).read_text()
 # Patch editors may remove the single context marker from a blank context line;
 # git apply accepts either form. All nonblank patch lines must still match exactly.

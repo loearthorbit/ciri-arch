@@ -43,20 +43,54 @@ class HostUpdateTests(unittest.TestCase):
             write_manifest(root, files)
         return source, prefix
 
-    def apply(self, source, prefix, **patches):
+    def cam_fixture(self, work):
+        source, prefix = self.fixture(work)
+        (source / 'ciri-libcamera-host').rename(source / 'cam')
+        (source / 'install-host-update.sh').rename(source / 'install-cam-update.sh')
+        write_manifest(source, ['cam', 'build-info.txt', 'install-cam-update.sh'])
+        return source, prefix
+
+    def apply(self, source, prefix, component='host', **patches):
         script = (ROOT / 'scripts/update-ciri-libcamera-host.sh').read_text()
         code = script.split("<<'PY'\n", 1)[1].rsplit('\nPY', 1)[0]
         # Replace the pinned shipped-helper hash only in the TEST's code copy.
         pinned = "OLD = '1e300cd036fc30ae5121a18ea79c5bdda5e70730ced8619be0e3ef0cad2f2b45'"
         self.assertEqual(code.count(pinned), 1)
         code = code.replace(pinned, "OLD = '" + OLD_HASH + "'")
+        cam_pinned = "CAM_OLD = 'a8e0393e09af9b63eddb3b9dbb3e064bff51e355095fddfa1cc47599452e9661'"
+        self.assertEqual(code.count(cam_pinned), 1)
+        code = code.replace(cam_pinned, "CAM_OLD = '" + hashlib.sha256(b'cam fixture').hexdigest() + "'")
         with contextlib.ExitStack() as stack:
-            stack.enter_context(mock.patch.object(sys, 'argv', ['-', str(source), str(prefix)]))
+            stack.enter_context(mock.patch.object(sys, 'argv', ['-', str(source), str(prefix), component]))
             stack.enter_context(mock.patch.object(subprocess, 'run', return_value=mock.Mock(returncode=0)))
             for name, value in patches.items():
                 stack.enter_context(mock.patch.object(os, name, side_effect=value))
             stack.enter_context(contextlib.redirect_stdout(io.StringIO()))
             exec(compile(code, 'helper-update-inline.py', 'exec'), {})
+
+    def test_cam_update_preserves_helper_libraries_and_is_idempotent(self):
+        with tempfile.TemporaryDirectory() as directory:
+            source, prefix = self.cam_fixture(Path(directory))
+            before = {p.relative_to(prefix): p.read_bytes()
+                      for p in prefix.rglob('*') if p.is_file()}
+            self.apply(source, prefix, component='cam')
+            self.apply(source, prefix, component='cam')
+            for name, content in before.items():
+                if str(name) not in ('rootfs/usr/bin/cam', 'SHA256SUMS'):
+                    self.assertEqual((prefix / name).read_bytes(), content)
+            self.assertEqual((prefix / 'rootfs/usr/bin/cam').read_bytes(), NEW_BYTES)
+            self.assertEqual(set(p.relative_to(prefix) for p in prefix.rglob('*') if p.is_file()), set(before))
+
+    def test_cam_update_rejects_unknown_installed_client(self):
+        with tempfile.TemporaryDirectory() as directory:
+            source, prefix = self.cam_fixture(Path(directory))
+            (prefix / 'rootfs/usr/bin/cam').write_bytes(b'unknown cam')
+            write_manifest(prefix, [str(p.relative_to(prefix)) for p in prefix.rglob('*')
+                                    if p.is_file() and p.name != 'SHA256SUMS'])
+            before = {p: p.read_bytes() for p in prefix.rglob('*') if p.is_file()}
+            with self.assertRaisesRegex(SystemExit, 'Unexpected installed executable'):
+                self.apply(source, prefix, component='cam')
+            self.assertEqual({p: p.read_bytes() for p in prefix.rglob('*') if p.is_file()}, before)
 
     def test_updates_only_helper_and_manifest_and_is_idempotent(self):
         with tempfile.TemporaryDirectory() as directory:
