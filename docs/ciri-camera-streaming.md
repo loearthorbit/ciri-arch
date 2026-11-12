@@ -31,6 +31,15 @@ rate/latency, repeated shutdown/startup and desktop/browser clients have not yet
 been separately measured or confirmed. This is an operator-reported device
 result, not an assistant-executed Ciri test.
 
+The operator also reports the front camera working. A separate
+[automatic front/rear demand service](ciri-camera-service.md) is now authored,
+with stable udev names, systemd startup and stream-event-driven capture. Both
+cameras are enabled by default, with one active physical ISP pipeline at a time.
+Its 13 synthetic service tests bring the repository suite to 141 passing tests;
+service installation, inherited-FD output, native demand switching, browser
+integration and CPU/power measurement remain operator-run acceptance checks.
+The manual filesink launcher and existing private runtime are unchanged.
+
 ## Historical status — 2026-11-07
 
 - The device owner confirms standard `cam` capture at approximately **18 fps**, with a **strong green tint**, after the IPA loader-scope update.

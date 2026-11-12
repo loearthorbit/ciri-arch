@@ -1,0 +1,27 @@
+[Unit]
+Description=Ciri front/rear cameras on capture demand
+After=systemd-udev-trigger.service
+StartLimitIntervalSec=180
+StartLimitBurst=3
+
+[Service]
+Type=notify
+NotifyAccess=main
+EnvironmentFile=/etc/ciri-camera.conf
+ExecStartPre=/usr/bin/modprobe v4l2loopback devices=0
+ExecStartPre=/usr/bin/modprobe mtk_imgsys
+ExecStartPre=/usr/bin/modprobe mtk-aie
+ExecStart=/usr/bin/python3 -I /usr/local/lib/ciri-camera/service.py --cameras ${CIRI_CAMERAS} --fps ${CIRI_FPS} --idle-seconds ${CIRI_IDLE_SECONDS}
+RuntimeDirectory=ciri-camera
+RuntimeDirectoryMode=0755
+PrivateTmp=yes
+NoNewPrivileges=yes
+KillMode=mixed
+KillSignal=SIGINT
+TimeoutStartSec=90
+TimeoutStopSec=20
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

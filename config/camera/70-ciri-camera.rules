@@ -1,0 +1,4 @@
+# Before 73-seat-late.rules: grant the active local seat access via logind.
+# Physical video numbering is dynamic. Only managed loopbacks get these names.
+SUBSYSTEM=="video4linux", KERNEL=="video[0-9]*", ATTR{name}=="Ciri rear camera", ATTR{max_openers}=="?*", SYMLINK+="ciri-camera-back", GROUP="video", MODE="0660", TAG+="uaccess"
+SUBSYSTEM=="video4linux", KERNEL=="video[0-9]*", ATTR{name}=="Ciri front camera", ATTR{max_openers}=="?*", SYMLINK+="ciri-camera-front", GROUP="video", MODE="0660", TAG+="uaccess"
